@@ -6,11 +6,11 @@ import { Router } from '@angular/router';
 import { UtilFunctions } from '../../utils/util-functions';
 
 @Component({
-  selector: 'app-school-gallery',
-  templateUrl: './school-gallery.component.html',
-  styleUrls: ['./school-gallery.component.css']
+  selector: 'app-school-exam',
+  templateUrl: './school-exam.component.html',
+  styleUrls: ['./school-exam.component.css']
 })
-export class SchoolGalleryComponent implements OnInit {
+export class SchoolExamComponent implements OnInit {
 
   action: string;
 

@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule, Route, Routes} from '@angular/router';
-import { LoadingModule, ANIMATION_TYPES } from 'ngx-loading';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -23,27 +23,36 @@ import { SchoolLibraryComponent } from './components/school-library/school-libra
 import { SchoolNotificationComponent } from './components/school-notification/school-notification.component';
 import { SchoolResultComponent } from './components/school-result/school-result.component';
 import { LoginComponent } from './components/login/login.component';
-import { ResultSubjectsComponent } from './components/result-subjects/result-subjects.component';
 import { ResultMarksComponent } from './components/result-marks/result-marks.component';
 import { SchoolStudentComponent } from './components/school-student/school-student.component';
+import { ErrorComponent } from './components/error/error.component';
+import { ListComponent } from './components/list/list.component';
+import { SchoolExamComponent } from './components/school-exam/school-exam.component';
+import { ProfileComponent } from './components/profile/profile.component';
+import { DataServiceService } from './services/data-service.service';
+import { BookService } from './services/book.service';
 
 const appRoutes: Routes = [
-  { path: '', component: LoginComponent },
+  { path: '', component: DashboardComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'dashboard', component: DashboardComponent },
-  { path: 'classes', component: SchoolClassComponent },
-  { path: 'students', component: SchoolStudentComponent },
-  { path: 'teachers', component: SchoolTeacherComponent },
-  { path: 'drivers', component: SchoolDriverComponent },
-  { path: 'buses', component: SchoolBusComponent },
-  { path: 'routes', component: SchoolRouteComponent },
-  { path: 'homeWork', component: SchoolHomeWorkComponent },
-  { path: 'attendance', component: SchoolAttendanceComponent },
-  { path: 'timeTable', component: SchoolTimeTableComponent },
-  { path: 'gallery', component: SchoolGalleryComponent },
-  { path: 'library', component: SchoolLibraryComponent },
-  { path: 'notifications', component: SchoolNotificationComponent },
-  { path: 'results', component: SchoolResultComponent },
+  { path: 'dashboard', component: DashboardComponent},
+  { path: 'list/:type', component: ListComponent },
+  { path: 'class/:action', component: SchoolClassComponent },
+  { path: 'student/:action', component: SchoolStudentComponent },
+  { path: 'teacher/:action', component: SchoolTeacherComponent },
+  { path: 'driver/:action', component: SchoolDriverComponent },
+  { path: 'bus/:action', component: SchoolBusComponent },
+  { path: 'route/:action', component: SchoolRouteComponent },
+  { path: 'homeWork/:action', component: SchoolHomeWorkComponent },
+  { path: 'attendance/:action', component: SchoolAttendanceComponent },
+  { path: 'timeTable/:action', component: SchoolTimeTableComponent },
+  { path: 'album/:action', component: SchoolGalleryComponent },
+  { path: 'book/:action', component: SchoolLibraryComponent },
+  { path: 'notification/:action', component: SchoolNotificationComponent },
+  { path: 'exam/:action', component: SchoolExamComponent },
+  { path: 'result/:action', component: ResultMarksComponent },
+  { path: 'profile', component: ProfileComponent },
+  { path: '**', component: ErrorComponent }
 ];
 
 @NgModule({
@@ -66,18 +75,21 @@ const appRoutes: Routes = [
     SchoolNotificationComponent,
     SchoolResultComponent,
     LoginComponent,
-    ResultSubjectsComponent,
     ResultMarksComponent,
     SchoolStudentComponent,
+    ErrorComponent,
+    ListComponent,
+    SchoolExamComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(appRoutes),
+    RouterModule.forRoot(appRoutes, {useHash: true}),
     FormsModule,
     HttpModule,
-    LoadingModule
+    NgxDatatableModule
   ],
-  providers: [],
+  providers: [DataServiceService, BookService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

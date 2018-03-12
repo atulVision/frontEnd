@@ -9,4 +9,14 @@
 @import '~bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css';
 @import '~bootstrap-daterangepicker/daterangepicker.css';
 @import '~admin-lte/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css';
+@import '~@swimlane/ngx-datatable/release/index.css';
+@import '~@swimlane/ngx-datatable/release/themes/material.css';
+@import '~@swimlane/ngx-datatable/release/assets/icons.css';
 
+.content-wrapper{background-color: rgb(255, 255, 255);}
+.list-tool-bar{margin: 10px;}
+.right-float{float: right;}
+.search-bar{padding:5px;margin:auto;width:30%;}
+.list-menu-li-margin{margin: 10px;}
+.form{margin: 10%;}
+.login-form{width: 60%;}

@@ -1,0 +1,51 @@
+<div class="list-tool-bar">
+  <div class="page-header">
+    <h1>{{locale.table_title}}</h1>
+  </div>
+  <div class="list-tool-bar">
+      <div class="btn-group">
+          <button type="button" class="btn btn-default list-menu-btn dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bars"></i></button>
+          <ul class="dropdown-menu">
+            <li>{{commonLocale.drop_menu_option1_title}}</li>
+            <li class="divider"></li>
+              <li *ngFor='let col of filterColumns' class="list-menu-li-margin">
+                <input type='checkbox' [id]="col.prop" (click)='toggle(col)' [checked]='isChecked(col)' />
+                <label [attr.for]="col.name">{{locale[col.prop]}}</label>
+              </li>
+              <li class="divider"></li>
+              <li>{{commonLocale.drop_menu_option2_title}}</li>
+              <li class="divider"></li>
+              <li><a (click)="setPageSize(10)"><i class="fa fa-angle-double-right"> 10</i></a></li>
+              <li><a (click)="setPageSize(20)"><i class="fa fa-angle-double-right"> 20</i></a></li>
+              <li><a (click)="setPageSize(30)"><i class="fa fa-angle-double-right"> 30</i></a></li>
+            </ul>
+        </div>
+        <i class="fa fa-search"></i>
+      <input type='text' class="search-bar" placeholder='Search' (keyup)='updateFilter($event)' />
+      <button routerLink="{{ref.addRef}}"  routerLinkActive="active" type="button" class="btn btn-success list-add-btn right-float"><i class="fa fa-plus"></i> {{locale.add_btn}}</button>
+  </div>
+  <div>
+      <ngx-datatable class="material striped" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'" [limit]="pageSize"
+      [rows]="data">
+      <ngx-datatable-column *ngFor="let col of columns" class="resizeable sortable">
+          <ng-template let-column="col" ngx-datatable-header-template>
+              {{locale[col.prop]}}
+          </ng-template>
+          <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+              <div>{{row[col.prop]}}</div>
+          </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column>
+          <ng-template let-column="column" ngx-datatable-header-template>
+              {{commonLocale.head_action_col}}
+          </ng-template>
+          <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+              <button type="button" class="btn btn-info" (click)="view(row)"><i class="fa fa-eye"></i></button>
+              <button routerLink="{{ref.editRef}}" type="button" class="btn btn-warning" (click)="edit(row)"><i class="fa fa-pencil-square-o"></i></button>
+              <button type="button" class="btn btn-danger"><i class="fa  fa-remove" (click)="delete(row)"></i></button>
+          </ng-template>
+      </ngx-datatable-column>
+      </ngx-datatable>
+  </div>
+</div>
+
