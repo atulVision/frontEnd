@@ -55,7 +55,12 @@ export class SchoolBusComponent implements OnInit {
   }
 
   addBus(data) {
+
     console.log(data);
+  }
+
+  backToList() {
+    this.router.navigate(['/list/bus']);
   }
 
 }

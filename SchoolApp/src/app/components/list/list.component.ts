@@ -21,6 +21,8 @@ export class ListComponent implements OnInit {
   pageSize = 10;
   locale: any;
   commonLocale: any;
+  deleteCache: any;
+
   rows = [
     {
       sr_no: 1,
@@ -111,8 +113,13 @@ export class ListComponent implements OnInit {
 
   }
 
-  delete(row: any) {
-
+  delete(row: any, go: any) {
+    if( go ) {
+      console.log("DELETE"+this.deleteCache);
+    } else {
+      this.deleteCache = row;
+      console.log("Cached"+this.deleteCache);
+    }
   }
 
   setPageSize(size: any) {

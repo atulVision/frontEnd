@@ -55,13 +55,32 @@
         </div>
       </div>
       <div class="box-footer">
-        <button type="button" class="btn btn-default">Back</button>
-        <button *ngIf="action === 'new'" type="submit" class="btn btn-info pull-right">Submit</button>
-        <button *ngIf="action === 'view'" type="button" class="btn btn-default btn-info pull-right">OK</button>
-        <button *ngIf="action === 'edit'" type="submit" class="btn btn-info pull-right">Update</button>
+        <button type="button" class="btn btn-default" (click)="backToList()">Back</button>
+        <button *ngIf="action === 'new'" type="submit" class="btn btn-success pull-right" data-toggle="modal" data-target="#modal-success">Submit</button>
+        <button *ngIf="action === 'view'" type="button" class="btn btn-info btn-info pull-right" (click)="backToList()">OK</button>
+        <button *ngIf="action === 'edit'" type="submit" class="btn btn-success pull-right" data-toggle="modal" data-target="#modal-success">Update</button>
       </div>
     </form>
   </div>
-
 </div>
 </section>
+
+<div class="modal modal-success fade" id="modal-success">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Status</h4>
+      </div>
+      <div class="modal-body">
+        <h5 *ngIf="action === 'new'">{{locale.bus}} is added successfully.</h5>
+        <h5 *ngIf="action === 'edit'">{{locale.bus}} is updated successfully.</h5>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">OK</button>
+      </div>
+    </div>
+  </div>
+</div>
+
