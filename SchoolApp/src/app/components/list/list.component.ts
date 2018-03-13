@@ -22,40 +22,11 @@ export class ListComponent implements OnInit {
   locale: any;
   commonLocale: any;
   deleteCache: any;
-
-  rows = [
-    {
-      sr_no: 1,
-      bookId: 1,
-      publisher: 'Rupa, 2014',
-      authors: 'Chetan Bhagat',
-      createdAt: '2018-02-23',
-      updatedAt: '2018-02-23',
-      description: 'Half Girlfriend is an Indian English coming of age, young adult romance novel by Indian author Chetan Bhagat. The novel, set in rural Bihar, New Delhi, Patna, and New York, is the story of a Bihari boy in quest of winning over the girl he loves.',
-      edition: 'Third',
-      coverPhoto: 'www.ing,com',
-      bookType: null,
-      bookName: 'Half Girlfriend',
-      isbn: '8129135728',
-  },
-  {
-      sr_no: 2,
-      bookId: 2,
-      publisher: 'University of California Press, 2006',
-      authors: 'Rajmohan Gandhi',
-      createdAt: '2018-02-23',
-      updatedAt: '2018-02-23',
-      description: 'Rajmohan Gandhi is Research Professor at the Center for South Asian and Middle Eastern Studies, University of Illinois at Urbana-Champaign. A former member of the Rajya Sabha (the 0',
-      edition: 'illustrated, reprint',
-      coverPhoto: 'www.img.com',
-      bookType: null,
-      bookName: 'Gandhi',
-      isbn: '9780520255708'
-  }
-  ];
+  rows = [];
   columns = [];
   filterColumns = [];
   ref: any;
+
   constructor(private route: ActivatedRoute, private router: Router, private _data: DataServiceService,
     private _book: BookService, private _teacher: TeacherService) {
     this.route.params.subscribe((params) => {
@@ -71,6 +42,7 @@ export class ListComponent implements OnInit {
       this.rows = res;
   }, (resError) => {
     });
+    console.log(this.rows);
   }
 
   toggle(col) {

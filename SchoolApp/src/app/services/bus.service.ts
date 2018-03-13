@@ -4,39 +4,39 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import { Constants } from '../utils/constants';
-import { Student } from '../models/student.model';
+import { Bus } from '../models/bus.model';
 
 @Injectable()
-export class StudentService {
+export class BusService {
 
   constructor(private _http: Http) { }
 
-  getStudentList() {
-    return this._http.get(Constants.URL.host_url + Constants.URL.studentURL)
+  getBusList() {
+    return this._http.get(Constants.URL.host_url + Constants.URL.busURL)
       .map((response: Response) => {
         return response.json();
       })
       .catch(this._errorHandler);
   }
 
-  saveStudent(student: Student) {
-    return this._http.post(Constants.URL.host_url + Constants.URL.studentURL, student)
+  saveBus(bus: Bus) {
+    return this._http.post(Constants.URL.host_url + Constants.URL.busURL, bus)
       .map((response: Response) => {
         return response.json();
       })
       .catch(this._errorHandler);
   }
 
-  updateStudent(studentId: any, student: Student) {
-    return this._http.put(Constants.URL.host_url + Constants.URL.studentURL + '/' + studentId, student)
+  updateBus(busId: any, bus: Bus) {
+    return this._http.put(Constants.URL.host_url + Constants.URL.busURL + '/' + busId, bus)
       .map((response: Response) => {
         return response.json();
       })
       .catch(this._errorHandler);
   }
 
-  deleteStudent(studentId: any) {
-    return this._http.delete(Constants.URL.host_url + Constants.URL.studentURL + '/' + studentId)
+  deleteBus(busId: any) {
+    return this._http.delete(Constants.URL.host_url + Constants.URL.busURL + '/' + busId)
       .map((response: Response) => {
         return response.json();
       })

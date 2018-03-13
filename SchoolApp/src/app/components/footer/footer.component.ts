@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Labels } from '../../utils/labels';
 
 @Component({
   selector: 'app-footer',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FooterComponent implements OnInit {
 
+  locale: any;
+
   constructor() { }
 
   ngOnInit() {
+    this.locale = Labels.en_IN.labels.footer;
   }
 
   goToTop() {

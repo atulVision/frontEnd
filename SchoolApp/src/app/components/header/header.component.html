@@ -1,11 +1,11 @@
 <div class="main-header">
     <a href="#" class="logo">
-      <span class="logo-mini"><b>SA</b></span>
-      <span class="logo-lg"><b>School Admin</b></span>
+      <span class="logo-mini"><b>{{locale.logo_mini}}</b></span>
+      <span class="logo-lg"><b>{{locale.logo_lg}}</b></span>
     </a>
     <nav class="navbar navbar-static-top">
       <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button" *ngIf="checkLogin()">
-        <span class="sr-only">Toggle navigation</span>
+        <span class="sr-only"></span>
       </a>
       <div class="navbar-custom-menu" *ngIf="checkLogin()">
         <ul class="nav navbar-nav">
@@ -21,10 +21,10 @@
               </li>
               <li class="user-footer">
                 <div class="pull-left">
-                  <a routerLink="profile"  routerLinkActive="active" class="btn btn-default btn-flat">Profile</a>
+                  <a routerLink="profile"  routerLinkActive="active" class="btn btn-default btn-flat">{{locale.profile_btn}}</a>
                 </div>
                 <div class="pull-right">
-                  <a routerLink="login"  routerLinkActive="active" class="btn btn-default btn-flat">Sign out</a>
+                  <a routerLink="login"  routerLinkActive="active" class="btn btn-default btn-flat">{{locale.sign_out_btn}}</a>
                 </div>
               </li>
             </ul>

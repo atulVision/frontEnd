@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { RouterModule, Route, Routes} from '@angular/router';
+import { RouterModule, Route, Routes } from '@angular/router';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 import { AppComponent } from './app.component';
@@ -32,11 +32,23 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { DataServiceService } from './services/data-service.service';
 import { BookService } from './services/book.service';
 import { TeacherService } from './services/teacher.service';
+import { ClassesService } from './services/classes.service';
+import { StudentService } from './services/student.service';
+import { AttendanceService } from './services/attendance.service';
+import { HomeWorkService } from './services/home-work.service';
+import { TimeTableService } from './services/time-table.service';
+import { ExamService } from './services/exam.service';
+import { ResultService } from './services/result.service';
+import { DriverService } from './services/driver.service';
+import { RouteService } from './services/route.service';
+import { AlbumService } from './services/album.service';
+import { NotificationService } from './services/notification.service';
+import { BusService } from './services/bus.service';
 
 const appRoutes: Routes = [
   { path: '', component: DashboardComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'dashboard', component: DashboardComponent},
+  { path: 'dashboard', component: DashboardComponent },
   { path: 'list/:type', component: ListComponent },
   { path: 'class/:action', component: SchoolClassComponent },
   { path: 'student/:action', component: SchoolStudentComponent },
@@ -85,12 +97,28 @@ const appRoutes: Routes = [
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(appRoutes, {useHash: true}),
+    RouterModule.forRoot(appRoutes, { useHash: true }),
     FormsModule,
     HttpModule,
     NgxDatatableModule
   ],
-  providers: [DataServiceService, BookService, TeacherService],
+  providers: [
+    DataServiceService,
+    ClassesService,
+    TeacherService,
+    StudentService,
+    AttendanceService,
+    HomeWorkService,
+    TimeTableService,
+    ExamService,
+    ResultService,
+    DriverService,
+    BusService,
+    RouteService,
+    BookService,
+    AlbumService,
+    NotificationService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

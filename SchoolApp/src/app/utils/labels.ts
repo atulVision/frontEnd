@@ -2,6 +2,19 @@ export class Labels {
 
   public static en_IN: any = {
     'labels': {
+      'header': {
+        'logo_mini': 'SA',
+        'logo_lg': 'School Admin',
+        'profile_btn' : 'Profile',
+        'sign_out_btn' : 'Sign out'
+      },
+      'footer': {
+        'gtt_btn': 'Go To Top',
+        'copy_right': 'Copyright ',
+        'year': ' 2018 ',
+        'company_name': 'VisionSoftware',
+        'msg': ' All rights reserved.'
+      },
       'side_menu': {
         'name_nav': 'MAIN NAVIGATION',
         'name_dashboard': 'Dashboard',
@@ -46,6 +59,16 @@ export class Labels {
         'name_notification': 'Notifications',
         'add_notification': 'Create Notification',
         'list_notification': 'Notification List',
+      },
+      'dashboard' : {
+          'head_title': 'DashBoard',
+          'class_box' : 'Classes',
+          'teacher_box' : 'Teachers',
+          'student_box' : 'Students',
+          'driver_box' : 'Drivers',
+          'bus_box' : 'Buses',
+          'route_box' : 'Routes',
+          'view_detail': 'View Details'
       },
       'table': {
         'common': {
@@ -173,42 +196,42 @@ export class Labels {
           'date': 'DATE'
         }
       },
-      'page_title' : {
+      'page_title': {
         'new': 'Add',
         'view': 'Details of',
         'edit': 'Edit',
         'book': 'Book',
-        'bus' : 'Bus',
+        'bus': 'Bus',
         'driver': 'Driver'
       },
-      'form_labels' : {
-        'bus_no' : 'Bus No.',
-        'bus_owner' : 'Owner Name',
-        'bus_driver' : 'Driver Name',
-        'bus_route' : 'Bus Route',
+      'form_labels': {
+        'bus_no': 'Bus No.',
+        'bus_owner': 'Owner Name',
+        'bus_driver': 'Driver Name',
+        'bus_route': 'Bus Route',
         'bus_contact_no': 'Contact No.',
-        'bus_no_placeholder' : 'Enter Bus No.',
-        'bus_owner_placeholder' : 'Enter Owner Name',
-        'bus_driver_placeholder' : 'Select Driver',
-        'bus_route_placeholder' : 'Select Bus Route',
+        'bus_no_placeholder': 'Enter Bus No.',
+        'bus_owner_placeholder': 'Enter Owner Name',
+        'bus_driver_placeholder': 'Select Driver',
+        'bus_route_placeholder': 'Select Bus Route',
         'bus_contact_no_placeholder': 'Enter Contact No.',
         'driver_name': 'Name',
-        'driver_adhar_no' : 'Adhar No.',
-        'driver_mobile_no' : 'Mobile No.',
-        'driver_email' : 'Email ID',
-        'driver_position' : 'Position',
-        'driver_profile' : 'Profile',
+        'driver_adhar_no': 'Adhar No.',
+        'driver_mobile_no': 'Mobile No.',
+        'driver_email': 'Email ID',
+        'driver_position': 'Position',
+        'driver_profile': 'Profile',
         'driver_address': 'Address',
-        'driver_username' : 'User Name',
-        'driver_pass' : 'Password',
+        'driver_username': 'User Name',
+        'driver_pass': 'Password',
         'driver_bus': 'Bus No.',
         'driver_name_placeholder': 'Enter Name',
-        'driver_adhar_no_placeholder' : 'Enter Adhar Number',
-        'driver_mobile_no_placeholder' : 'Enter Mobile Number',
-        'driver_email_placeholder' : 'Enter Email ID',
+        'driver_adhar_no_placeholder': 'Enter Adhar Number',
+        'driver_mobile_no_placeholder': 'Enter Mobile Number',
+        'driver_email_placeholder': 'Enter Email ID',
         'driver_address_placeholder': 'Enter Address',
-        'driver_username_placeholder' : 'Enter User Name',
-        'driver_pass_placeholder' : 'Enter Password',
+        'driver_username_placeholder': 'Enter User Name',
+        'driver_pass_placeholder': 'Enter Password',
         'driver_bus_placeholder': 'Select Bus',
         'driver_position_placeholder': 'Enter Position'
       }

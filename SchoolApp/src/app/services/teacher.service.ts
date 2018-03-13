@@ -6,43 +6,40 @@ import 'rxjs/add/operator/catch';
 import { Constants } from '../utils/constants';
 import { Teacher } from '../models/teacher.model';
 
+
 @Injectable()
 export class TeacherService {
 
   constructor(private _http: Http) { }
 
   getTeacherList() {
-    return this._http.get(Constants.URL.host_url + Constants.URL.getTeacherListURL)
+    return this._http.get(Constants.URL.host_url + Constants.URL.teacherURL)
     .map((response: Response) => {
-        const userResponse = response.json();
-        return userResponse;
+        return response.json();
     })
     .catch(this._errorHandler);
 }
 
-saveBook(book) {
-    return this._http.post(Constants.URL.host_url + Constants.URL.bookURL, book)
+saveTeacher(teacher: Teacher) {
+    return this._http.post(Constants.URL.host_url + Constants.URL.TeacherURL, teacher)
     .map((response: Response) => {
-        const userResponse = response.json();
-        return userResponse;
+      return response.json();
     })
     .catch(this._errorHandler);
 }
 
-updateBook(book) {
-  return this._http.put(Constants.URL.host_url + Constants.URL.bookURL, book)
+updateTeacher(teacherId: any, teacher: Teacher) {
+  return this._http.put(Constants.URL.host_url + Constants.URL.TeacherURL + '/' + teacherId, teacher)
   .map((response: Response) => {
-      const userResponse = response.json();
-      return userResponse;
+    return response.json();
   })
   .catch(this._errorHandler);
 }
 
-deleteBook(bookId) {
-  return this._http.delete(Constants.URL.host_url + Constants.URL.bookURL + bookId)
+deleteTeacher(teacherId: any) {
+  return this._http.delete(Constants.URL.host_url + Constants.URL.TeacherURL + '/' + teacherId)
   .map((response: Response) => {
-      const userResponse = response.json();
-      return userResponse;
+    return response.json();
   })
   .catch(this._errorHandler);
 }
