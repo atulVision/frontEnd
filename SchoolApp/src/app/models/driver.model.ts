@@ -4,7 +4,7 @@ export class Driver {
   public address: string;
   public createdAt: string;
   public updatedAt: string;
-  public adharNUmber: string;
+  public adharNumber: string;
   public mobile: string;
   public email: string;
   public position: string;
@@ -15,14 +15,14 @@ export class Driver {
 
 
   constructor(driverId: number, name: string, address: string,
-    createdAt: string, updatedAt: string, adharNUmber: string,
+    createdAt: string, updatedAt: string, adharNumber: string,
     mobile: string, email: string, position: string,
     userName: string, password: string, bus: string, profile: string
   ) {
     this.driverId = driverId;
     this.name = name;
     this.address = address;
-    this.adharNUmber = adharNUmber;
+    this.adharNumber = adharNumber;
     this.createdAt = createdAt;
     this.updatedAt = updatedAt;
     this.mobile = mobile;

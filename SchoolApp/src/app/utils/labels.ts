@@ -178,7 +178,8 @@ export class Labels {
         'view': 'Details of',
         'edit': 'Edit',
         'book': 'Book',
-        'bus' : 'Bus'
+        'bus' : 'Bus',
+        'driver': 'Driver'
       },
       'form_labels' : {
         'bus_no' : 'Bus No.',
@@ -190,7 +191,26 @@ export class Labels {
         'bus_owner_placeholder' : 'Enter Owner Name',
         'bus_driver_placeholder' : 'Select Driver',
         'bus_route_placeholder' : 'Select Bus Route',
-        'bus_contact_no_placeholder': 'Enter Contact No.'
+        'bus_contact_no_placeholder': 'Enter Contact No.',
+        'driver_name': 'Name',
+        'driver_adhar_no' : 'Adhar No.',
+        'driver_mobile_no' : 'Mobile No.',
+        'driver_email' : 'Email ID',
+        'driver_position' : 'Position',
+        'driver_profile' : 'Profile',
+        'driver_address': 'Address',
+        'driver_username' : 'User Name',
+        'driver_pass' : 'Password',
+        'driver_bus': 'Bus No.',
+        'driver_name_placeholder': 'Enter Name',
+        'driver_adhar_no_placeholder' : 'Enter Adhar Number',
+        'driver_mobile_no_placeholder' : 'Enter Mobile Number',
+        'driver_email_placeholder' : 'Enter Email ID',
+        'driver_address_placeholder': 'Enter Address',
+        'driver_username_placeholder' : 'Enter User Name',
+        'driver_pass_placeholder' : 'Enter Password',
+        'driver_bus_placeholder': 'Select Bus',
+        'driver_position_placeholder': 'Enter Position'
       }
     }
   };
