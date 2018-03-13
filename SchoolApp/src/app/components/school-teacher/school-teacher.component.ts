@@ -4,6 +4,9 @@ import { AppConfig } from '../../utils/app-config';
 import { Labels } from '../../utils/labels';
 import { Router } from '@angular/router';
 import { UtilFunctions } from '../../utils/util-functions';
+import { DataServiceService } from '../../services/data-service.service';
+import { Teacher } from '../../models/teacher.model';
+import { TeacherService } from '../../services/teacher.service';
 
 @Component({
   selector: 'app-school-teacher',
@@ -13,11 +16,28 @@ import { UtilFunctions } from '../../utils/util-functions';
 export class SchoolTeacherComponent implements OnInit {
 
   action: string;
+  viewFlag = false;
+  teacher: Teacher;
+  pageTitle: any;
+  locale: any;
 
-  constructor(private route: ActivatedRoute, private router: Router) {
+  constructor(private route: ActivatedRoute, private router: Router, private _data: DataServiceService, private _teacher: TeacherService) {
     this.route.params.subscribe((params) => {
       this.action = params['action'];
-      console.log(this.action);
+      this.initializeTeacher();
+      if (this.action === 'new') {
+        this.viewFlag = false;
+      }
+      if (this.action === 'edit') {
+        this.viewFlag = false;
+        this.teacher = this._data.storage;
+      }
+      if (this.action === 'view') {
+        this.viewFlag = true;
+        this.teacher = this._data.storage;
+      }
+      this.locale = Labels.en_IN.labels.page_title;
+      this.pageTitle = this.locale[this.action] + " " + this.locale.book;
     });
   }
 
@@ -27,6 +47,18 @@ export class SchoolTeacherComponent implements OnInit {
       return;
     }
     this.router.navigate(['/login']);
+  }
+
+  initializeTeacher() {
+    this.teacher = new Teacher(0, '', '', '', '', '', '', '', '', '', '','','','');
+  }
+
+  getTeacherList() {
+  this._teacher.getTeacherList().subscribe((res) => {});
+  }
+
+  addTeacher(data) {
+    console.log(data);
   }
 
 }

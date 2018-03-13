@@ -1,3 +1,92 @@
-<p>
-  school-teacher works!
-</p>
+<section class="content-header">
+    <h1>Add Teacher</h1>
+</section>
+<section class="content-header">
+<div class="form">
+<div class="box box-info">
+    <div class="box-header with-border">
+      <h3 class="box-title">Teacher</h3>
+    </div>
+    <form class="form-horizontal" id="teacherForm" #teacherForm="ngForm" (ngSubmit)="addTeacher(teacherForm.value)">
+      <div class="box-body">
+
+        <div class="form-group">
+          <label for="name" class="col-sm-2 control-label">Name</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="name" name="name" placeholder="name" [disabled]="viewFlag" #name="ngModel" [(ngModel)]="teacher.name" >
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="age" class="col-sm-2 control-label">age</label>
+
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="age" name="age" placeholder="age" [disabled]="viewFlag" #age="ngModel" [(ngModel)]="teacher.age">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="mobile" class="col-sm-2 control-label">Mobile No.</label>
+
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="mobile" name="mobile" placeholder="mobile" [disabled]="viewFlag" #mobile="ngModel" [(ngModel)]="teacher.mobile">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="email" class="col-sm-2 control-label">Email Id</label>
+
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="email" name="email" placeholder="email" [disabled]="viewFlag" #email="ngModel" [(ngModel)]="teacher.email">
+          </div>
+        </div>
+        <div class="form-group">
+            <label for="profile" class="col-sm-2 control-label">Profile</label>
+
+            <div class="col-sm-8">
+              <input type="file" class="form-control" id="profile" name="profile" placeholder="profile" [disabled]="viewFlag" #profile="ngModel" [(ngModel)]="teacher.profile" accept="image/jpeg,image/png">
+            </div>
+          </div>
+        <div class="form-group">
+          <label for="position" class="col-sm-2 control-label">Position</label>
+
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="position" name="position" placeholder="position" [disabled]="viewFlag" #position="ngModel" [(ngModel)]="teacher.position">
+          </div>
+        </div>
+        <div class="form-group">
+            <label for="address" class="col-sm-2 control-label">Address</label>
+
+            <div class="col-sm-10">
+              <textarea class="form-control" id="address" name="address" placeholder="address" [disabled]="viewFlag" #address="ngModel" [(ngModel)]="teacher.address"></textarea>
+            </div>
+          </div>
+        <div class="form-group">
+          <label for="userName" class="col-sm-2 control-label">userName</label>
+
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="userName" name="userName" placeholder="userName" [disabled]="viewFlag" #userName="ngModel" [(ngModel)]="teacher.userName">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="password" class="col-sm-2 control-label">password</label>
+
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="password" name="password" placeholder="password" [disabled]="viewFlag" #password="ngModel" [(ngModel)]="teacher.password">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="imei" class="col-sm-2 control-label">imei</label>
+
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="imei" name="imei" placeholder="imei" [disabled]="viewFlag" #imei="ngModel" [(ngModel)]="teacher.imei">
+          </div>
+        </div>
+      </div>
+      <div class="box-footer">
+        <button type="button" class="btn btn-default">Back</button>
+        <button type="submit" class="btn btn-info pull-right">OK</button>
+      </div>
+    </form>
+  </div>
+
+</div>
+</section>

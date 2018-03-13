@@ -177,7 +177,20 @@ export class Labels {
         'new': 'Add',
         'view': 'Details of',
         'edit': 'Edit',
-        'book': 'Book'
+        'book': 'Book',
+        'bus' : 'Bus'
+      },
+      'form_labels' : {
+        'bus_no' : 'Bus No.',
+        'bus_owner' : 'Owner Name',
+        'bus_driver' : 'Driver Name',
+        'bus_route' : 'Bus Route',
+        'bus_contact_no': 'Contact No.',
+        'bus_no_placeholder' : 'Enter Bus No.',
+        'bus_owner_placeholder' : 'Enter Owner Name',
+        'bus_driver_placeholder' : 'Select Driver',
+        'bus_route_placeholder' : 'Select Bus Route',
+        'bus_contact_no_placeholder': 'Enter Contact No.'
       }
     }
   };

@@ -1,44 +1,57 @@
+<section class="content-header">
+  <h1>Add Class</h1>
+</section>
+<section class="content-header">
 <div class="form">
-<!-- Horizontal Form -->
 <div class="box box-info">
-    <div class="box-header with-border">
-      <h3 class="box-title">Horizontal Form</h3>
-    </div>
-    <!-- /.box-header -->
-    <!-- form start -->
-    <form class="form-horizontal">
-      <div class="box-body">
-        <div class="form-group">
-          <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
-
-          <div class="col-sm-10">
-            <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
-
-          <div class="col-sm-10">
-            <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
-          </div>
-        </div>
-        <div class="form-group">
-          <div class="col-sm-offset-2 col-sm-10">
-            <div class="checkbox">
-              <label>
-                <input type="checkbox"> Remember me
-              </label>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- /.box-body -->
-      <div class="box-footer">
-        <button type="submit" class="btn btn-default">Cancel</button>
-        <button type="submit" class="btn btn-info pull-right">Sign in</button>
-      </div>
-      <!-- /.box-footer -->
-    </form>
+  <div class="box-header with-border">
+    <h3 class="box-title">Class</h3>
   </div>
+  <form class="form-horizontal" id="classForm" #classForm="ngForm" (ngSubmit)="addClass(classForm.value)">
+    <div class="box-body">
 
+      <div class="form-group">
+        <label for="nclassNameame" class="col-sm-2 control-label">className</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="className" name="className" placeholder="className" [disabled]="viewFlag" #className="ngModel" [(ngModel)]="classes.className" >
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="divisionName" class="col-sm-2 control-label">divisionName</label>
+
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="divisionName" name="divisionName" placeholder="divisionName" [disabled]="viewFlag" #divisionName="ngModel" [(ngModel)]="classes.divisionName">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="divisionDesc" class="col-sm-2 control-label">divisionDesc</label>
+
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="divisionDesc" name="divisionDesc" placeholder="divisionDesc" [disabled]="viewFlag" #divisionDesc="ngModel" [(ngModel)]="classes.divisionDesc">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="classTeacher" class="col-sm-2 control-label">classTeacher</label>
+
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="classTeacher" name="classTeacher" placeholder="classTeacher" [disabled]="viewFlag" #classTeacher="ngModel" [(ngModel)]="classes.classTeacher">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="totalStudents" class="col-sm-2 control-label">totalStudents</label>
+
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="totalStudents" name="totalStudents" placeholder="totalStudents" [disabled]="viewFlag" #totalStudents="ngModel" [(ngModel)]="classes.totalStudents">
+        </div>
+      </div>
+    </div>
+    <div class="box-footer">
+      <button type="button" class="btn btn-default">Back</button>
+      <button type="submit" class="btn btn-info pull-right">OK</button>
+    </div>
+  </form>
 </div>
+</div>
+</section>

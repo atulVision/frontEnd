@@ -1,3 +1,67 @@
-<p>
-  school-bus works!
-</p>
+<section class="content-header">
+    <h1>{{pageTitle}}</h1>
+</section>
+<section class="content-header">
+<div class="form">
+<div class="box box-info">
+    <div class="box-header with-border">
+      <h3 class="box-title">{{locale.bus}}</h3>
+    </div>
+    <form class="form-horizontal" id="busForm" #busForm="ngForm" (ngSubmit)="addBus(busForm.value)">
+      <div class="box-body">
+
+        <div class="form-group">
+          <label for="busNo" class="col-sm-2 control-label">{{formLocale.bus_no}}</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="busNo" name="busNo" placeholder="{{formLocale.bus_no_placeholder}}" [disabled]="viewFlag" #busNo="ngModel" [(ngModel)]="bus.busNo" >
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="owner" class="col-sm-2 control-label">{{formLocale.bus_owner}}</label>
+
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="owner" name="owner" placeholder="{{formLocale.bus_owner_placeholder}}" [disabled]="viewFlag" #owner="ngModel" [(ngModel)]="bus.owner">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="contactNo" class="col-sm-2 control-label">{{formLocale.bus_contact_no}}</label>
+
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="contactNo" name="contactNo" placeholder="{{formLocale.bus_contact_no_placeholder}}" [disabled]="viewFlag" #contactNo="ngModel" [(ngModel)]="bus.contactNo">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="driver" class="col-sm-2 control-label">{{formLocale.bus_driver}}</label>
+          <div class="col-sm-10">
+            <select class="form-control" id="driver" name="driver" [disabled]="viewFlag" #driver="ngModel" [(ngModel)]="bus.driver">
+              <option value="" disabled selected>{{formLocale.bus_driver_placeholder}}</option>
+              <option [ngValue]="">xyz</option>
+              <option [ngValue]="">asd</option>
+              <option [ngValue]="">qwe</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="route" class="col-sm-2 control-label">{{formLocale.bus_route}}</label>
+          <div class="col-sm-10">
+            <select class="form-control" id="route" name="route" [disabled]="viewFlag" #route="ngModel" [(ngModel)]="bus.route">
+              <option value="" disabled selected>{{formLocale.bus_route_placeholder}}</option>
+              <option [ngValue]="">xyz</option>
+              <option [ngValue]="">asd</option>
+              <option [ngValue]="">qwe</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="box-footer">
+        <button type="button" class="btn btn-default">Back</button>
+        <button *ngIf="action === 'new'" type="submit" class="btn btn-info pull-right">Submit</button>
+        <button *ngIf="action === 'view'" type="button" class="btn btn-default btn-info pull-right">OK</button>
+        <button *ngIf="action === 'edit'" type="submit" class="btn btn-info pull-right">Update</button>
+      </div>
+    </form>
+  </div>
+
+</div>
+</section>

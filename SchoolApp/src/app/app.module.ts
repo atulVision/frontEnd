@@ -31,6 +31,7 @@ import { SchoolExamComponent } from './components/school-exam/school-exam.compon
 import { ProfileComponent } from './components/profile/profile.component';
 import { DataServiceService } from './services/data-service.service';
 import { BookService } from './services/book.service';
+import { TeacherService } from './services/teacher.service';
 
 const appRoutes: Routes = [
   { path: '', component: DashboardComponent },
@@ -89,7 +90,7 @@ const appRoutes: Routes = [
     HttpModule,
     NgxDatatableModule
   ],
-  providers: [DataServiceService, BookService],
+  providers: [DataServiceService, BookService, TeacherService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

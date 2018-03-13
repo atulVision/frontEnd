@@ -1,3 +1,92 @@
-<p>
-  school-driver works!
-</p>
+<section class="content-header">
+    <h1>Add Driver</h1>
+</section>
+<section class="content-header">
+<div class="form">
+<div class="box box-info">
+    <div class="box-header with-border">
+      <h3 class="box-title">Driver</h3>
+    </div>
+    <form class="form-horizontal" id="driverForm" #driverForm="ngForm" (ngSubmit)="addDriver(driverForm.value)">
+      <div class="box-body">
+
+        <div class="form-group">
+          <label for="name" class="col-sm-2 control-label">Name</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="name" name="name" placeholder="name" [disabled]="viewFlag" #name="ngModel" [(ngModel)]="driver.name" >
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="adharNUmber" class="col-sm-2 control-label">Adhar Number</label>
+
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="adharNUmber" name="adharNUmber" placeholder="adharNUmber" [disabled]="viewFlag" #adharNUmber="ngModel" [(ngModel)]="driver.adharNUmber">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="mobile" class="col-sm-2 control-label">Mobile No.</label>
+
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="mobile" name="mobile" placeholder="mobile" [disabled]="viewFlag" #mobile="ngModel" [(ngModel)]="driver.mobile">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="email" class="col-sm-2 control-label">Email Id</label>
+
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="email" name="email" placeholder="email" [disabled]="viewFlag" #email="ngModel" [(ngModel)]="driver.email">
+          </div>
+        </div>
+        <div class="form-group">
+            <label for="profile" class="col-sm-2 control-label">Profile</label>
+
+            <div class="col-sm-8">
+              <input type="file" class="form-control" id="profile" name="profile" placeholder="profile" [disabled]="viewFlag" #profile="ngModel" [(ngModel)]="driver.profile" accept="image/jpeg,image/png">
+            </div>
+          </div>
+        <div class="form-group">
+          <label for="position" class="col-sm-2 control-label">Position</label>
+
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="position" name="position" placeholder="position" [disabled]="viewFlag" #position="ngModel" [(ngModel)]="driver.position">
+          </div>
+        </div>
+        <div class="form-group">
+            <label for="address" class="col-sm-2 control-label">Address</label>
+
+            <div class="col-sm-10">
+              <textarea class="form-control" id="address" name="address" placeholder="address" [disabled]="viewFlag" #address="ngModel" [(ngModel)]="driver.address"></textarea>
+            </div>
+          </div>
+        <div class="form-group">
+          <label for="userName" class="col-sm-2 control-label">userName</label>
+
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="userName" name="userName" placeholder="userName" [disabled]="viewFlag" #userName="ngModel" [(ngModel)]="driver.userName">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="password" class="col-sm-2 control-label">password</label>
+
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="password" name="password" placeholder="password" [disabled]="viewFlag" #password="ngModel" [(ngModel)]="driver.password">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="bus" class="col-sm-2 control-label">bus</label>
+
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="bus" name="bus" placeholder="bus" [disabled]="viewFlag" #bus="ngModel" [(ngModel)]="driver.bus">
+          </div>
+        </div>
+      </div>
+      <div class="box-footer">
+        <button type="button" class="btn btn-default">Back</button>
+        <button type="submit" class="btn btn-info pull-right">OK</button>
+      </div>
+    </form>
+  </div>
+
+</div>
+</section>

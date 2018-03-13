@@ -1,3 +1,92 @@
-<p>
-  school-student works!
-</p>
+<section class="content-header">
+    <h1>Add Student</h1>
+</section>
+<section class="content-header">
+<div class="form">
+<div class="box box-info">
+    <div class="box-header with-border">
+      <h3 class="box-title">Student</h3>
+    </div>
+    <form class="form-horizontal" id="studentForm" #studentForm="ngForm" (ngSubmit)="addStudent(studentForm.value)">
+      <div class="box-body">
+
+        <div class="form-group">
+          <label for="firstName" class="col-sm-2 control-label">firstName</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="firstName" name="firstName" placeholder="firstName" [disabled]="viewFlag" #firstName="ngModel" [(ngModel)]="student.firstName" >
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="lastName" class="col-sm-2 control-label">lastName</label>
+
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="lastName" name="lastName" placeholder="lastName" [disabled]="viewFlag" #lastName="ngModel" [(ngModel)]="student.lastName">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="mobile" class="col-sm-2 control-label">Mobile No.</label>
+
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="mobile" name="mobile" placeholder="mobile" [disabled]="viewFlag" #mobile="ngModel" [(ngModel)]="student.mobile">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="email" class="col-sm-2 control-label">Email Id</label>
+
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="email" name="email" placeholder="email" [disabled]="viewFlag" #email="ngModel" [(ngModel)]="student.email">
+          </div>
+        </div>
+        <div class="form-group">
+            <label for="profile" class="col-sm-2 control-label">Profile</label>
+
+            <div class="col-sm-8">
+              <input type="file" class="form-control" id="profile" name="profile" placeholder="profile" [disabled]="viewFlag" #profile="ngModel" [(ngModel)]="student.profile" accept="image/jpeg,image/png">
+            </div>
+          </div>
+        <div class="form-group">
+          <label for="rollNo" class="col-sm-2 control-label">rollNo</label>
+
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="rollNo" name="rollNo" placeholder="rollNo" [disabled]="viewFlag" #rollNo="ngModel" [(ngModel)]="student.rollNo">
+          </div>
+        </div>
+        <div class="form-group">
+            <label for="address" class="col-sm-2 control-label">Address</label>
+
+            <div class="col-sm-10">
+              <textarea class="form-control" id="address" name="address" placeholder="address" [disabled]="viewFlag" #address="ngModel" [(ngModel)]="student.address"></textarea>
+            </div>
+          </div>
+        <div class="form-group">
+          <label for="state" class="col-sm-2 control-label">state</label>
+
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="state" name="state" placeholder="state" [disabled]="viewFlag" #state="ngModel" [(ngModel)]="student.state">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="password" class="col-sm-2 control-label">password</label>
+
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="password" name="password" placeholder="password" [disabled]="viewFlag" #password="ngModel" [(ngModel)]="student.password">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="city" class="col-sm-2 control-label">city</label>
+
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="city" name="city" placeholder="city" [disabled]="viewFlag" #city="ngModel" [(ngModel)]="student.city">
+          </div>
+        </div>
+      </div>
+      <div class="box-footer">
+        <button type="button" class="btn btn-default">Back</button>
+        <button type="submit" class="btn btn-info pull-right">OK</button>
+      </div>
+    </form>
+  </div>
+
+</div>
+</section>

@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { UtilFunctions } from '../../utils/util-functions';
 import { DataServiceService } from '../../services/data-service.service';
 import { BookService } from '../../services/book.service';
+import { TeacherService } from '../../services/teacher.service';
 
 @Component({
   selector: 'app-list',
@@ -53,7 +54,8 @@ export class ListComponent implements OnInit {
   columns = [];
   filterColumns = [];
   ref: any;
-  constructor(private route: ActivatedRoute, private router: Router, private _data: DataServiceService, bookService: BookService) {
+  constructor(private route: ActivatedRoute, private router: Router, private _data: DataServiceService,
+    private _book: BookService, private _teacher: TeacherService) {
     this.route.params.subscribe((params) => {
       this.type = params['type'];
       this.checkLogin();
@@ -62,10 +64,11 @@ export class ListComponent implements OnInit {
   }
 
   ngOnInit() {
-  //   this.bookService.getBookList().subscribe((res) => {
-  //     this.rows = res;
-  // }, (resError) => {
-  //   });
+    this._teacher.getTeacherList().subscribe((res) => {
+      console.log(res);
+      this.rows = res;
+  }, (resError) => {
+    });
   }
 
   toggle(col) {

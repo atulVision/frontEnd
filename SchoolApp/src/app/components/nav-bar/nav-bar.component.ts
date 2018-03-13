@@ -20,7 +20,6 @@ export class NavBarComponent implements OnInit {
     this.locale = Labels.en_IN.labels.side_menu;
     $(document).ready(() => {
       const trees: any = $('[data-widget="tree"]');
-      trees.tree();
     });
   }
 

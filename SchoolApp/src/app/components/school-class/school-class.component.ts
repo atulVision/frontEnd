@@ -4,6 +4,8 @@ import { AppConfig } from '../../utils/app-config';
 import { Labels } from '../../utils/labels';
 import { Router } from '@angular/router';
 import { UtilFunctions } from '../../utils/util-functions';
+import { DataServiceService } from '../../services/data-service.service';
+import { Classes } from '../../models/classes.model';
 
 @Component({
   selector: 'app-school-class',
@@ -13,11 +15,28 @@ import { UtilFunctions } from '../../utils/util-functions';
 export class SchoolClassComponent implements OnInit {
 
   action: string;
+  viewFlag = false;
+  classes: Classes;
+  pageTitle: any;
+  locale: any;
 
-  constructor(private route: ActivatedRoute, private router: Router) {
+  constructor(private route: ActivatedRoute, private router: Router, private _data: DataServiceService) {
     this.route.params.subscribe((params) => {
       this.action = params['action'];
-      console.log(this.action);
+      this.initializeClass();
+      if (this.action === 'new') {
+        this.viewFlag = false;
+      }
+      if (this.action === 'edit') {
+        this.viewFlag = false;
+        this.classes = this._data.storage;
+      }
+      if (this.action === 'view') {
+        this.viewFlag = true;
+        this.classes = this._data.storage;
+      }
+      this.locale = Labels.en_IN.labels.page_title;
+      this.pageTitle = this.locale[this.action] + " " + this.locale.book;
     });
   }
 
@@ -27,6 +46,14 @@ export class SchoolClassComponent implements OnInit {
       return;
     }
     this.router.navigate(['/login']);
+  }
+
+  initializeClass() {
+    this.classes = new Classes(0, '', '', '', '', '');
+  }
+
+  addClass(data) {
+    console.log(data);
   }
 
 }
