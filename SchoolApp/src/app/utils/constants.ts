@@ -6,7 +6,7 @@ export class Constants {
     classURL: '/classes',
     divisionURL: '/division',
     teacherURL: '/teacher',
-    studentURL: '/user',
+    studentURL: '/users',
     attendanceURL: '/attendance',
     homeWorkURL: '/home',
     timeTableURL: '/time',

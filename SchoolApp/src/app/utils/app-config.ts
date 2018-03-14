@@ -222,8 +222,8 @@ export class AppConfig {
   public static teacher: any = [
     { prop: 'sr_no' },
     { prop: 'name' },
-    { prop: 'username' },
-    { prop: 'mobile' },
+    { prop: 'userName' },
+    { prop: 'contactNo' },
     { prop: 'email' }
   ];
 

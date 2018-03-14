@@ -12,12 +12,13 @@ export class Student {
     public password: string;
     public address: string;
     public profile: string;
+    public userName: string;
 
 
     constructor(studentId: number, firstName: string, address: string,
       createdAt: string, updatedAt: string, lastName: string,
       mobile: string, email: string, state: string,
-      rollNo: string, password: string, age: string, profile: string, city: string,
+      rollNo: string, password: string, age: string, profile: string, city: string, userName: string
     ) {
       this.studentId = studentId;
       this.firstName = firstName;
@@ -32,6 +33,7 @@ export class Student {
       this.password = password;
       this.city = city;
       this.profile = profile;
+      this.userName = userName;
     }
 
 }

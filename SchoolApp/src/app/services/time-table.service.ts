@@ -27,7 +27,7 @@ export class TimeTableService {
       .catch(this._errorHandler);
   }
 
-  updateTimeTable(timeTable: TimeTable) {
+  updateTimeTable(timeTableId: any, timeTable: TimeTable) {
     return this._http.put(Constants.URL.host_url + Constants.URL.timeTableURL + '/' + timeTableId, timeTable)
       .map((response: Response) => {
         return response.json();

@@ -20,6 +20,7 @@ export class SchoolTeacherComponent implements OnInit {
   teacher: Teacher;
   pageTitle: any;
   locale: any;
+  formLocale: any;
 
   constructor(private route: ActivatedRoute, private router: Router, private _data: DataServiceService, private _teacher: TeacherService) {
     this.route.params.subscribe((params) => {
@@ -37,7 +38,8 @@ export class SchoolTeacherComponent implements OnInit {
         this.teacher = this._data.storage;
       }
       this.locale = Labels.en_IN.labels.page_title;
-      this.pageTitle = this.locale[this.action] + " " + this.locale.book;
+      this.formLocale = Labels.en_IN.labels.form_labels;
+      this.pageTitle = this.locale[this.action] + " " + this.locale.teacher;
     });
   }
 
@@ -59,6 +61,10 @@ export class SchoolTeacherComponent implements OnInit {
 
   addTeacher(data) {
     console.log(data);
+  }
+
+  backToList() {
+    this.router.navigate(['/list/teacher']);
   }
 
 }

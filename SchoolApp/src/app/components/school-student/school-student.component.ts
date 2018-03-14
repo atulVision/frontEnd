@@ -19,6 +19,7 @@ export class SchoolStudentComponent implements OnInit {
   student: Student;
   pageTitle: any;
   locale: any;
+  formLocale: any;
 
   constructor(private route: ActivatedRoute, private router: Router, private _data: DataServiceService) {
     this.route.params.subscribe((params) => {
@@ -36,7 +37,8 @@ export class SchoolStudentComponent implements OnInit {
         this.student = this._data.storage;
       }
       this.locale = Labels.en_IN.labels.page_title;
-      this.pageTitle = this.locale[this.action] + " " + this.locale.book;
+      this.formLocale = Labels.en_IN.labels.form_labels;
+      this.pageTitle = this.locale[this.action] + " " + this.locale.student;
     });
   }
 
@@ -54,6 +56,10 @@ export class SchoolStudentComponent implements OnInit {
 
   addStudent(data) {
     console.log(data);
+  }
+
+  backToList() {
+    this.router.navigate(['/list/student']);
   }
 
 }

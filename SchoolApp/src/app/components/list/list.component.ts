@@ -7,6 +7,18 @@ import { UtilFunctions } from '../../utils/util-functions';
 import { DataServiceService } from '../../services/data-service.service';
 import { BookService } from '../../services/book.service';
 import { TeacherService } from '../../services/teacher.service';
+import { ClassesService } from '../../services/classes.service';
+import { StudentService } from '../../services/student.service';
+import { AttendanceService } from '../../services/attendance.service';
+import { HomeWorkService } from '../../services/home-work.service';
+import { TimeTableService } from '../../services/time-table.service';
+import { ExamService } from '../../services/exam.service';
+import { ResultService } from '../../services/result.service';
+import { DriverService } from '../../services/driver.service';
+import { RouteService } from '../../services/route.service';
+import { AlbumService } from '../../services/album.service';
+import { NotificationService } from '../../services/notification.service';
+import { BusService } from '../../services/bus.service';
 
 @Component({
   selector: 'app-list',
@@ -32,17 +44,13 @@ export class ListComponent implements OnInit {
     this.route.params.subscribe((params) => {
       this.type = params['type'];
       this.checkLogin();
+      this.getUpdatedList(this.type);
       this.initializeTable(this.type);
     });
   }
 
   ngOnInit() {
-    this._teacher.getTeacherList().subscribe((res) => {
-      console.log(res);
-      this.rows = res;
-  }, (resError) => {
-    });
-    console.log(this.rows);
+
   }
 
   toggle(col) {
@@ -99,6 +107,7 @@ export class ListComponent implements OnInit {
   }
 
   initializeTable(type) {
+
     this.data = this.rows;
     this.filteredData = [...this.rows];
     this.commonLocale = Labels.en_IN.labels.table.common;
@@ -106,6 +115,9 @@ export class ListComponent implements OnInit {
     this.columns = AppConfig[type];
     this.ref = AppConfig.tableNavigationConfig[type];
     this.filterColumns = this.columns;
+
+    console.log(this.columns);
+    console.log('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>'+this.data);
   }
 
   checkLogin(){
@@ -114,5 +126,13 @@ export class ListComponent implements OnInit {
       return;
     }
     this.router.navigate(['/login']);
+  }
+
+  getUpdatedList(type) {
+    this._teacher.getTeacherList().subscribe((res) => {
+      this.rows = res;
+      console.log('>>' + this.rows);
+  }, (resError) => {
+    });
   }
 }
