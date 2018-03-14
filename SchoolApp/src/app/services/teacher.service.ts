@@ -21,7 +21,7 @@ export class TeacherService {
 }
 
 saveTeacher(teacher: Teacher) {
-    return this._http.post(Constants.URL.host_url + Constants.URL.TeacherURL, teacher)
+    return this._http.post(Constants.URL.host_url + Constants.URL.teacherURL, teacher)
     .map((response: Response) => {
       return response.json();
     })
@@ -29,7 +29,7 @@ saveTeacher(teacher: Teacher) {
 }
 
 updateTeacher(teacherId: any, teacher: Teacher) {
-  return this._http.put(Constants.URL.host_url + Constants.URL.TeacherURL + '/' + teacherId, teacher)
+  return this._http.put(Constants.URL.host_url + Constants.URL.teacherURL + '/' + teacherId, teacher)
   .map((response: Response) => {
     return response.json();
   })
@@ -37,7 +37,7 @@ updateTeacher(teacherId: any, teacher: Teacher) {
 }
 
 deleteTeacher(teacherId: any) {
-  return this._http.delete(Constants.URL.host_url + Constants.URL.TeacherURL + '/' + teacherId)
+  return this._http.delete(Constants.URL.host_url + Constants.URL.teacherURL + '/' + teacherId)
   .map((response: Response) => {
     return response.json();
   })

@@ -61,6 +61,10 @@ export class SchoolTeacherComponent implements OnInit {
 
   addTeacher(data) {
     console.log(data);
+    this._teacher.saveTeacher(data).subscribe((res) => {
+      console.log(res);
+  }, (resError) => {
+  });
   }
 
   backToList() {

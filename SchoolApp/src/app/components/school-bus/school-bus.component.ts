@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { UtilFunctions } from '../../utils/util-functions';
 import { DataServiceService } from '../../services/data-service.service';
 import { Bus } from '../../models/bus.model';
+import { BusService } from '../../services/bus.service';
 
 @Component({
   selector: 'app-school-bus',
@@ -21,7 +22,7 @@ export class SchoolBusComponent implements OnInit {
   locale: any;
   formLocale: any;
 
-  constructor(private route: ActivatedRoute, private router: Router, private _data: DataServiceService) {
+  constructor(private route: ActivatedRoute, private router: Router, private _data: DataServiceService, private _bus: BusService) {
     this.route.params.subscribe((params) => {
       this.action = params['action'];
       this.initializeBus();
@@ -55,8 +56,11 @@ export class SchoolBusComponent implements OnInit {
   }
 
   addBus(data) {
-
     console.log(data);
+    this._bus.saveBus(data).subscribe((res) => {
+      console.log(res);
+  }, (resError) => {
+  });
   }
 
   backToList() {

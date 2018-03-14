@@ -6,7 +6,7 @@ export class Teacher {
     public createdAt: string;
     public updatedAt: string;
     public profile: string;
-    public mobile: string;
+    public contactNo: string;
     public email: string;
     public position: string;
     public userName: string;
@@ -17,7 +17,7 @@ export class Teacher {
 
     constructor(teacherId: number, name: string, address: string,
       createdAt: string, updatedAt: string, adharNUmber: string,
-      mobile: string, email: string, position: string,
+      contactNo: string, email: string, position: string,
       userName: string, password: string, age: string, profile: string, imei: string
     ) {
       this.teacherId = teacherId;
@@ -26,7 +26,7 @@ export class Teacher {
       this.imei = imei;
       this.createdAt = createdAt;
       this.updatedAt = updatedAt;
-      this.mobile = mobile;
+      this.contactNo = contactNo;
       this.email = email;
       this.position = position;
       this.userName = userName;

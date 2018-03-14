@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { UtilFunctions } from '../../utils/util-functions';
 import { DataServiceService } from '../../services/data-service.service';
 import { Driver } from '../../models/driver.model';
+import { DriverService } from '../../services/driver.service';
 
 @Component({
   selector: 'app-school-driver',
@@ -21,7 +22,7 @@ export class SchoolDriverComponent implements OnInit {
   locale: any;
   formLocale: any;
 
-  constructor(private route: ActivatedRoute, private router: Router, private _data: DataServiceService) {
+  constructor(private route: ActivatedRoute, private router: Router, private _data: DataServiceService, private _driver: DriverService) {
     this.route.params.subscribe((params) => {
       this.action = params['action'];
       this.initializeDriver();
@@ -56,6 +57,10 @@ export class SchoolDriverComponent implements OnInit {
 
   addDriver(data) {
     console.log(data);
+    this._driver.saveDriver(data).subscribe((res) => {
+      console.log(res);
+  }, (resError) => {
+  });
   }
 
   backToList() {

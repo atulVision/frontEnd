@@ -40,7 +40,7 @@ export class ListComponent implements OnInit {
   ref: any;
 
   constructor(private route: ActivatedRoute, private router: Router, private _data: DataServiceService,
-    private _book: BookService, private _teacher: TeacherService) {
+    private _book: BookService, private _teacher: TeacherService, private _student: StudentService) {
     this.route.params.subscribe((params) => {
       this.type = params['type'];
       this.checkLogin();
@@ -117,7 +117,7 @@ export class ListComponent implements OnInit {
     this.filterColumns = this.columns;
 
     console.log(this.columns);
-    console.log('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>'+this.data);
+    console.log('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>' + this.data);
   }
 
   checkLogin(){
@@ -129,10 +129,20 @@ export class ListComponent implements OnInit {
   }
 
   getUpdatedList(type) {
-    this._teacher.getTeacherList().subscribe((res) => {
-      this.rows = res;
-      console.log('>>' + this.rows);
-  }, (resError) => {
-    });
+    if (type === 'teacher') {
+      this._teacher.getTeacherList().subscribe((res) => {
+        this.rows = res;
+        console.log('>>' + this.rows);
+    }, (resError) => {
+      });
+    }
+    if (type === 'student') {
+      this._student.getStudentList().subscribe((res) => {
+        this.rows = res;
+        console.log('>>' + this.rows);
+    }, (resError) => {
+      });
+    }
+
   }
 }

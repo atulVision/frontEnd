@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { UtilFunctions } from '../../utils/util-functions';
 import { DataServiceService } from '../../services/data-service.service';
 import { Classes } from '../../models/classes.model';
+import { ClassesService } from '../../services/classes.service';
 
 @Component({
   selector: 'app-school-class',
@@ -21,7 +22,7 @@ export class SchoolClassComponent implements OnInit {
   locale: any;
   formLocale: any;
 
-  constructor(private route: ActivatedRoute, private router: Router, private _data: DataServiceService) {
+  constructor(private route: ActivatedRoute, private router: Router, private _data: DataServiceService, private _class: ClassesService) {
     this.route.params.subscribe((params) => {
       this.action = params['action'];
       this.initializeClass();
@@ -56,6 +57,10 @@ export class SchoolClassComponent implements OnInit {
 
   addClass(data) {
     console.log(data);
+    this._class.saveClass(data).subscribe((res) => {
+      console.log(res);
+  }, (resError) => {
+  });
   }
 
   backToList() {
