@@ -44,11 +44,7 @@ export class SchoolBusComponent implements OnInit {
   }
 
   ngOnInit() {
-    const user = UtilFunctions.getLocalStorage('userName');
-    if ( user ) {
-      return;
-    }
-    this.router.navigate(['/login']);
+    this.checkLogin();
   }
 
   initializeBus() {
@@ -67,4 +63,11 @@ export class SchoolBusComponent implements OnInit {
     this.router.navigate(['/list/bus']);
   }
 
+  checkLogin() {
+    const user = UtilFunctions.getLocalStorage('user');
+    if ( user ) {
+      return;
+    }
+    this.router.navigate(['/login']);
+  }
 }

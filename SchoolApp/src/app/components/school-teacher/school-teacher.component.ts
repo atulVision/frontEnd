@@ -39,36 +39,45 @@ export class SchoolTeacherComponent implements OnInit {
       }
       this.locale = Labels.en_IN.labels.page_title;
       this.formLocale = Labels.en_IN.labels.form_labels;
-      this.pageTitle = this.locale[this.action] + " " + this.locale.teacher;
+      this.pageTitle = this.locale[this.action] + ' ' + this.locale.teacher;
     });
   }
 
   ngOnInit() {
-    const user = UtilFunctions.getLocalStorage('userName');
-    if ( user ) {
-      return;
-    }
-    this.router.navigate(['/login']);
+    this.checkLogin();
   }
 
   initializeTeacher() {
-    this.teacher = new Teacher(0, '', '', '', '', '', '', '', '', '', '','','','');
+    this.teacher = new Teacher(0, '', '', '', '', '', '', '', '', '', '', '');
   }
 
   getTeacherList() {
-  this._teacher.getTeacherList().subscribe((res) => {});
+    this._teacher.getTeacherList().subscribe((res) => { });
   }
 
   addTeacher(data) {
-    console.log(data);
-    this._teacher.saveTeacher(data).subscribe((res) => {
-      console.log(res);
-  }, (resError) => {
-  });
+    if (this.action === 'new') {
+      this._teacher.saveTeacher(data).subscribe((res) => {
+      }, (resError) => {
+      });
+    }
+    if (this.action === 'edit') {
+      this._teacher.updateTeacher(data.teacherId, data).subscribe((res) => {
+        console.log(res);
+      }, (resError) => {
+      });
+    }
   }
 
   backToList() {
     this.router.navigate(['/list/teacher']);
   }
 
+  checkLogin() {
+    const user = UtilFunctions.getLocalStorage('user');
+    if (user) {
+      return;
+    }
+    this.router.navigate(['/login']);
+  }
 }

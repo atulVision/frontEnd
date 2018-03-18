@@ -24,10 +24,7 @@ export class NavBarComponent implements OnInit {
   }
 
   checkLogin() {
-    const user = UtilFunctions.getLocalStorage('userName');
-    if ( user ) {
-      return true;
-    }
-    return false;
+    const user = UtilFunctions.getLocalStorage('user');
+    return user ? true : false;
   }
 }

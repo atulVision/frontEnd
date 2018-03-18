@@ -1,20 +1,19 @@
+import { Division } from './division.model';
+
 export class Classes {
 
   public classId: number;
-  public className: string;
-  public divisionName: string;
-  public divisionDesc: string;
-  public classTeacher: string;
-  public totalStudents: string;
+  public standard: string;
+  public division: any;
+  public teacherId: number;
+  public totalStudents: number;
 
-  constructor(classId: number, className: string, divisionName: string,
-    divisionDesc: string, classTeacher: string, totalStudents: string
+  constructor(classId: number, standard: string, divisionName: string,
+    divisionDesc: string, teacherId: number, totalStudents: number
   ) {
     this.classId = classId;
-    this.className = className;
-    this.divisionName = divisionName;
-    this.divisionDesc = divisionDesc;
-    this.classTeacher = classTeacher;
+    this.standard = standard;
+    this.teacherId = teacherId;
     this.totalStudents = totalStudents;
   }
 }

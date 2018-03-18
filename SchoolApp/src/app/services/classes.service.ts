@@ -43,6 +43,38 @@ export class ClassesService {
       .catch(this._errorHandler);
   }
 
+  getDivList() {
+    return this._http.get(Constants.URL.host_url + Constants.URL.classURL)
+      .map((response: Response) => {
+        return response.json();
+      })
+      .catch(this._errorHandler);
+  }
+
+  saveDiv(classes: Classes) {
+    return this._http.post(Constants.URL.host_url + Constants.URL.classURL, classes)
+      .map((response: Response) => {
+        return response.json();
+      })
+      .catch(this._errorHandler);
+  }
+
+  updateDiv(classId: any, classes: Classes) {
+    return this._http.put(Constants.URL.host_url + Constants.URL.classURL + '/' + classId, classes)
+      .map((response: Response) => {
+        return response.json();
+      })
+      .catch(this._errorHandler);
+  }
+
+  deleteDiv(classId: any) {
+    return this._http.delete(Constants.URL.host_url + Constants.URL.classURL + '/' + classId)
+      .map((response: Response) => {
+        return response.json();
+      })
+      .catch(this._errorHandler);
+  }
+
   _errorHandler(error: Response) {
     return Observable.throw(error || 'server error');
   }

@@ -4,7 +4,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule, Route, Routes } from '@angular/router';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
-
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
@@ -44,6 +43,8 @@ import { RouteService } from './services/route.service';
 import { AlbumService } from './services/album.service';
 import { NotificationService } from './services/notification.service';
 import { BusService } from './services/bus.service';
+import { LoginService } from './services/login.service';
+import { AgmCoreModule } from '@agm/core';
 
 const appRoutes: Routes = [
   { path: '', component: DashboardComponent },
@@ -100,9 +101,13 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes, { useHash: true }),
     FormsModule,
     HttpModule,
-    NgxDatatableModule
+    NgxDatatableModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyADMGB0VQ3KnYfl_hdW8_24XsEteFkksWM'
+    })
   ],
   providers: [
+    LoginService,
     DataServiceService,
     ClassesService,
     TeacherService,

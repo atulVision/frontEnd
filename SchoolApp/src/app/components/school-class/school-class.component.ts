@@ -39,20 +39,16 @@ export class SchoolClassComponent implements OnInit {
       }
       this.locale = Labels.en_IN.labels.page_title;
       this.formLocale = Labels.en_IN.labels.form_labels;
-      this.pageTitle = this.locale[this.action] + " " + this.locale.class;
+      this.pageTitle = this.locale[this.action] + ' ' + this.locale.class;
     });
   }
 
   ngOnInit() {
-    const user = UtilFunctions.getLocalStorage('userName');
-    if ( user ) {
-      return;
-    }
-    this.router.navigate(['/login']);
+   this.checkLogin();
   }
 
   initializeClass() {
-    this.classes = new Classes(0, '', '', '', '', '');
+    this.classes = new Classes(0, '', '', '', 1, 1);
   }
 
   addClass(data) {
@@ -65,5 +61,13 @@ export class SchoolClassComponent implements OnInit {
 
   backToList() {
     this.router.navigate(['/list/class']);
+  }
+
+  checkLogin() {
+    const user = UtilFunctions.getLocalStorage('user');
+    if ( user ) {
+      return;
+    }
+    this.router.navigate(['/login']);
   }
 }

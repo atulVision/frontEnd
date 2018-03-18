@@ -11,9 +11,9 @@
     <div class="box-body">
 
       <div class="form-group">
-        <label for="nclassNameame" class="col-sm-2 control-label">{{formLocale.class_name}}</label>
+        <label for="standard" class="col-sm-2 control-label">{{formLocale.standard}}</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" id="className" name="className" placeholder="{{formLocale.class_name_placeholder}}" [disabled]="viewFlag" #className="ngModel" [(ngModel)]="classes.className" >
+          <input type="text" class="form-control" id="standard" name="standard" placeholder="{{formLocale.standard_placeholder}}" [disabled]="viewFlag" #className="ngModel" [(ngModel)]="classes.standard" >
         </div>
       </div>
 
@@ -35,7 +35,7 @@
         <label for="classTeacher" class="col-sm-2 control-label">{{formLocale.class_teacher}}</label>
 
         <div class="col-sm-10">
-          <select class="form-control" id="classTeacher" name="classTeacher" [disabled]="viewFlag" #classTeacher="ngModel" [(ngModel)]="classes.classTeacher">
+          <select class="form-control" id="classTeacher" name="classTeacher" [disabled]="viewFlag" #classTeacher="ngModel" [(ngModel)]="classes.teacherId">
             <option value="" disabled selected>{{formLocale.class_teacher_placeholder}}</option>
             <option [ngValue]="">xyz</option>
             <option [ngValue]="">asd</option>
@@ -76,7 +76,7 @@
         <h5 *ngIf="action === 'edit'">{{locale.class}} is updated successfully.</h5>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-outline pull-right" data-dismiss="modal">OK</button>
+        <button type="button" class="btn btn-outline pull-right" data-dismiss="modal" (click)="backToList()">OK</button>
       </div>
     </div>
   </div>

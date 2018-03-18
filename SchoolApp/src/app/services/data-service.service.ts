@@ -18,6 +18,7 @@ export class DataServiceService {
   public storage_book: any;
   public storage_album: any;
   public storage_notification: any;
+  public storage_profile: any;
 
   public constructor() { }
 }

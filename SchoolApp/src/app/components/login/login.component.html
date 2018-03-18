@@ -1,28 +1,37 @@
 <div class="form login-form">
-    <div class="box box-info">
-        <div class="box-header with-border">
-          <h3 class="box-title">Login Form</h3>
-        </div>
-        <form class="form-horizontal">
-          <div class="box-body">
-            <div class="form-group">
-              <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
-
-              <div class="col-sm-10">
-                <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
-
-              <div class="col-sm-10">
-                <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
-              </div>
-            </div>
-          </div>
-          <div class="box-footer">
-            <button type="button" class="btn btn-info pull-right" (click)="loginUser()">Sign in</button>
-          </div>
-        </form>
-      </div>
+  <div class="box box-info">
+    <div class="box-header with-border">
+      <h3 class="box-title">{{locale.login}}</h3>
     </div>
+    <form class="form-horizontal" id="loginForm" #loginForm="ngForm" (ngSubmit)="loginUser(loginForm.value)">
+      <div class="box-body">
+        <div class="alert alert-danger" *ngIf="!user.email && !user.password && errorObj && errorObj.hasError">
+          {{errorObj.errorMsg}}
+        </div>
+        <div class="form-group">
+          <label for="email" class="col-sm-2 control-label">{{formLocale.login_email}}</label>
+
+          <div class="col-sm-10">
+            <input type="email" class="form-control" id="email" name="email" placeholder="{{formLocale.login_email_placeholder}}" required
+              #email="ngModel" [(ngModel)]="user.email" [class]="loginForm.submitted && email.errors && email.errors.required ? 'errorMsgBox form-control':'form-control'">
+          </div>
+          <div class="errorMsg" *ngIf="loginForm.submitted && email.errors && email.errors.required" class="errorMsg">This field is required</div>
+          <div class="clearfix"></div>
+        </div>
+        <div class="form-group">
+          <label for="password" class="col-sm-2 control-label">{{formLocale.login_pass}}</label>
+
+          <div class="col-sm-10">
+            <input type="password" class="form-control" id="password" name="password" placeholder="{{formLocale.login_pass_placeholder}}"
+              required #password="ngModel" [(ngModel)]="user.password" [class]="loginForm.submitted && password.errors && password.errors.required ? 'errorMsgBox form-control':'form-control'">
+          </div>
+          <div class="errorMsg" *ngIf="loginForm.submitted && password.errors && password.errors.required" class="errorMsg">This field is required</div>
+          <div class="clearfix"></div>
+        </div>
+      </div>
+      <div class="box-footer">
+        <button type="submit" class="btn btn-info pull-right">Sign in</button>
+      </div>
+    </form>
+  </div>
+</div>

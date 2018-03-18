@@ -28,7 +28,6 @@ import { BusService } from '../../services/bus.service';
 export class ListComponent implements OnInit {
 
   type: string;
-  data = [];
   filteredData = [];
   pageSize = 10;
   locale: any;
@@ -39,18 +38,103 @@ export class ListComponent implements OnInit {
   filterColumns = [];
   ref: any;
 
-  constructor(private route: ActivatedRoute, private router: Router, private _data: DataServiceService,
-    private _book: BookService, private _teacher: TeacherService, private _student: StudentService) {
+  constructor(private route: ActivatedRoute, private router: Router, private _classes: ClassesService, private _teacher: TeacherService,
+    private _student: StudentService, private _attendance: AttendanceService, private _timeT: TimeTableService,
+    private _homeW: HomeWorkService, private _exam: ExamService, private _result: ResultService,
+    private _driver: DriverService, private _bus: BusService, private _route: RouteService,
+    private _book: BookService, private _album: AlbumService, private _notification: NotificationService,
+    private _data: DataServiceService) {
     this.route.params.subscribe((params) => {
       this.type = params['type'];
+      this.rows = [];
       this.checkLogin();
       this.getUpdatedList(this.type);
-      this.initializeTable(this.type);
     });
   }
 
   ngOnInit() {
 
+  }
+
+  initializeTable(type) {
+    this.filteredData = [this.rows];
+    this.commonLocale = Labels.en_IN.labels.table.common;
+    this.locale = Labels.en_IN.labels.table[type];
+    this.columns = AppConfig[type];
+    this.ref = AppConfig.tableNavigationConfig[type];
+    this.filterColumns = this.columns;
+  }
+
+  getUpdatedList(type) {
+    if (type === 'class') {
+       this._classes.getClassList().subscribe((res) => {
+        this.rows = res;
+      this._data.storage_class = res;
+    }, (resError) => {
+
+    });
+    }
+    if (type === 'teacher') {
+      this._teacher.getTeacherList().subscribe((res) => {
+        this.rows = res;
+        this._data.storage_teacher = res;
+    }, (resError) => {
+
+      });
+    }
+    if (type === 'student') {
+    this._student.getStudentList().subscribe((res) => {
+      this.rows = res;
+      this._data.storage_student = res;
+    }, (resError) => {
+
+    });
+    }
+
+    // if (type === 'student') {
+    //   this._student.getStudentList().subscribe((res) => {
+    //     this.rows = res;
+    //     console.log('>>' + this.rows);
+    // }, (resError) => {
+    //   });
+    // }
+    this.initializeTable(this.type);
+  }
+
+  view(row: any) {
+    this._data.storage = row;
+    this.router.navigate([this.ref.viewRef]);
+  }
+
+  edit(row: any) {
+    console.log(row);
+    this._data.storage = row;
+    this.router.navigate([this.ref.editRef]);
+  }
+
+  delete(row: any, go: any) {
+    if ( go ) {
+      if (this.type === 'teacher') {
+        this._teacher.deleteTeacher(this.deleteCache.teacherId).subscribe((res) => {
+      }, (resError) => {
+
+        });
+      }
+    } else {
+      this.deleteCache = row;
+    }
+  }
+
+  setPageSize(size: any) {
+    this.pageSize = size;
+  }
+
+  checkLogin() {
+    const user = UtilFunctions.getLocalStorage('user');
+    if ( user ) {
+      return;
+    }
+    this.router.navigate(['/login']);
   }
 
   toggle(col) {
@@ -73,76 +157,14 @@ export class ListComponent implements OnInit {
 
   updateFilter(event) {
     let val = event.target.value.toLowerCase();
-    let colsAmt = this.columns.length;
+    let colsAmt = this.rows[0].length;
     let keys = Object.keys(this.rows[0]);
-    this.data = this.filteredData.filter(function (item) {
+    this.rows = this.filteredData.filter(function (item) {
       for (let i = 0; i < colsAmt; i++) {
         if (item[keys[i]].toLowerCase().indexOf(val) !== -1 || !val) {
           return true;
         }
       }
     });
-  }
-
-  view(row: any) {
-    this._data.storage = row;
-    this.router.navigate([this.ref.viewRef]);
-  }
-
-  edit(row: any) {
-
-  }
-
-  delete(row: any, go: any) {
-    if( go ) {
-      console.log("DELETE"+this.deleteCache);
-    } else {
-      this.deleteCache = row;
-      console.log("Cached"+this.deleteCache);
-    }
-  }
-
-  setPageSize(size: any) {
-    this.pageSize = size;
-  }
-
-  initializeTable(type) {
-
-    this.data = this.rows;
-    this.filteredData = [...this.rows];
-    this.commonLocale = Labels.en_IN.labels.table.common;
-    this.locale = Labels.en_IN.labels.table[type];
-    this.columns = AppConfig[type];
-    this.ref = AppConfig.tableNavigationConfig[type];
-    this.filterColumns = this.columns;
-
-    console.log(this.columns);
-    console.log('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>' + this.data);
-  }
-
-  checkLogin(){
-    const user = UtilFunctions.getLocalStorage('userName');
-    if ( user ) {
-      return;
-    }
-    this.router.navigate(['/login']);
-  }
-
-  getUpdatedList(type) {
-    if (type === 'teacher') {
-      this._teacher.getTeacherList().subscribe((res) => {
-        this.rows = res;
-        console.log('>>' + this.rows);
-    }, (resError) => {
-      });
-    }
-    if (type === 'student') {
-      this._student.getStudentList().subscribe((res) => {
-        this.rows = res;
-        console.log('>>' + this.rows);
-    }, (resError) => {
-      });
-    }
-
   }
 }

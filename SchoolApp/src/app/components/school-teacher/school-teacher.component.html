@@ -108,7 +108,7 @@
         <h5 *ngIf="action === 'edit'">{{locale.bus}} is updated successfully.</h5>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-outline pull-right" data-dismiss="modal">OK</button>
+        <button type="button" class="btn btn-outline pull-right" data-dismiss="modal" (click)="backToList()">OK</button>
       </div>
     </div>
   </div>

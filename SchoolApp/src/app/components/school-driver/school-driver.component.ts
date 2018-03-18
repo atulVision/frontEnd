@@ -39,20 +39,16 @@ export class SchoolDriverComponent implements OnInit {
       }
       this.locale = Labels.en_IN.labels.page_title;
       this.formLocale = Labels.en_IN.labels.form_labels;
-      this.pageTitle = this.locale[this.action] + " " + this.locale.driver;
+      this.pageTitle = this.locale[this.action] + ' ' + this.locale.driver;
     });
   }
 
   ngOnInit() {
-    const user = UtilFunctions.getLocalStorage('userName');
-    if ( user ) {
-      return;
-    }
-    this.router.navigate(['/login']);
+   this.checkLogin();
   }
 
   initializeDriver() {
-    this.driver = new Driver(0, '', '', '', '', '', '', '', '', '', '','','');
+    this.driver = new Driver(0, '', '', '', '', '', '', '', '', '', '');
   }
 
   addDriver(data) {
@@ -67,4 +63,11 @@ export class SchoolDriverComponent implements OnInit {
     this.router.navigate(['/list/driver']);
   }
 
+  checkLogin() {
+    const user = UtilFunctions.getLocalStorage('user');
+    if ( user ) {
+      return;
+    }
+    this.router.navigate(['/login']);
+  }
 }

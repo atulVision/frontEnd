@@ -19,4 +19,8 @@
 .search-bar{padding:5px;margin:auto;width:30%;}
 .list-menu-li-margin{margin: 10px;}
 .form{margin: 5%;}
-.login-form{width: 60%;}
+.login-form{width: 50%; margin-top: 15%; margin-left: 20%;}
+.errorMsgBox {border: 1px solid #C82E2D;}
+.errorMsg {color: #C82E2D !important; padding-top: 6px;font-size: 11px;}
+agm-map {height: 300px;}
+

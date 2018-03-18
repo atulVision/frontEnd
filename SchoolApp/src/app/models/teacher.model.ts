@@ -3,8 +3,6 @@ export class Teacher {
     public teacherId: number;
     public name: string;
     public address: string;
-    public createdAt: string;
-    public updatedAt: string;
     public profile: string;
     public contactNo: string;
     public email: string;
@@ -16,7 +14,7 @@ export class Teacher {
 
 
     constructor(teacherId: number, name: string, address: string,
-      createdAt: string, updatedAt: string, adharNUmber: string,
+     adharNUmber: string,
       contactNo: string, email: string, position: string,
       userName: string, password: string, age: string, profile: string, imei: string
     ) {
@@ -24,8 +22,6 @@ export class Teacher {
       this.name = name;
       this.address = address;
       this.imei = imei;
-      this.createdAt = createdAt;
-      this.updatedAt = updatedAt;
       this.contactNo = contactNo;
       this.email = email;
       this.position = position;

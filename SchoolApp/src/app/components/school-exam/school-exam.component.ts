@@ -22,11 +22,14 @@ export class SchoolExamComponent implements OnInit {
   }
 
   ngOnInit() {
-    const user = UtilFunctions.getLocalStorage('userName');
+    this.checkLogin();
+  }
+
+  checkLogin() {
+    const user = UtilFunctions.getLocalStorage('user');
     if ( user ) {
       return;
     }
     this.router.navigate(['/login']);
   }
-
 }

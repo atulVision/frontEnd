@@ -1,3 +1,133 @@
-<p>
-  profile works!
-</p>
+<section class="content-header">
+    <h1>{{pageTitle}}</h1>
+</section>
+<section class="content-header">
+<div class="form">
+<div class="box box-info">
+    <div class="box-header with-border">
+      <h3 class="box-title">{{locale.student}}</h3>
+    </div>
+    <form class="form-horizontal" id="studentForm" #studentForm="ngForm" (ngSubmit)="addStudent(studentForm.value)">
+      <div class="box-body">
+
+        <div class="form-group">
+          <label for="firstName" class="col-sm-2 control-label">{{formLocale.student_f_name}}</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="firstName" name="firstName" placeholder="{{formLocale.student_f_name_placeholder}}" [disabled]="viewFlag" #firstName="ngModel" [(ngModel)]="student.firstName" >
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="lastName" class="col-sm-2 control-label">{{formLocale.studengt_l_name}}</label>
+
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="lastName" name="lastName" placeholder="{{formLocale.studengt_l_name_placeholder}}" [disabled]="viewFlag" #lastName="ngModel" [(ngModel)]="student.lastName">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="mobile" class="col-sm-2 control-label">{{formLocale.student_mobile}}</label>
+
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="mobile" name="mobile" placeholder="{{formLocale.student_mobile_placeholder}}" [disabled]="viewFlag" #mobile="ngModel" [(ngModel)]="student.mobile">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="email" class="col-sm-2 control-label">{{formLocale.student_email}}</label>
+
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="email" name="email" placeholder="{{formLocale.student_email_placeholder}}" [disabled]="viewFlag" #email="ngModel" [(ngModel)]="student.email">
+          </div>
+        </div>
+        <div class="form-group">
+            <label for="profile" class="col-sm-2 control-label">{{formLocale.student_profile}}</label>
+
+            <div class="col-sm-8">
+              <input type="file" class="form-control" id="profile" name="profile" [disabled]="viewFlag" #profile="ngModel" [(ngModel)]="student.profile" accept="image/jpeg,image/png">
+            </div>
+            <div class="media-right">
+              <img src="assets/images/Tushar_Upadhyay.jpg" class="media-object" style="width:60px">
+            </div>
+          </div>
+        <div class="form-group">
+          <label for="rollNo" class="col-sm-2 control-label">{{formLocale.student_roll}}</label>
+
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="rollNo" name="rollNo" placeholder="{{formLocale.student_roll_placeholder}}" [disabled]="viewFlag" #rollNo="ngModel" [(ngModel)]="student.rollNo">
+          </div>
+        </div>
+        <div class="form-group">
+            <label for="address" class="col-sm-2 control-label">{{formLocale.student_address}}</label>
+
+            <div class="col-sm-10">
+              <textarea class="form-control" id="address" name="address" placeholder="{{formLocale.student_address_placeholder}}" [disabled]="viewFlag" #address="ngModel" [(ngModel)]="student.address"></textarea>
+            </div>
+          </div>
+        <div class="form-group">
+          <label for="state" class="col-sm-2 control-label">{{formLocale.student_state}}</label>
+
+          <div class="col-sm-10">
+            <select class="form-control"  id="state" name="state" [disabled]="viewFlag" #state="ngModel" [(ngModel)]="student.state">
+              <option value="" disabled selected>{{formLocale.student_state_placeholder}}</option>
+              <option [ngValue]="">xyz</option>
+              <option [ngValue]="">asd</option>
+              <option [ngValue]="">qwe</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="city" class="col-sm-2 control-label">{{formLocale.student_city}}</label>
+
+          <div class="col-sm-10">
+            <select class="form-control" id="city" name="city" [disabled]="viewFlag" #city="ngModel" [(ngModel)]="student.city">
+              <option value="" disabled selected>{{formLocale.student_city_placeholder}}</option>
+              <option [ngValue]="">xyz</option>
+              <option [ngValue]="">asd</option>
+              <option [ngValue]="">qwe</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="userName" class="col-sm-2 control-label">{{formLocale.student_user_name}}</label>
+
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="userName" name="userName" placeholder="{{formLocale.student_user_name_placeholder}}" [disabled]="viewFlag" #userName="ngModel" [(ngModel)]="student.userName">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="password" class="col-sm-2 control-label">{{formLocale.student_pass}}</label>
+
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="password" name="password" placeholder="{{formLocale.student_pass_placeholder}}" [disabled]="viewFlag" #password="ngModel" [(ngModel)]="student.password">
+          </div>
+        </div>
+
+      </div>
+      <div class="box-footer">
+        <button type="button" class="btn btn-default" (click)="backToList()">{{formLocale.back_btn}}</button>
+          <button *ngIf="action === 'new'" type="submit" class="btn btn-success pull-right" data-toggle="modal" data-target="#modal-success">{{formLocale.submit_btn}}</button>
+          <button *ngIf="action === 'view'" type="button" class="btn btn-info btn-info pull-right" (click)="backToList()">{{formLocale.ok_btn}}</button>
+          <button *ngIf="action === 'edit'" type="submit" class="btn btn-success pull-right" data-toggle="modal" data-target="#modal-success">{{formLocale.update_btn}}</button>
+        </div>
+    </form>
+  </div>
+</div>
+</section>
+<div class="modal modal-success fade" id="modal-success">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title">Status</h4>
+      </div>
+      <div class="modal-body">
+        <h5 *ngIf="action === 'new'">{{locale.driver}} is added successfully.</h5>
+        <h5 *ngIf="action === 'edit'">{{locale.driver}} is updated successfully.</h5>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">OK</button>
+      </div>
+    </div>
+  </div>
+</div>

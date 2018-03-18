@@ -41,11 +41,7 @@ export class SchoolGalleryComponent implements OnInit {
   }
 
   ngOnInit() {
-    const user = UtilFunctions.getLocalStorage('userName');
-    if (user) {
-      return;
-    }
-    this.router.navigate(['/login']);
+   this.checkLogin();
   }
 
   initializeAlbum() {
@@ -56,5 +52,11 @@ export class SchoolGalleryComponent implements OnInit {
     console.log(data);
   }
 
-
+  checkLogin() {
+    const user = UtilFunctions.getLocalStorage('user');
+    if ( user ) {
+      return;
+    }
+    this.router.navigate(['/login']);
+  }
 }

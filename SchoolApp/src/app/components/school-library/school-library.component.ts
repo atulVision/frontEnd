@@ -37,24 +37,27 @@ export class SchoolLibraryComponent implements OnInit {
         this.book = this._data.storage;
       }
       this.locale = Labels.en_IN.labels.page_title;
-      this.pageTitle = this.locale[this.action] + " " + this.locale.book;
+      this.pageTitle = this.locale[this.action] + ' ' + this.locale.book;
     });
   }
 
   ngOnInit() {
-    const user = UtilFunctions.getLocalStorage('userName');
-    if (user) {
-      return;
-    }
-    this.router.navigate(['/login']);
+   this.checkLogin();
   }
 
   initializeBook() {
-    this.book = new Book(0, '', '', '', '', '', '', '', '', '', '');
+    this.book = new Book(0, '', '', '', '', '', '', '', '');
   }
 
   addBook(data) {
     console.log(data);
   }
 
+  checkLogin() {
+    const user = UtilFunctions.getLocalStorage('user');
+    if ( user ) {
+      return;
+    }
+    this.router.navigate(['/login']);
+  }
 }

@@ -4,6 +4,7 @@ import { AppConfig } from '../../utils/app-config';
 import { Labels } from '../../utils/labels';
 import { Router } from '@angular/router';
 import { UtilFunctions } from '../../utils/util-functions';
+import { Notification } from '../../models/notification.model';
 
 @Component({
   selector: 'app-school-notification',
@@ -13,20 +14,44 @@ import { UtilFunctions } from '../../utils/util-functions';
 export class SchoolNotificationComponent implements OnInit {
 
   action: string;
+  pageTitle: any;
+  locale: any;
+  formLocale: any;
+  viewFlag = false;
+notification: Notification;
 
   constructor(private route: ActivatedRoute, private router: Router) {
     this.route.params.subscribe((params) => {
       this.action = params['action'];
-      console.log(this.action);
+      this.initializeNotification();
+      if (this.action === 'new') {
+        this.viewFlag = false;
+      }
+      if (this.action === 'edit') {
+        this.viewFlag = false;
+      }
+      if (this.action === 'view') {
+        this.viewFlag = true;
+      }
+      this.locale = Labels.en_IN.labels.page_title;
+      this.formLocale = Labels.en_IN.labels.form_labels;
+      this.pageTitle = this.locale[this.action] + ' ' + this.locale.student;
     });
   }
 
   ngOnInit() {
-    const user = UtilFunctions.getLocalStorage('userName');
+    this.checkLogin();
+  }
+
+  checkLogin() {
+    const user = UtilFunctions.getLocalStorage('user');
     if ( user ) {
       return;
     }
     this.router.navigate(['/login']);
   }
 
+  initializeNotification() {
+    this.notification = new Notification (0);
+  }
 }

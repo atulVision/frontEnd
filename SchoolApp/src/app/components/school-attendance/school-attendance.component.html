@@ -1,3 +1,76 @@
-<p>
-  school-attendance works!
-</p>
+<section class="content-header">
+  <h1>Mark Attendance</h1>
+</section>
+<section class="content-header">
+<div class="form">
+<div class="box box-info">
+  <div class="box-header with-border">
+    <h3 class="box-title">Attendance</h3>
+  </div>
+  <form class="form-horizontal" id="attendanceForm" #attendanceForm="ngForm" (ngSubmit)="addAttendance(attendanceForm.value)">
+    <div class="box-body">
+
+      <div class="form-group">
+        <label for="classDiv" class="col-sm-2 control-label">Class and Division</label>
+        <div class="col-sm-7">
+          <select class="form-control" id="classDiv" name="classDiv" [disabled]="viewFlag" #classDiv="ngModel" [(ngModel)]="attendance">
+            <option value="" disabled selected>Select Class and Division</option>
+            <option [ngValue]="">xyz</option>
+            <option [ngValue]="">asd</option>
+            <option [ngValue]="">qwe</option>
+          </select>
+        </div>
+        <button type="button" class="btn btn-info">Get Students</button>
+      </div>
+
+      <div class="form-group">
+        <label for="date" class="col-sm-2 control-label">Date</label>
+
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="date" name="date" placeholder="date" [disabled]="viewFlag" #date="ngModel" [(ngModel)]="attendance">
+        </div>
+      </div>
+
+
+      <div class="form-group">
+          <label for="day" class="col-sm-2 control-label">Day</label>
+          <div class="col-sm-10">
+            <select class="form-control" id="day" name="day" [disabled]="viewFlag" #day="ngModel" [(ngModel)]="attendance">
+              <option value="" disabled selected>Select day</option>
+              <option [ngValue]="">xyz</option>
+              <option [ngValue]="">asd</option>
+              <option [ngValue]="">qwe</option>
+            </select>
+          </div>
+        </div>
+
+    </div>
+    <div class="box-footer">
+      <button type="button" class="btn btn-default" (click)="backToList()">{{formLocale.back_btn}}</button>
+        <button *ngIf="action === 'new'" type="submit" class="btn btn-success pull-right" data-toggle="modal" data-target="#modal-success">{{formLocale.submit_btn}}</button>
+        <button *ngIf="action === 'view'" type="button" class="btn btn-info btn-info pull-right" (click)="backToList()">{{formLocale.ok_btn}}</button>
+        <button *ngIf="action === 'edit'" type="submit" class="btn btn-success pull-right" data-toggle="modal" data-target="#modal-success">{{formLocale.update_btn}}</button>
+      </div>
+  </form>
+</div>
+</div>
+</section>
+<div class="modal modal-success fade" id="modal-success">
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <h4 class="modal-title">Status</h4>
+    </div>
+    <div class="modal-body">
+      <h5 *ngIf="action === 'new'">{{locale.driver}} is added successfully.</h5>
+      <h5 *ngIf="action === 'edit'">{{locale.driver}} is updated successfully.</h5>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">OK</button>
+    </div>
+  </div>
+</div>
+</div>

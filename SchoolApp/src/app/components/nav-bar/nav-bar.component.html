@@ -18,7 +18,7 @@
         </a>
         <ul class="treeview-menu">
           <li *ngFor="let sub of menu.child">
-            <a routerLink="{{sub.ref}}"  routerLinkActive="active">
+            <a routerLink="{{sub.ref}}" routerLinkActive="active">
               <i class="fa fa-hand-o-right"></i> {{locale[sub.name]}}</a>
           </li>
         </ul>
