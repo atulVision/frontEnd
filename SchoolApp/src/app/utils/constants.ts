@@ -2,7 +2,8 @@ export class Constants {
 
   public static URL: any = {
     host_url: 'http://13.127.25.228:8095/SchoolWebApplication',
-    loginRUL: '/login',
+    userURL : '/user/',
+    loginURL: '/login',
     classURL: '/classes',
     divisionURL: '/division',
     teacherURL: '/teacher',

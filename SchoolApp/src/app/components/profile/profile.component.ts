@@ -5,8 +5,8 @@ import { Labels } from '../../utils/labels';
 import { Router } from '@angular/router';
 import { UtilFunctions } from '../../utils/util-functions';
 import { DataServiceService } from '../../services/data-service.service';
-import { Student } from '../../models/student.model';
-import { StudentService } from '../../services/student.service';
+import { User } from '../../models/user.model';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-profile',
@@ -17,12 +17,12 @@ export class ProfileComponent implements OnInit {
 
   action: string;
   viewFlag = false;
-  student: Student;
+  user: User;
   pageTitle: any;
   locale: any;
   formLocale: any;
 
-  constructor(private route: ActivatedRoute, private router: Router, private _data: DataServiceService, private _student: StudentService) {
+  constructor(private route: ActivatedRoute, private router: Router, private _data: DataServiceService, private _user: UserService) {
     this.route.params.subscribe((params) => {
       this.action = params['action'];
       this.initializeStudent();
@@ -31,15 +31,15 @@ export class ProfileComponent implements OnInit {
       }
       if (this.action === 'edit') {
         this.viewFlag = false;
-        this.student = this._data.storage;
+
       }
       if (this.action === 'view') {
         this.viewFlag = true;
-        this.student = this._data.storage;
+
       }
       this.locale = Labels.en_IN.labels.page_title;
       this.formLocale = Labels.en_IN.labels.form_labels;
-      this.pageTitle = this.locale[this.action] + " " + this.locale.student;
+      this.pageTitle = this.locale[this.action] + ' ' + this.locale.student;
     });
   }
 
@@ -48,12 +48,11 @@ export class ProfileComponent implements OnInit {
   }
 
   initializeStudent() {
-    this.student = new Student(0, '', '', '', '', '', '', '', '', '', '', '', '');
+    this.user = new User(0, '', '', '', '', '', '', '');
   }
 
   addStudent(data) {
-    console.log(data);
-  this._student.saveStudent(data).subscribe((res) => {
+  this._user.updateProfile(this.user.userId, this.user).subscribe((res) => {
     console.log(res);
 }, (resError) => {
 });

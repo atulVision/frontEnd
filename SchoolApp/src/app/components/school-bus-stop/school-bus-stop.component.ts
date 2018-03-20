@@ -5,62 +5,62 @@ import { Labels } from '../../utils/labels';
 import { Router } from '@angular/router';
 import { UtilFunctions } from '../../utils/util-functions';
 import { DataServiceService } from '../../services/data-service.service';
-import { Classes } from '../../models/classes.model';
-import { ClassesService } from '../../services/classes.service';
+import { Bus } from '../../models/bus.model';
+import { BusService } from '../../services/bus.service';
 
 @Component({
-  selector: 'app-school-class',
-  templateUrl: './school-class.component.html',
-  styleUrls: ['./school-class.component.css']
+  selector: 'app-school-bus-stop',
+  templateUrl: './school-bus-stop.component.html',
+  styleUrls: ['./school-bus-stop.component.css']
 })
-export class SchoolClassComponent implements OnInit {
+export class SchoolBusStopComponent implements OnInit {
 
   action: string;
   viewFlag = false;
-  classes: Classes;
+  bus: Bus;
   pageTitle: any;
   locale: any;
   formLocale: any;
 
-  constructor(private route: ActivatedRoute, private router: Router, private _data: DataServiceService, private _class: ClassesService) {
+  constructor(private route: ActivatedRoute, private router: Router, private _data: DataServiceService, private _bus: BusService) {
     this.route.params.subscribe((params) => {
       this.action = params['action'];
-      this.initializeClass();
+      this.initializeBus();
       if (this.action === 'new') {
         this.viewFlag = false;
       }
       if (this.action === 'edit') {
         this.viewFlag = false;
-        this.classes = this._data.storage;
+        this.bus = this._data.storage;
       }
       if (this.action === 'view') {
         this.viewFlag = true;
-        this.classes = this._data.storage;
+        this.bus = this._data.storage;
       }
       this.locale = Labels.en_IN.labels.page_title;
       this.formLocale = Labels.en_IN.labels.form_labels;
-      this.pageTitle = this.locale[this.action] + ' ' + this.locale.class;
+      this.pageTitle = this.locale[this.action] + " " + this.locale.bus;
     });
   }
 
   ngOnInit() {
-   this.checkLogin();
+    this.checkLogin();
   }
 
-  initializeClass() {
-    this.classes = new Classes(0,'',1,1);
+  initializeBus() {
+    this.bus = new Bus(0, '', '', '', '', '', '', '');
   }
 
-  addClass(data) {
+  addBus(data) {
     console.log(data);
-    this._class.saveClass(data).subscribe((res) => {
+    this._bus.saveBus(data).subscribe((res) => {
       console.log(res);
   }, (resError) => {
   });
   }
 
   backToList() {
-    this.router.navigate(['/list/class']);
+    this.router.navigate(['/list/bus']);
   }
 
   checkLogin() {
@@ -70,4 +70,5 @@ export class SchoolClassComponent implements OnInit {
     }
     this.router.navigate(['/login']);
   }
+
 }

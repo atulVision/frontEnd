@@ -7,12 +7,12 @@ import { Constants } from '../utils/constants';
 import { User } from '../models/user.model';
 
 @Injectable()
-export class LoginService {
+export class UserService {
 
   constructor(private _http: Http) { }
 
-  login(role: any, user: User) {
-    return this._http.post(Constants.URL.host_url + Constants.URL.loginURL , user)
+  updateProfile(userId: any, user: User) {
+    return this._http.put(Constants.URL.host_url + Constants.URL.userURL + '/' + userId, user)
       .map((response: Response) => {
         return response.json();
       })

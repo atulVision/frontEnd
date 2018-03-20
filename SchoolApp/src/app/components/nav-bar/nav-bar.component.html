@@ -9,7 +9,7 @@
         </a>
       </li>
       <li class="treeview" *ngFor="let menu of menus">
-        <a href="#">
+        <a href="#" *ngIf="checkRole(menu.role)">
           <i class="{{menu.css}}"></i>
           <span>{{locale[menu.parent]}}</span>
           <span class="pull-right-container">

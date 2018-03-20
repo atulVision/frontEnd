@@ -34,10 +34,8 @@
               {{commonLocale.head_action_col}}
           </ng-template>
           <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-              <button type="button" class="btn btn-info" (click)="view(row)"><i class="fa fa-eye"></i></button>
-              <button type="button" class="btn btn-warning" (click)="edit(row)"><i class="fa fa-pencil-square-o"></i></button>
-              <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-danger" (click)="delete(row,false)"><i class="fa  fa-remove"></i></button>
-          </ng-template>
+            {{sr_no}}
+             </ng-template>
       </ngx-datatable-column>
       <ngx-datatable-column *ngFor="let col of columns" class="resizeable sortable">
           <ng-template let-column="col" ngx-datatable-header-template>
@@ -53,8 +51,8 @@
           </ng-template>
           <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
               <button type="button" class="btn btn-info" (click)="view(row)"><i class="fa fa-eye"></i></button>
-              <button routerLink="{{ref.editRef}}" type="button" class="btn btn-warning" (click)="edit(row)"><i class="fa fa-pencil-square-o"></i></button>
-              <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-danger" (click)="delete(row,false)"><i class="fa  fa-remove"></i></button>
+              <button type="button" class="btn btn-warning" (click)="edit(row)"><i class="fa fa-pencil-square-o"></i></button>
+              <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-danger" (click)="delete(row,false)"><i class="fa fa-trash"></i></button>
           </ng-template>
       </ngx-datatable-column>
       </ngx-datatable>

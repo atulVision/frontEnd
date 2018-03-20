@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UtilFunctions } from '../../utils/util-functions';
 import { Labels } from '../../utils/labels';
-import { DataServiceService } from '../../services/data-service.service';
 import { BookService } from '../../services/book.service';
 import { TeacherService } from '../../services/teacher.service';
 import { ClassesService } from '../../services/classes.service';
@@ -17,6 +16,7 @@ import { RouteService } from '../../services/route.service';
 import { AlbumService } from '../../services/album.service';
 import { NotificationService } from '../../services/notification.service';
 import { BusService } from '../../services/bus.service';
+import { Broadcaster } from '../../utils/broadcaster';
 
 @Component({
   selector: 'app-dashboard',
@@ -26,22 +26,24 @@ import { BusService } from '../../services/bus.service';
 export class DashboardComponent implements OnInit {
 
   locale: any;
-classLen: any;
-teacherLen: any;
-studentLen: any;
-driverLen: any;
-busLen: any;
-routeLen: any;
+  classLen: any;
+  teacherLen: any;
+  studentLen: any;
+  driverLen: any;
+  busLen: any;
+  routeLen: any;
+  role: any;
 
   constructor(private router: Router, private _classes: ClassesService, private _teacher: TeacherService,
     private _student: StudentService, private _attendance: AttendanceService, private _timeT: TimeTableService,
     private _homeW: HomeWorkService, private _exam: ExamService, private _result: ResultService,
     private _driver: DriverService, private _bus: BusService, private _route: RouteService,
     private _book: BookService, private _album: AlbumService, private _notification: NotificationService,
-    private _data: DataServiceService) { }
+    private broadcaster: Broadcaster) { }
 
   ngOnInit() {
     this.checkLogin();
+    this.role = UtilFunctions.getLocalStorage('role');
     this.locale = Labels.en_IN.labels.dashboard;
     this.getAllData();
   }
@@ -55,10 +57,8 @@ routeLen: any;
     // });
 
     this._teacher.getTeacherList().subscribe((res) => {
-      this._data.storage_teacher = res;
-      this.teacherLen = this._data.storage_teacher.length;
+      this.teacherLen = 22;
     }, (resError) => {
-      this._data.storage_teacher = [];
       this.teacherLen = 0;
     });
 
@@ -128,7 +128,7 @@ routeLen: any;
 
   checkLogin() {
     const user = UtilFunctions.getLocalStorage('user');
-    if ( user ) {
+    if (user) {
       return;
     }
     this.router.navigate(['/login']);

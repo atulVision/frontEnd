@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { UtilFunctions } from '../../utils/util-functions';
 import { Labels } from '../../utils/labels';
-import { DataServiceService } from '../../services/data-service.service';
+import { Broadcaster } from '../../utils/broadcaster';
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -11,13 +12,31 @@ export class HeaderComponent implements OnInit {
 
   locale: any;
   userName: any;
+  profile: any;
+  role: any;
+  userRole: any;
 
-  constructor(private _data: DataServiceService) { }
+  constructor(private broadcaster: Broadcaster) { }
 
   ngOnInit() {
     this.locale = Labels.en_IN.labels.header;
-    this._data.storage_profile = JSON.parse(UtilFunctions.getLocalStorage('user'));
-    this.userName = this._data.storage_profile.firstName + ' ' + this._data.storage_profile.lastName;
+    this.profile = JSON.parse(UtilFunctions.getLocalStorage('user'));
+    this.role = UtilFunctions.getLocalStorage('role');
+    this.userRole = Labels.en_IN.labels.header[this.role];
+    this.updateUserName();
+
+    this.broadcaster.on<string>('role')
+      .subscribe((message: any) => {
+        this.role = message;
+        this.userRole = Labels.en_IN.labels.header[this.role];
+        this.updateUserName();
+      });
+
+    this.broadcaster.on<string>('user')
+      .subscribe((message: any) => {
+        this.profile = message;
+        this.updateUserName();
+      });
   }
 
   checkLogin() {
@@ -25,4 +44,9 @@ export class HeaderComponent implements OnInit {
     return user ? true : false;
   }
 
+  updateUserName() {
+    if (this.profile != null) {
+      this.userName = this.profile.firstName + ' ' + this.profile.lastName;
+    }
+  }
 }

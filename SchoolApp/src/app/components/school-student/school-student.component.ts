@@ -4,7 +4,6 @@ import { AppConfig } from '../../utils/app-config';
 import { Labels } from '../../utils/labels';
 import { Router } from '@angular/router';
 import { UtilFunctions } from '../../utils/util-functions';
-import { DataServiceService } from '../../services/data-service.service';
 import { Student } from '../../models/student.model';
 import { StudentService } from '../../services/student.service';
 
@@ -21,8 +20,9 @@ export class SchoolStudentComponent implements OnInit {
   pageTitle: any;
   locale: any;
   formLocale: any;
+role: any;
 
-  constructor(private route: ActivatedRoute, private router: Router, private _data: DataServiceService, private _student: StudentService) {
+  constructor(private route: ActivatedRoute, private router: Router, private _student: StudentService) {
     this.route.params.subscribe((params) => {
       this.action = params['action'];
       this.initializeStudent();
@@ -31,11 +31,9 @@ export class SchoolStudentComponent implements OnInit {
       }
       if (this.action === 'edit') {
         this.viewFlag = false;
-        this.student = this._data.storage;
       }
       if (this.action === 'view') {
         this.viewFlag = true;
-        this.student = this._data.storage;
       }
       this.locale = Labels.en_IN.labels.page_title;
       this.formLocale = Labels.en_IN.labels.form_labels;
@@ -48,7 +46,7 @@ export class SchoolStudentComponent implements OnInit {
   }
 
   initializeStudent() {
-    this.student = new Student(0, '', '', '', '', '', '', '', '', '', '', '', '');
+    this.student = new Student(0, '', '', '', '', '', '', '', '', '', '');
   }
 
   addStudent(data) {

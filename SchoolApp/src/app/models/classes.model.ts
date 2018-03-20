@@ -3,17 +3,15 @@ import { Division } from './division.model';
 export class Classes {
 
   public classId: number;
-  public standard: string;
-  public division: any;
+  public className: string;
+  public divisionId: number;
   public teacherId: number;
-  public totalStudents: number;
 
-  constructor(classId: number, standard: string, divisionName: string,
-    divisionDesc: string, teacherId: number, totalStudents: number
+  constructor(classId: number, className: string, divisionId: number, teacherId: number
   ) {
     this.classId = classId;
-    this.standard = standard;
+    this.className = className;
+    this.divisionId = divisionId;
     this.teacherId = teacherId;
-    this.totalStudents = totalStudents;
   }
 }

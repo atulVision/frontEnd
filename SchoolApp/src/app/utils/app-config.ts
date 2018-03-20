@@ -2,6 +2,7 @@ export class AppConfig {
 
   public static sideMenuConfig: any = {
     'menu': [{
+      'role' : '1',
       'parent': 'name_class',
       'css': 'fa fa-university',
       'child': [{
@@ -12,6 +13,7 @@ export class AppConfig {
         'ref': 'list/class'
       }]
     }, {
+      'role' : '1',
       'parent': 'name_teacher',
       'css': 'fa fa-users',
       'child': [{
@@ -22,6 +24,7 @@ export class AppConfig {
         'ref': 'list/teacher'
       }]
     }, {
+      'role' : '0',
       'parent': 'name_student',
       'css': 'fa fa-child',
       'child': [{
@@ -32,6 +35,7 @@ export class AppConfig {
         'ref': 'list/student'
       }]
     }, {
+      'role' : '2',
       'parent': 'name_attendance',
       'css': 'fa fa-check',
       'child': [{
@@ -42,6 +46,7 @@ export class AppConfig {
         'ref': 'list/attendance'
       }]
     }, {
+      'role' : '2',
       'parent': 'name_home_work',
       'css': 'fa fa-pencil',
       'child': [{
@@ -52,6 +57,7 @@ export class AppConfig {
         'ref': 'list/homeW'
       }]
     }, {
+      'role' : '2',
       'parent': 'name_time_table',
       'css': 'fa fa-table',
       'child': [{
@@ -62,6 +68,7 @@ export class AppConfig {
         'ref': 'list/timeT'
       }]
     }, {
+      'role' : '2',
       'parent': 'name_result',
       'css': 'fa fa-server',
       'child': [{
@@ -78,6 +85,7 @@ export class AppConfig {
         'ref': 'list/result'
       }]
     }, {
+      'role' : '3',
       'parent': 'name_driver',
       'css': 'fa fa-user',
       'child': [{
@@ -88,6 +96,7 @@ export class AppConfig {
         'ref': 'list/driver'
       }]
     }, {
+      'role' : '3',
       'parent': 'name_bus',
       'css': 'fa fa-bus',
       'child': [{
@@ -98,9 +107,16 @@ export class AppConfig {
         'ref': 'list/bus'
       }]
     }, {
+      'role' : '3',
       'parent': 'name_route',
       'css': 'fa fa-map-o',
       'child': [{
+        'name': 'add_bus_stop',
+        'ref': 'route/busS'
+      }, {
+        'name': 'list_bus_stop',
+        'ref': 'list/busS'
+      }, {
         'name': 'add_route',
         'ref': 'route/new'
       }, {
@@ -108,6 +124,7 @@ export class AppConfig {
         'ref': 'list/route'
       }]
     }, {
+      'role' : '1',
       'parent': 'name_library',
       'css': 'fa fa-book',
       'child': [{
@@ -118,7 +135,8 @@ export class AppConfig {
         'ref': 'list/book'
       }]
     }, {
-      'parent': 'name_gallry',
+      'role' : '1',
+      'parent': 'name_gallery',
       'css': 'fa fa-image',
       'child': [{
         'name': 'add_album',
@@ -128,6 +146,7 @@ export class AppConfig {
         'ref': 'list/album'
       }]
     }, {
+      'role' : '1',
       'parent': 'name_notification',
       'css': 'fa fa-bell-o',
       'child': [{
@@ -186,6 +205,11 @@ export class AppConfig {
       'viewRef': '../../driver/view',
       'editRef': '../../driver/edit'
     },
+    'busS': {
+      'addRef': '../../busStop/new',
+      'viewRef': '../../busStop/view',
+      'editRef': '../../busStop/edit'
+    },
     'bus': {
       'addRef': '../../bus/new',
       'viewRef': '../../bus/view',
@@ -214,13 +238,11 @@ export class AppConfig {
   };
 
   public static class: any = [
-    { prop: 'sr_no' },
     { prop: 'class' },
     { prop: 'division' },
   ];
 
   public static teacher: any = [
-    { prop: 'sr_no' },
     { prop: 'name' },
     { prop: 'userName' },
     { prop: 'contactNo' },
@@ -228,7 +250,6 @@ export class AppConfig {
   ];
 
   public static student: any = [
-    { prop: 'sr_no' },
     { prop: 'roll_no' },
     { prop: 'name' },
     { prop: 'class' },
@@ -237,21 +258,18 @@ export class AppConfig {
   ];
 
   public static attendance: any = [
-    { prop: 'sr_no' },
     { prop: 'class' },
     { prop: 'division' },
     { prop: 'date' }
   ];
 
   public static homeW: any = [
-    { prop: 'sr_no' },
     { prop: 'class' },
     { prop: 'division' },
     { prop: 'date' }
   ];
 
   public static timeT: any = [
-    { prop: 'sr_no' },
     { prop: 'class' },
     { prop: 'division' },
     { prop: 'date' },
@@ -259,7 +277,6 @@ export class AppConfig {
   ];
 
   public static exam: any = [
-    { prop: 'sr_no' },
     { prop: 'name' },
     { prop: 'class' },
     { prop: 'division' },
@@ -267,7 +284,6 @@ export class AppConfig {
   ];
 
   public static result: any = [
-    { prop: 'sr_no' },
     { prop: 'name' },
     { prop: 'class' },
     { prop: 'division' },
@@ -276,42 +292,43 @@ export class AppConfig {
   ];
 
   public static driver: any = [
-    { prop: 'sr_no' },
     { prop: 'name' },
     { prop: 'username' },
     { prop: 'mobile' }
   ];
 
   public static bus: any = [
-    { prop: 'sr_no' },
+    { prop: 'bus_no' },
+    { prop: 'driver' },
+    { prop: 'route' }
+  ];
+
+  public static busS: any = [
     { prop: 'bus_no' },
     { prop: 'driver' },
     { prop: 'route' }
   ];
 
   public static route: any = [
-    { prop: 'sr_no' },
     { prop: 'name' },
     { prop: 'from' },
     { prop: 'to' }
   ];
 
   public static book: any = [
-    { prop: 'sr_no' },
     { prop: 'bookName' },
     { prop: 'authors' },
     { prop: 'bookType' },
+    { prop: 'subject' },
     { prop: 'isbn' }
   ];
 
   public static album: any = [
-    { prop: 'sr_no' },
     { prop: 'name' },
     { prop: 'count' }
   ];
 
   public static notification: any = [
-    { prop: 'sr_no' },
     { prop: 'title' },
     { prop: 'class' },
     { prop: 'division' },

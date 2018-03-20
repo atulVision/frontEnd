@@ -13,6 +13,8 @@ export class NavBarComponent implements OnInit {
 
   menus: any;
   locale: any;
+  role: any;
+
   constructor() { }
 
   ngOnInit() {
@@ -26,5 +28,10 @@ export class NavBarComponent implements OnInit {
   checkLogin() {
     const user = UtilFunctions.getLocalStorage('user');
     return user ? true : false;
+  }
+
+  checkRole(role) {
+    this.role = UtilFunctions.getLocalStorage('role');
+    return this.role === role ? true : (role === '0' ? true : false);
   }
 }

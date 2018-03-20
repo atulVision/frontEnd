@@ -37,6 +37,7 @@ export class ListComponent implements OnInit {
   columns = [];
   filterColumns = [];
   ref: any;
+sr_no: any;
 
   constructor(private route: ActivatedRoute, private router: Router, private _classes: ClassesService, private _teacher: TeacherService,
     private _student: StudentService, private _attendance: AttendanceService, private _timeT: TimeTableService,
@@ -49,6 +50,7 @@ export class ListComponent implements OnInit {
       this.rows = [];
       this.checkLogin();
       this.getUpdatedList(this.type);
+      this.sr_no = 1;
     });
   }
 
@@ -78,6 +80,7 @@ export class ListComponent implements OnInit {
       this._teacher.getTeacherList().subscribe((res) => {
         this.rows = res;
         this._data.storage_teacher = res;
+        console.log(this.rows);
     }, (resError) => {
 
       });

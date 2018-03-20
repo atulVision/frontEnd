@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 @Injectable()
 export class DataServiceService {
@@ -20,5 +21,14 @@ export class DataServiceService {
   public storage_notification: any;
   public storage_profile: any;
 
+  private _profile = new BehaviorSubject<any>(null);
+
+
+  profile = this._profile.asObservable();
+
   public constructor() { }
+
+  updateProfile(profile: any) {
+    this._profile.next(profile);
+  }
 }

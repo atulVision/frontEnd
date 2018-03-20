@@ -9,6 +9,7 @@ interface BroadcastEvent {
 }
 
 export class Broadcaster {
+  public role: any;
   private _eventBus: Subject<BroadcastEvent>;
 
   constructor() {

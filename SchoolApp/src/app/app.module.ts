@@ -45,6 +45,10 @@ import { NotificationService } from './services/notification.service';
 import { BusService } from './services/bus.service';
 import { LoginService } from './services/login.service';
 import { AgmCoreModule } from '@agm/core';
+import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
+import { Broadcaster } from './utils/broadcaster';
+import { SchoolBusStopComponent } from './components/school-bus-stop/school-bus-stop.component';
+import { DivisionComponent } from './components/division/division.component';
 
 const appRoutes: Routes = [
   { path: '', component: DashboardComponent },
@@ -66,6 +70,7 @@ const appRoutes: Routes = [
   { path: 'exam/:action', component: SchoolExamComponent },
   { path: 'result/:action', component: ResultMarksComponent },
   { path: 'profile', component: ProfileComponent },
+  { path: 'busStop/:action', component: SchoolBusStopComponent },
   { path: '**', component: ErrorComponent }
 ];
 
@@ -94,7 +99,9 @@ const appRoutes: Routes = [
     ErrorComponent,
     ListComponent,
     SchoolExamComponent,
-    ProfileComponent
+    ProfileComponent,
+    SchoolBusStopComponent,
+    DivisionComponent
   ],
   imports: [
     BrowserModule,
@@ -104,7 +111,8 @@ const appRoutes: Routes = [
     NgxDatatableModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyADMGB0VQ3KnYfl_hdW8_24XsEteFkksWM'
-    })
+    }),
+    Ng4LoadingSpinnerModule.forRoot()
   ],
   providers: [
     LoginService,
@@ -122,7 +130,8 @@ const appRoutes: Routes = [
     RouteService,
     BookService,
     AlbumService,
-    NotificationService
+    NotificationService,
+    Broadcaster
   ],
   bootstrap: [AppComponent]
 })

@@ -6,7 +6,10 @@ export class Labels {
         'logo_mini': 'SA',
         'logo_lg': 'School Admin',
         'profile_btn': 'Profile',
-        'sign_out_btn': 'Sign out'
+        'sign_out_btn': 'Sign out',
+        '1' : 'Administrator',
+        '2' : 'Teacher',
+        '3' : 'Transportation'
       },
       'footer': {
         'gtt_btn': 'Go To Top',
@@ -53,12 +56,14 @@ export class Labels {
         'name_library': 'Library',
         'add_book': 'Add Book',
         'list_book': 'Book List',
-        'name_gallry': 'Gallery',
+        'name_gallery': 'Gallery',
         'add_album': 'Create Album',
         'list_album': 'Album List',
         'name_notification': 'Notifications',
         'add_notification': 'Create Notification',
         'list_notification': 'Notification List',
+        'add_bus_stop' : 'Add Bus Stop',
+        'list_bus_stop' : 'Bus Stop List'
       },
       'dashboard': {
         'head_title': 'DashBoard',
@@ -68,6 +73,15 @@ export class Labels {
         'driver_box': 'Drivers',
         'bus_box': 'Buses',
         'route_box': 'Routes',
+        'bus_stop_box' : 'Bus Stops',
+        'attendance_box' : 'Attendance',
+        'home_work_box' : 'Home Works',
+        'time_table_box' : 'Time Tables',
+        'result_box' : 'Results',
+        'notification_box' : 'Notifications',
+        'division_box' : 'Divisions',
+        'book_box' : 'Books',
+        'album_box' : 'Albums',
         'view_detail': 'View Details'
       },
       'table': {
@@ -162,6 +176,14 @@ export class Labels {
           'driver': 'DRIVER',
           'route': 'ROUTE'
         },
+        'busS': {
+          'table_title': 'List of Bus',
+          'add_btn': 'Add Bus',
+          'sr_no': 'SR NO.',
+          'bus_no': 'BUS NO.',
+          'driver': 'DRIVER',
+          'route': 'ROUTE'
+        },
         'route': {
           'table_title': 'List of Routes',
           'add_btn': 'Add Route',
@@ -173,10 +195,10 @@ export class Labels {
         'book': {
           'table_title': 'List of Books',
           'add_btn': 'Add Book',
-          'sr_no': 'SR NO.',
           'bookName': 'NAME',
           'authors': 'AUTHOR',
           'bookType': 'BOOK TYPE',
+          'subject' : 'SUBJECT',
           'isbn': 'ISBN'
         },
         'album': {
@@ -282,20 +304,18 @@ export class Labels {
         'student_profile': 'Profile Pic',
         'student_roll': 'Roll No.',
         'student_address': 'Address',
-        'student_state': 'State',
+        'student_route': 'Route Name',
         'student_pass': 'Password',
-        'student_city': 'City',
-        'student_user_name': 'User Name',
+        'student_stop': 'Bus Stop',
         'student_f_name_placeholder': 'Enter First Name',
         'studengt_l_name_placeholder': 'Enter Last Name',
         'student_mobile_placeholder': 'Enter Mobile No.',
         'student_email_placeholder': 'Enter Email Id',
         'student_roll_placeholder': 'Enter Roll No.',
         'student_address_placeholder': 'Enter Address',
-        'student_state_placeholder': 'Select State',
-        'student_city_placeholder': 'Select City',
+        'student_route_placeholder': 'Select Route Name',
+        'student_stop_placeholder': 'Select Bus Stop',
         'student_pass_placeholder': 'Enter Password',
-        'student_user_name_placeholder': 'Enter User Name'
       }
     }
   };
