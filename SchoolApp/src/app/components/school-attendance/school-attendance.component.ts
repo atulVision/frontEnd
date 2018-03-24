@@ -40,7 +40,7 @@ export class SchoolAttendanceComponent implements OnInit {
   }
 
   ngOnInit() {
-   this.checkLogin();
+ //  this.checkLogin();
   }
 
   checkLogin() {

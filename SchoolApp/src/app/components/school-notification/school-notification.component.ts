@@ -40,7 +40,7 @@ notification: Notification;
   }
 
   ngOnInit() {
-    this.checkLogin();
+   // this.checkLogin();
   }
 
   checkLogin() {

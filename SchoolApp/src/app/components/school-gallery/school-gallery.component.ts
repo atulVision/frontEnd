@@ -41,7 +41,7 @@ export class SchoolGalleryComponent implements OnInit {
   }
 
   ngOnInit() {
-   this.checkLogin();
+  // this.checkLogin();
   }
 
   initializeAlbum() {

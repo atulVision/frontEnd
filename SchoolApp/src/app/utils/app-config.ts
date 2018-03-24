@@ -112,7 +112,7 @@ export class AppConfig {
       'css': 'fa fa-map-o',
       'child': [{
         'name': 'add_bus_stop',
-        'ref': 'route/busS'
+        'ref': 'busStop/new'
       }, {
         'name': 'list_bus_stop',
         'ref': 'list/busS'
@@ -244,17 +244,16 @@ export class AppConfig {
 
   public static teacher: any = [
     { prop: 'name' },
-    { prop: 'userName' },
     { prop: 'contactNo' },
     { prop: 'email' }
   ];
 
   public static student: any = [
     { prop: 'roll_no' },
-    { prop: 'name' },
+    { prop: 'fname' },
+    { prop: 'lname' },
     { prop: 'class' },
-    { prop: 'division' },
-    { prop: 'username' }
+    { prop: 'division' }
   ];
 
   public static attendance: any = [
@@ -292,9 +291,9 @@ export class AppConfig {
   ];
 
   public static driver: any = [
-    { prop: 'name' },
-    { prop: 'username' },
-    { prop: 'mobile' }
+    { prop: 'firstName' },
+    { prop: 'lastName' },
+    { prop: 'contactNo' }
   ];
 
   public static bus: any = [
@@ -304,9 +303,7 @@ export class AppConfig {
   ];
 
   public static busS: any = [
-    { prop: 'bus_no' },
-    { prop: 'driver' },
-    { prop: 'route' }
+    { prop: 'stopName' }
   ];
 
   public static route: any = [

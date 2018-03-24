@@ -44,7 +44,7 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.checkLogin();
+  //  this.checkLogin();
   }
 
   initializeStudent() {

@@ -44,20 +44,17 @@ export class SchoolTeacherComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.checkLogin();
+  //  this.checkLogin();
   }
 
   initializeTeacher() {
     this.teacher = new Teacher(0, '', '', '', '', '', '', '', '', '', '', '');
   }
 
-  getTeacherList() {
-    this._teacher.getTeacherList().subscribe((res) => { });
-  }
-
   addTeacher(data) {
     if (this.action === 'new') {
       this._teacher.saveTeacher(data).subscribe((res) => {
+        console.log(res);
       }, (resError) => {
       });
     }

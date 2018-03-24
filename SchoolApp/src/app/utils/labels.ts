@@ -89,6 +89,7 @@ export class Labels {
           'drop_menu_option1_title': 'Columns To Show',
           'drop_menu_option2_title': 'Entries To Show',
           'head_action_col': 'ACTION',
+          'head_sr_no' : 'SR NO.'
         },
         'class': {
           'table_title': 'List of Classes',
@@ -111,7 +112,8 @@ export class Labels {
           'add_btn': 'Add Student',
           'sr_no': 'SR NO.',
           'roll_no': 'ROLL NO.',
-          'name': 'NAME',
+          'fname': 'FIRST NAME',
+          'lname': 'LAST NAME',
           'class': 'CLASS',
           'division': 'DIVISION',
           'username': 'USERNAME'
@@ -164,31 +166,29 @@ export class Labels {
           'table_title': 'List of Drivers',
           'add_btn': 'Add Driver',
           'sr_no': 'SR NO.',
-          'name': 'NAME',
-          'username': 'USERNAME',
-          'mobile': 'MOBILE'
+          'firstName': 'FIRST NAME',
+          'lastName': 'LAST NAME',
+          'contactNo': 'MOBILE'
         },
         'bus': {
           'table_title': 'List of Bus',
           'add_btn': 'Add Bus',
           'sr_no': 'SR NO.',
           'bus_no': 'BUS NO.',
-          'driver': 'DRIVER',
-          'route': 'ROUTE'
+          'driver': 'DRIVER NAME',
+          'route': 'ROUTE NAME'
         },
         'busS': {
           'table_title': 'List of Bus',
           'add_btn': 'Add Bus',
           'sr_no': 'SR NO.',
-          'bus_no': 'BUS NO.',
-          'driver': 'DRIVER',
-          'route': 'ROUTE'
+          'stopName': 'STOP NAME',
         },
         'route': {
           'table_title': 'List of Routes',
           'add_btn': 'Add Route',
           'sr_no': 'SR NO.',
-          'name': 'NAME',
+          'name': 'ROUTE NAME',
           'from': 'FROM',
           'to': 'TO'
         },
@@ -249,7 +249,8 @@ export class Labels {
         'bus_driver_placeholder': 'Select Driver',
         'bus_route_placeholder': 'Select Bus Route',
         'bus_contact_no_placeholder': 'Enter Contact No.',
-        'driver_name': 'Name',
+        'driver_f_name': 'First Name',
+        'driver_l_name': 'Last Name',
         'driver_adhar_no': 'Adhar No.',
         'driver_mobile_no': 'Mobile No.',
         'driver_email': 'Email ID',
@@ -259,7 +260,8 @@ export class Labels {
         'driver_username': 'User Name',
         'driver_pass': 'Password',
         'driver_bus': 'Bus No.',
-        'driver_name_placeholder': 'Enter Name',
+        'driver_f_name_placeholder': 'Enter First Name',
+        'driver_l_name_placeholder': 'Enter Last Name',
         'driver_adhar_no_placeholder': 'Enter Adhar Number',
         'driver_mobile_no_placeholder': 'Enter Mobile Number',
         'driver_email_placeholder': 'Enter Email ID',

@@ -49,6 +49,10 @@ import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 import { Broadcaster } from './utils/broadcaster';
 import { SchoolBusStopComponent } from './components/school-bus-stop/school-bus-stop.component';
 import { DivisionComponent } from './components/division/division.component';
+import { BusStopService } from './services/bus-stop.service';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {MatDatepickerModule} from '@angular/material/datepicker';
 
 const appRoutes: Routes = [
   { path: '', component: DashboardComponent },
@@ -106,13 +110,18 @@ const appRoutes: Routes = [
   imports: [
     BrowserModule,
     RouterModule.forRoot(appRoutes, { useHash: true }),
+    ReactiveFormsModule,
     FormsModule,
     HttpModule,
     NgxDatatableModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyADMGB0VQ3KnYfl_hdW8_24XsEteFkksWM'
+      apiKey: 'AIzaSyADMGB0VQ3KnYfl_hdW8_24XsEteFkksWM',
+      libraries: ['places']
     }),
-    Ng4LoadingSpinnerModule.forRoot()
+    Ng4LoadingSpinnerModule.forRoot(),
+    BrowserAnimationsModule,
+    MatAutocompleteModule,
+    MatDatepickerModule
   ],
   providers: [
     LoginService,
@@ -131,7 +140,8 @@ const appRoutes: Routes = [
     BookService,
     AlbumService,
     NotificationService,
-    Broadcaster
+    Broadcaster,
+    BusStopService
   ],
   bootstrap: [AppComponent]
 })

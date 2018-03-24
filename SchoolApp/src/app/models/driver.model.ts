@@ -1,32 +1,26 @@
 export class Driver {
   public driverId: number;
-  public name: string;
+  public firstName: string;
+  public lastName: string;
   public address: string;
-  public adharNumber: string;
-  public mobile: string;
+  public adharNo: string;
+  public contactNo: string;
   public email: string;
-  public position: string;
-  public userName: string;
   public password: string;
-  public bus: string;
   public profile: string;
 
 
-  constructor(driverId: number, name: string, address: string,
-     adharNumber: string,
-    mobile: string, email: string, position: string,
-    userName: string, password: string, bus: string, profile: string
+  constructor(driverId: number, firstName: string, lastName: string, address: string,
+    adharNo: string, contactNo: string, email: string, password: string, profile: string
   ) {
     this.driverId = driverId;
-    this.name = name;
+    this.firstName = firstName;
+    this.lastName = lastName;
     this.address = address;
-    this.adharNumber = adharNumber;
-    this.mobile = mobile;
+    this.adharNo = adharNo;
+    this.contactNo = contactNo;
     this.email = email;
-    this.position = position;
-    this.userName = userName;
     this.password = password;
-    this.bus = bus;
     this.profile = profile;
   }
 }

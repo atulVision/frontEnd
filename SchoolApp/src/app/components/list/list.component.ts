@@ -48,7 +48,7 @@ sr_no: any;
     this.route.params.subscribe((params) => {
       this.type = params['type'];
       this.rows = [];
-      this.checkLogin();
+      //this.checkLogin();
       this.getUpdatedList(this.type);
       this.sr_no = 1;
     });
@@ -159,9 +159,9 @@ sr_no: any;
   }
 
   updateFilter(event) {
-    let val = event.target.value.toLowerCase();
-    let colsAmt = this.rows[0].length;
-    let keys = Object.keys(this.rows[0]);
+    const val = event.target.value.toLowerCase();
+    const colsAmt = this.rows[0].length;
+    const keys = Object.keys(this.rows[0]);
     this.rows = this.filteredData.filter(function (item) {
       for (let i = 0; i < colsAmt; i++) {
         if (item[keys[i]].toLowerCase().indexOf(val) !== -1 || !val) {

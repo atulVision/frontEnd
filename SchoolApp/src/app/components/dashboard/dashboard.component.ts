@@ -42,7 +42,7 @@ export class DashboardComponent implements OnInit {
     private broadcaster: Broadcaster) { }
 
   ngOnInit() {
-    this.checkLogin();
+   // this.checkLogin();
     this.role = UtilFunctions.getLocalStorage('role');
     this.locale = Labels.en_IN.labels.dashboard;
     this.getAllData();

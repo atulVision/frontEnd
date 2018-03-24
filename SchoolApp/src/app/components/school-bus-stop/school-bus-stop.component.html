@@ -1,3 +1,88 @@
-<p>
-  school-bus-stop works!
-</p>
+<section class="content-header">
+  <h1>Add Bus Stop</h1>
+</section>
+<section class="content-header">
+  <div class="form">
+    <div class="box box-info">
+      <div class="box-header with-border">
+        <h3 class="box-title">Bus Stop</h3>
+      </div>
+      <form class="form-horizontal" id="busStopForm" #busStopForm="ngForm" (ngSubmit)="addbusStop(busStopForm.value)">
+        <div class="box-body">
+          <div class="form-group">
+            <label for="stopName" class="col-sm-2 control-label">Bust Stop Name</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="stopName" name="stopName" placeholder="Route name" [disabled]="viewFlag" #stopName="ngModel"
+                [(ngModel)]="busStop.stopName">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="stopLat" class="col-sm-2 control-label">Bust Stop Lattitude</label>
+            <div class="col-sm-4">
+              <input type="text" class="form-control" id="stopLat" name="stopLat" placeholder="Route Start" [disabled]="viewFlag" #stopLat="ngModel"
+                [(ngModel)]="busStop.stopLat">
+            </div>
+            <label for="stopLong" class="col-sm-2 control-label">Bust Stop Longitude</label>
+            <div class="col-sm-4">
+              <input type="text" class="form-control" id="stopLong" name="stopLong" placeholder="Route End" [disabled]="viewFlag" #stopLong="ngModel"
+                [(ngModel)]="busStop.stopLong">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="pickPoint" class="col-sm-2 control-label">Search in Map</label>
+            <div class="col-sm-10">
+              <!-- <div class="row">
+                <div class="col-md-8">
+                  <input placeholder="search" class="form-control" type="text" name="co" id="co">
+                </div>
+                <div class="col-md-4 align-left">
+                  <button type="submit" class="btn btn-primary" (click)="getCoordinates()">
+                    <i class="fa fa-add"></i> Search
+                  </button>
+                </div>
+              </div> -->
+              <div class="map">
+                  <div class="form-group">
+                      <input placeholder="search for location" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" #search [formControl]="searchControl">
+                    </div>
+                <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom" [disableDefaultUI]="false" [scrollwheel]="false" [zoomControl]="true" (mapClick)="mapClicked($event)">
+                  <agm-marker *ngFor="let m of markers; let i = index" (markerClick)="clickedMarker(m.label, i)" [latitude]="m.lat" [longitude]="m.lng"
+                    [label]="m.label" [markerDraggable]="m.draggable" (dragEnd)="markerDragEnd(m, $event)">
+                    <agm-info-window>
+                      <strong>Bus Stop</strong>
+                    </agm-info-window>
+                  </agm-marker>
+                </agm-map>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="box-footer">
+          <button type="button" class="btn btn-default" (click)="backToList()">{{formLocale.back_btn}}</button>
+          <button *ngIf="action === 'new'" type="submit" class="btn btn-success pull-right" data-toggle="modal" data-target="#modal-success">{{formLocale.submit_btn}}</button>
+          <button *ngIf="action === 'view'" type="button" class="btn btn-info btn-info pull-right" (click)="backToList()">{{formLocale.ok_btn}}</button>
+          <button *ngIf="action === 'edit'" type="submit" class="btn btn-success pull-right" data-toggle="modal" data-target="#modal-success">{{formLocale.update_btn}}</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+<div class="modal modal-success fade" id="modal-success">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title">Status</h4>
+      </div>
+      <div class="modal-body">
+        <h5 *ngIf="action === 'new'">{{locale.driver}} is added successfully.</h5>
+        <h5 *ngIf="action === 'edit'">{{locale.driver}} is updated successfully.</h5>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">OK</button>
+      </div>
+    </div>
+  </div>
+</div>

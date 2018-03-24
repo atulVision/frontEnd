@@ -13,24 +13,24 @@
             <label for="firstName" class="col-sm-2 control-label">{{formLocale.student_f_name}}</label>
             <div class="col-sm-4">
               <input type="text" class="form-control" id="firstName" name="firstName" placeholder="{{formLocale.student_f_name_placeholder}}"
-                [disabled]="viewFlag" #firstName="ngModel" [(ngModel)]="student.firstName">
+                [disabled]="viewFlag || !(role === '3')" #firstName="ngModel" [(ngModel)]="student.firstName">
             </div>
             <label for="lastName" class="col-sm-2 control-label">{{formLocale.studengt_l_name}}</label>
             <div class="col-sm-4">
               <input type="text" class="form-control" id="lastName" name="lastName" placeholder="{{formLocale.studengt_l_name_placeholder}}"
-                [disabled]="viewFlag" #lastName="ngModel" [(ngModel)]="student.lastName">
+                [disabled]="viewFlag || !(role === '3')" #lastName="ngModel" [(ngModel)]="student.lastName">
             </div>
           </div>
           <div class="form-group">
             <label for="rollNo" class="col-sm-2 control-label">{{formLocale.student_roll}}</label>
             <div class="col-sm-4">
-              <input type="text" class="form-control" id="rollNo" name="rollNo" placeholder="{{formLocale.student_roll_placeholder}}" [disabled]="viewFlag"
-                #rollNo="ngModel" [(ngModel)]="student.rollNo">
+              <input type="text" class="form-control" id="rollNo" name="rollNo" placeholder="{{formLocale.student_roll_placeholder}}"
+              [disabled]="viewFlag || !(role === '3')" #rollNo="ngModel" [(ngModel)]="student.rollNo">
             </div>
             <label for="mobile" class="col-sm-2 control-label">{{formLocale.student_mobile}}</label>
             <div class="col-sm-4">
               <input type="text" class="form-control" id="mobile" name="mobile" placeholder="{{formLocale.student_mobile_placeholder}}"
-                [disabled]="viewFlag" #mobile="ngModel" [(ngModel)]="student.contactNo">
+                [disabled]="viewFlag || !(role === '3')" #mobile="ngModel" [(ngModel)]="student.contactNo">
             </div>
           </div>
           <div class="form-group" *ngIf="role === '3'">
@@ -45,7 +45,7 @@
                 [disabled]="viewFlag" #password="ngModel" [(ngModel)]="student.password">
             </div>
           </div>
-          <div class="form-group">
+          <div class="form-group" *ngIf="role === '3'">
             <label for="address" class="col-sm-2 control-label">{{formLocale.student_address}}</label>
             <div class="col-sm-10">
               <textarea class="form-control" id="address" name="address" placeholder="{{formLocale.student_address_placeholder}}" [disabled]="viewFlag"
@@ -72,7 +72,7 @@
               </select>
             </div>
             </div>
-          <div class="form-group">
+          <div class="form-group" *ngIf="role === '3'">
             <label for="profile" class="col-sm-2 control-label">{{formLocale.student_profile}}</label>
             <div class="col-sm-8">
               <input type="file" class="form-control" id="profile" name="profile" [disabled]="viewFlag" #profile="ngModel" [(ngModel)]="student.profile"

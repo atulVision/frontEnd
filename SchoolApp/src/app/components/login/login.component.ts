@@ -47,6 +47,11 @@ export class LoginComponent implements OnInit {
       this.spinnerService.hide();
       return false;
     }
+    UtilFunctions.setLocalStorage('role', data.role); //Remove
+    this.broadcaster.broadcast('role', data.role); //Remove
+    this.router.navigate(['/dashboard']); // Remove
+    UtilFunctions.setLocalStorage('user', 'asd'); // Remove
+    this.broadcaster.broadcast('user', 'asd'); // Remove
     this._login.login(data.role, this.user).subscribe(
       (res: User) => {
         if (res.email != null) {

@@ -22,7 +22,7 @@ export class SchoolExamComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.checkLogin();
+   // this.checkLogin();
   }
 
   checkLogin() {

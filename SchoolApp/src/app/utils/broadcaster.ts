@@ -10,6 +10,7 @@ interface BroadcastEvent {
 
 export class Broadcaster {
   public role: any;
+  public storage: any;
   private _eventBus: Subject<BroadcastEvent>;
 
   constructor() {

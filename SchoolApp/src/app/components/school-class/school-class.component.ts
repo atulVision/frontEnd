@@ -44,7 +44,7 @@ export class SchoolClassComponent implements OnInit {
   }
 
   ngOnInit() {
-   this.checkLogin();
+ //  this.checkLogin();
   }
 
   initializeClass() {

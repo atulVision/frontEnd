@@ -42,7 +42,7 @@ role: any;
   }
 
   ngOnInit() {
-    this.checkLogin();
+  //  this.checkLogin();
   }
 
   initializeStudent() {

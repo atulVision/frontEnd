@@ -4,9 +4,10 @@ import { AppConfig } from '../../utils/app-config';
 import { Labels } from '../../utils/labels';
 import { Router } from '@angular/router';
 import { UtilFunctions } from '../../utils/util-functions';
-import { DataServiceService } from '../../services/data-service.service';
 import { Driver } from '../../models/driver.model';
 import { DriverService } from '../../services/driver.service';
+import { Broadcaster } from '../../utils/broadcaster';
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 
 @Component({
   selector: 'app-school-driver',
@@ -22,7 +23,8 @@ export class SchoolDriverComponent implements OnInit {
   locale: any;
   formLocale: any;
 
-  constructor(private route: ActivatedRoute, private router: Router, private _data: DataServiceService, private _driver: DriverService) {
+  constructor(private route: ActivatedRoute, private router: Router, private broadcaster: Broadcaster,
+    private _driver: DriverService, private spinnerService: Ng4LoadingSpinnerService) {
     this.route.params.subscribe((params) => {
       this.action = params['action'];
       this.initializeDriver();
@@ -31,11 +33,11 @@ export class SchoolDriverComponent implements OnInit {
       }
       if (this.action === 'edit') {
         this.viewFlag = false;
-        this.driver = this._data.storage;
+        this.driver = this.broadcaster.storage;
       }
       if (this.action === 'view') {
         this.viewFlag = true;
-        this.driver = this._data.storage;
+        this.driver = this.broadcaster.storage;
       }
       this.locale = Labels.en_IN.labels.page_title;
       this.formLocale = Labels.en_IN.labels.form_labels;
@@ -44,19 +46,29 @@ export class SchoolDriverComponent implements OnInit {
   }
 
   ngOnInit() {
-   this.checkLogin();
+  //  this.checkLogin();
   }
 
   initializeDriver() {
-    this.driver = new Driver(0, '', '', '', '', '', '', '', '', '', '');
+    this.driver = new Driver(0, '', '', '', '', '', '', '', '');
   }
 
   addDriver(data) {
-    console.log(data);
-    this._driver.saveDriver(data).subscribe((res) => {
-      console.log(res);
-  }, (resError) => {
-  });
+    this.spinnerService.show();
+    if (this.action === 'new') {
+      this._driver.saveDriver(data).subscribe((res) => {
+        console.log(res);
+        this.spinnerService.hide();
+      }, (resError) => {
+      });
+    }
+    if (this.action === 'edit') {
+      this._driver.updateDriver(this.driver.driverId, this.driver).subscribe((res) => {
+        console.log(res);
+        this.spinnerService.hide();
+      }, (resError) => {
+      });
+    }
   }
 
   backToList() {
@@ -65,7 +77,7 @@ export class SchoolDriverComponent implements OnInit {
 
   checkLogin() {
     const user = UtilFunctions.getLocalStorage('user');
-    if ( user ) {
+    if (user) {
       return;
     }
     this.router.navigate(['/login']);
