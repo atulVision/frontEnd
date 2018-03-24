@@ -6,10 +6,10 @@ export class Route {
   public routeName: string;
   public fromBusStop: BusStop;
   public toBusStop: BusStop;
-  public pickUpPoints: PickUpPoints;
+  public pickUpPoints: PickUpPoints[];
 
   constructor (routeId: number, routeName: string, fromBusStop: BusStop,
-    toBusStop: BusStop, pickUpPoints: PickUpPoints) {
+    toBusStop: BusStop, pickUpPoints: PickUpPoints[]) {
     this.routeId = routeId;
     this.routeName = routeName;
     this.fromBusStop = fromBusStop;
@@ -18,7 +18,7 @@ export class Route {
   }
 }
 
-class PickUpPoints {
+export class PickUpPoints {
   public busStop: BusStop;
   public sequenceNo: number;
 

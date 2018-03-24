@@ -33,7 +33,7 @@ export class SchoolBusStopComponent implements OnInit {
   pageTitle: any;
   locale: any;
   formLocale: any;
-  markers[]: Marker;
+  markers: Marker[];
 
   constructor(private route: ActivatedRoute, private router: Router,
     private _busStop: BusStopService, private spinnerService: Ng4LoadingSpinnerService,

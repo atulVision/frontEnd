@@ -4,7 +4,8 @@ import { AppConfig } from '../../utils/app-config';
 import { Labels } from '../../utils/labels';
 import { Router } from '@angular/router';
 import { UtilFunctions } from '../../utils/util-functions';
-import { Route } from '../../models/route.model';
+import { Route, PickUpPoints } from '../../models/route.model';
+import { BusStop } from '../../models/bus-stop.model';
 
 @Component({
   selector: 'app-school-route',
@@ -22,6 +23,9 @@ export class SchoolRouteComponent implements OnInit {
   lat = 18.516726;
   lng  = 73.856255;
   zoom = 8;
+from: BusStop;
+to: BusStop;
+pickUps: PickUpPoints[];
 
   constructor(private route: ActivatedRoute, private router: Router) {
     this.route.params.subscribe((params) => {
@@ -55,7 +59,10 @@ export class SchoolRouteComponent implements OnInit {
   }
 
   initializeBusRoute() {
-    this.busRoute = new Route(0,'','','','');
+    this.from = new BusStop (0, '', '', '');
+    this.to = new BusStop (0, '', '', '');
+    this.pickUps = [];
+    this.busRoute = new Route(0, '', this.from, this.to, this.pickUps);
   }
 
 }
