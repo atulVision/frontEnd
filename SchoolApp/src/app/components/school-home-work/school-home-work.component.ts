@@ -40,7 +40,7 @@ export class SchoolHomeWorkComponent implements OnInit {
   }
 
   ngOnInit() {
-  // this.checkLogin();
+   this.checkLogin();
   }
 
   checkLogin() {
@@ -53,5 +53,13 @@ export class SchoolHomeWorkComponent implements OnInit {
 
   initializeHomeWork() {
     this.homeWork = new HomeWork(0);
+  }
+
+  backToList() {
+    this.router.navigate(['/list/homeW']);
+  }
+
+  addHomeWork(data) {
+
   }
 }

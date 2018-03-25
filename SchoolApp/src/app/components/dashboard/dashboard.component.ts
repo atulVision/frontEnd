@@ -42,7 +42,7 @@ export class DashboardComponent implements OnInit {
     private broadcaster: Broadcaster) { }
 
   ngOnInit() {
-   // this.checkLogin();
+     this.checkLogin();
     this.role = UtilFunctions.getLocalStorage('role');
     this.locale = Labels.en_IN.labels.dashboard;
     this.getAllData();
@@ -56,11 +56,11 @@ export class DashboardComponent implements OnInit {
     //   this._data.storage_class = [];
     // });
 
-    this._teacher.getTeacherList().subscribe((res) => {
-      this.teacherLen = 22;
-    }, (resError) => {
-      this.teacherLen = 0;
-    });
+    // this._teacher.getTeacherList().subscribe((res) => {
+    //   this.teacherLen = 22;
+    // }, (resError) => {
+    //   this.teacherLen = 0;
+    // });
 
     // this._student.getStudentList().subscribe((res) => {
     //   this._data.storage_student = res;

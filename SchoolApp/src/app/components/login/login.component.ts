@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
   }
 
   initializeUser() {
-    this.user = new User(0, '', '', '', '', '', '', '');
+    this.user = new User(0, '', '', '', '', '', '', '', '');
   }
 
   loginUser(data) {
@@ -47,11 +47,11 @@ export class LoginComponent implements OnInit {
       this.spinnerService.hide();
       return false;
     }
-    UtilFunctions.setLocalStorage('role', data.role); //Remove
-    this.broadcaster.broadcast('role', data.role); //Remove
-    this.router.navigate(['/dashboard']); // Remove
-    UtilFunctions.setLocalStorage('user', 'asd'); // Remove
-    this.broadcaster.broadcast('user', 'asd'); // Remove
+    UtilFunctions.setLocalStorage('user', JSON.stringify({firstName : 'Tushar'}));
+          UtilFunctions.setLocalStorage('role', data.role);
+          this.broadcaster.broadcast('user', {firstName : 'Tushar'});
+          this.broadcaster.broadcast('role', data.role);
+          this.router.navigate(['/dashboard']);
     this._login.login(data.role, this.user).subscribe(
       (res: User) => {
         if (res.email != null) {

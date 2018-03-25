@@ -4,81 +4,81 @@ import { AppConfig } from '../../utils/app-config';
 import { Labels } from '../../utils/labels';
 import { Router } from '@angular/router';
 import { UtilFunctions } from '../../utils/util-functions';
-import { Driver } from '../../models/driver.model';
-import { DriverService } from '../../services/driver.service';
+import { Division } from '../../models/division.model';
+import { DivisionService } from '../../services/division.service';
 import { Broadcaster } from '../../utils/broadcaster';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 
 @Component({
-  selector: 'app-school-driver',
-  templateUrl: './school-driver.component.html',
-  styleUrls: ['./school-driver.component.css']
+  selector: 'app-school-division',
+  templateUrl: './school-division.component.html',
+  styleUrls: ['./school-division.component.css']
 })
-export class SchoolDriverComponent implements OnInit {
+export class SchoolDivisionComponent implements OnInit {
 
   action: string;
   viewFlag = false;
-  driver: Driver;
+  division: Division;
   pageTitle: any;
   locale: any;
   formLocale: any;
 
-  constructor(private route: ActivatedRoute, private router: Router, private broadcaster: Broadcaster,
-    private _driver: DriverService, private spinnerService: Ng4LoadingSpinnerService) {
+  constructor(private route: ActivatedRoute, private router: Router, private _division: DivisionService,
+  private broadcaster: Broadcaster, private spinnerService: Ng4LoadingSpinnerService) {
     this.route.params.subscribe((params) => {
       this.action = params['action'];
-      this.initializeDriver();
+      this.initializeDivision();
       if (this.action === 'new') {
         this.viewFlag = false;
       }
       if (this.action === 'edit') {
         this.viewFlag = false;
-        this.driver = this.broadcaster.storage;
+        this.division = this.broadcaster.storage;
       }
       if (this.action === 'view') {
         this.viewFlag = true;
-        this.driver = this.broadcaster.storage;
+        this.division = this.broadcaster.storage;
       }
       this.locale = Labels.en_IN.labels.page_title;
       this.formLocale = Labels.en_IN.labels.form_labels;
-      this.pageTitle = this.locale[this.action] + ' ' + this.locale.driver;
+      this.pageTitle = this.locale[this.action] + ' ' + this.locale.division;
     });
   }
 
   ngOnInit() {
-    this.checkLogin();
+   this.checkLogin();
   }
 
-  private initializeDriver() {
-    this.driver = new Driver(0, '', '', '', '', '', '', '', '', new Date());
+  initializeDivision() {
+    this.division = new Division(0, '');
   }
 
-  private addDriver(data) {
+  addDivision(data) {
     console.log(data);
     this.spinnerService.show();
     if (this.action === 'new') {
-      this._driver.saveDriver(data).subscribe((res) => {
+      this._division.saveDivision(data).subscribe((res) => {
         console.log(res);
         this.spinnerService.hide();
-      }, (resError) => {
-      });
+    }, (resError) => {
+    });
     }
     if (this.action === 'edit') {
-      this._driver.updateDriver(this.driver.driverId, this.driver).subscribe((res) => {
+      this._division.updateDivision(this.division.divisionId, this.division).subscribe((res) => {
         console.log(res);
         this.spinnerService.hide();
-      }, (resError) => {
-      });
+    }, (resError) => {
+    });
     }
   }
 
-  private backToList() {
-    this.router.navigate(['/list/driver']);
+  backToList() {
+    this.router.navigate(['/list/division']);
   }
 
-  private checkLogin() {
+  checkLogin() {
     const user = UtilFunctions.getLocalStorage('user');
-    if (user) {
+    if ( user ) {
       return;
     }
     this.router.navigate(['/login']);

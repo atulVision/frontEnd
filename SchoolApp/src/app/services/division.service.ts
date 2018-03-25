@@ -4,39 +4,39 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import { Constants } from '../utils/constants';
-import { Classes } from '../models/classes.model';
+import { Division } from '../models/division.model';
 
 @Injectable()
-export class ClassesService {
+export class DivisionService {
 
   constructor(private _http: Http) { }
 
-  getClassList() {
-    return this._http.get(Constants.URL.host_url + Constants.URL.classURL)
+  getDivisionList() {
+    return this._http.get(Constants.URL.host_url + Constants.URL.divisionURL)
       .map((response: Response) => {
         return response.json();
       })
       .catch(this._errorHandler);
   }
 
-  saveClass(classes: Classes) {
-    return this._http.post(Constants.URL.host_url + Constants.URL.classURL, classes)
+  saveDivision(division: Division) {
+    return this._http.post(Constants.URL.host_url + Constants.URL.divisionURL, division)
       .map((response: Response) => {
         return response.json();
       })
       .catch(this._errorHandler);
   }
 
-  updateClass(classId: any, classes: Classes) {
-    return this._http.put(Constants.URL.host_url + Constants.URL.classURL + '/' + classId, classes)
+  updateDivision(divisionId: any, division: Division) {
+    return this._http.put(Constants.URL.host_url + Constants.URL.divisionURL + '/' + divisionId, division)
       .map((response: Response) => {
         return response.json();
       })
       .catch(this._errorHandler);
   }
 
-  deleteClass(classId: any) {
-    return this._http.delete(Constants.URL.host_url + Constants.URL.classURL + '/' + classId)
+  deleteDivision(divisionId: any) {
+    return this._http.delete(Constants.URL.host_url + Constants.URL.divisionURL + '/' + divisionId)
       .map((response: Response) => {
         return response.json();
       })

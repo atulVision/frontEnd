@@ -45,20 +45,26 @@ import { NotificationService } from './services/notification.service';
 import { BusService } from './services/bus.service';
 import { LoginService } from './services/login.service';
 import { AgmCoreModule } from '@agm/core';
+import { AgmDirectionModule } from 'agm-direction';
 import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 import { Broadcaster } from './utils/broadcaster';
 import { SchoolBusStopComponent } from './components/school-bus-stop/school-bus-stop.component';
-import { DivisionComponent } from './components/division/division.component';
 import { BusStopService } from './services/bus-stop.service';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatAutocompleteModule} from '@angular/material/autocomplete';
-import {MatDatepickerModule} from '@angular/material/datepicker';
+import { ResultSubjectsComponent } from './components/result-subjects/result-subjects.component';
+import { SchoolAlbumComponent } from './components/school-album/school-album.component';
+import { SchoolBookTypeComponent } from './components/school-book-type/school-book-type.component';
+import { SchoolDivisionComponent } from './components/school-division/school-division.component';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { FormModalComponent } from './components/form-modal/form-modal.component';
+import { DivisionService } from './services/division.service';
 
 const appRoutes: Routes = [
   { path: '', component: DashboardComponent },
   { path: 'login', component: LoginComponent },
   { path: 'dashboard', component: DashboardComponent },
+  { path: 'profile', component: ProfileComponent },
   { path: 'list/:type', component: ListComponent },
+  { path: 'division/:action', component: SchoolDivisionComponent },
   { path: 'class/:action', component: SchoolClassComponent },
   { path: 'student/:action', component: SchoolStudentComponent },
   { path: 'teacher/:action', component: SchoolTeacherComponent },
@@ -73,7 +79,6 @@ const appRoutes: Routes = [
   { path: 'notification/:action', component: SchoolNotificationComponent },
   { path: 'exam/:action', component: SchoolExamComponent },
   { path: 'result/:action', component: ResultMarksComponent },
-  { path: 'profile', component: ProfileComponent },
   { path: 'busStop/:action', component: SchoolBusStopComponent },
   { path: '**', component: ErrorComponent }
 ];
@@ -105,7 +110,11 @@ const appRoutes: Routes = [
     SchoolExamComponent,
     ProfileComponent,
     SchoolBusStopComponent,
-    DivisionComponent
+    ResultSubjectsComponent,
+    SchoolAlbumComponent,
+    SchoolBookTypeComponent,
+    SchoolDivisionComponent,
+    FormModalComponent
   ],
   imports: [
     BrowserModule,
@@ -119,9 +128,8 @@ const appRoutes: Routes = [
       libraries: ['places']
     }),
     Ng4LoadingSpinnerModule.forRoot(),
-    BrowserAnimationsModule,
-    MatAutocompleteModule,
-    MatDatepickerModule
+    NgbModule.forRoot(),
+    AgmDirectionModule
   ],
   providers: [
     LoginService,
@@ -141,7 +149,8 @@ const appRoutes: Routes = [
     AlbumService,
     NotificationService,
     Broadcaster,
-    BusStopService
+    BusStopService,
+    DivisionService
   ],
   bootstrap: [AppComponent]
 })

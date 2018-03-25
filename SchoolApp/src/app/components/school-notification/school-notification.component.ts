@@ -4,7 +4,7 @@ import { AppConfig } from '../../utils/app-config';
 import { Labels } from '../../utils/labels';
 import { Router } from '@angular/router';
 import { UtilFunctions } from '../../utils/util-functions';
-import { Notification } from '../../models/notification.model';
+import { Notification, ClassDiv } from '../../models/notification.model';
 
 @Component({
   selector: 'app-school-notification',
@@ -19,6 +19,7 @@ export class SchoolNotificationComponent implements OnInit {
   formLocale: any;
   viewFlag = false;
 notification: Notification;
+classDiv: ClassDiv;
 
   constructor(private route: ActivatedRoute, private router: Router) {
     this.route.params.subscribe((params) => {
@@ -40,7 +41,7 @@ notification: Notification;
   }
 
   ngOnInit() {
-   // this.checkLogin();
+    this.checkLogin();
   }
 
   checkLogin() {
@@ -52,6 +53,15 @@ notification: Notification;
   }
 
   initializeNotification() {
-    this.notification = new Notification (0);
+    this.classDiv = new ClassDiv (0, 0);
+    this.notification = new Notification (0, '', '', '', []);
+  }
+
+  backToList() {
+    this.router.navigate(['/list/notification']);
+  }
+
+  addNotification(data) {
+
   }
 }

@@ -4,9 +4,10 @@ import { AppConfig } from '../../utils/app-config';
 import { Labels } from '../../utils/labels';
 import { Router } from '@angular/router';
 import { UtilFunctions } from '../../utils/util-functions';
-import { DataServiceService } from '../../services/data-service.service';
 import { Teacher } from '../../models/teacher.model';
 import { TeacherService } from '../../services/teacher.service';
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
+import { Broadcaster } from '../../utils/broadcaster';
 
 @Component({
   selector: 'app-school-teacher',
@@ -22,7 +23,8 @@ export class SchoolTeacherComponent implements OnInit {
   locale: any;
   formLocale: any;
 
-  constructor(private route: ActivatedRoute, private router: Router, private _data: DataServiceService, private _teacher: TeacherService) {
+  constructor(private route: ActivatedRoute, private router: Router, private _teacher: TeacherService,
+    private broadcaster: Broadcaster, private spinnerService: Ng4LoadingSpinnerService) {
     this.route.params.subscribe((params) => {
       this.action = params['action'];
       this.initializeTeacher();
@@ -31,11 +33,11 @@ export class SchoolTeacherComponent implements OnInit {
       }
       if (this.action === 'edit') {
         this.viewFlag = false;
-        this.teacher = this._data.storage;
+        this.teacher = this.broadcaster.storage;
       }
       if (this.action === 'view') {
         this.viewFlag = true;
-        this.teacher = this._data.storage;
+        this.teacher = this.broadcaster.storage;
       }
       this.locale = Labels.en_IN.labels.page_title;
       this.formLocale = Labels.en_IN.labels.form_labels;
@@ -44,23 +46,27 @@ export class SchoolTeacherComponent implements OnInit {
   }
 
   ngOnInit() {
-  //  this.checkLogin();
+    this.checkLogin();
   }
 
   initializeTeacher() {
-    this.teacher = new Teacher(0, '', '', '', '', '', '', '', '', '', '', '');
+    this.teacher = new Teacher(0, '', '', '', '', '', '', '', '', '');
   }
 
   addTeacher(data) {
+    console.log(data);
+    this.spinnerService.show();
     if (this.action === 'new') {
       this._teacher.saveTeacher(data).subscribe((res) => {
         console.log(res);
+        this.spinnerService.hide();
       }, (resError) => {
       });
     }
     if (this.action === 'edit') {
-      this._teacher.updateTeacher(data.teacherId, data).subscribe((res) => {
+      this._teacher.updateTeacher(this.teacher.teacherId, this.teacher).subscribe((res) => {
         console.log(res);
+        this.spinnerService.hide();
       }, (resError) => {
       });
     }

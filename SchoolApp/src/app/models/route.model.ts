@@ -6,10 +6,10 @@ export class Route {
   public routeName: string;
   public fromBusStop: BusStop;
   public toBusStop: BusStop;
-  public pickUpPoints: PickUpPoints[];
+  public pickUpPoints: Array<PickUpPoint>;
 
-  constructor (routeId: number, routeName: string, fromBusStop: BusStop,
-    toBusStop: BusStop, pickUpPoints: PickUpPoints[]) {
+  constructor(routeId: number, routeName: string, fromBusStop: BusStop,
+    toBusStop: BusStop, pickUpPoints: PickUpPoint[]) {
     this.routeId = routeId;
     this.routeName = routeName;
     this.fromBusStop = fromBusStop;
@@ -18,13 +18,19 @@ export class Route {
   }
 }
 
-export class PickUpPoints {
+export class PickUpPoint {
   public busStop: BusStop;
   public sequenceNo: number;
 
-  constructor (busStop: BusStop, sequenceNo: number) {
+  constructor(busStop: BusStop, sequenceNo: number) {
     this.busStop = busStop;
     this.sequenceNo = sequenceNo;
   }
 
+}
+
+export interface Marker {
+  lat: number;
+  lng: number;
+  draggable: boolean;
 }

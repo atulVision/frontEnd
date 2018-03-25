@@ -48,7 +48,7 @@ sr_no: any;
     this.route.params.subscribe((params) => {
       this.type = params['type'];
       this.rows = [];
-      //this.checkLogin();
+      this.checkLogin();
       this.getUpdatedList(this.type);
       this.sr_no = 1;
     });
@@ -68,31 +68,31 @@ sr_no: any;
   }
 
   getUpdatedList(type) {
-    if (type === 'class') {
-       this._classes.getClassList().subscribe((res) => {
-        this.rows = res;
-      this._data.storage_class = res;
-    }, (resError) => {
+    // if (type === 'class') {
+    //    this._classes.getClassList().subscribe((res) => {
+    //     this.rows = res;
+    //   this._data.storage_class = res;
+    // }, (resError) => {
 
-    });
-    }
-    if (type === 'teacher') {
-      this._teacher.getTeacherList().subscribe((res) => {
-        this.rows = res;
-        this._data.storage_teacher = res;
-        console.log(this.rows);
-    }, (resError) => {
+    // });
+    // }
+    // if (type === 'teacher') {
+    //   this._teacher.getTeacherList().subscribe((res) => {
+    //     this.rows = res;
+    //     this._data.storage_teacher = res;
+    //     console.log(this.rows);
+    // }, (resError) => {
 
-      });
-    }
-    if (type === 'student') {
-    this._student.getStudentList().subscribe((res) => {
-      this.rows = res;
-      this._data.storage_student = res;
-    }, (resError) => {
+    //   });
+    // }
+    // if (type === 'student') {
+    // this._student.getStudentList().subscribe((res) => {
+    //   this.rows = res;
+    //   this._data.storage_student = res;
+    // }, (resError) => {
 
-    });
-    }
+    // });
+    // }
 
     // if (type === 'student') {
     //   this._student.getStudentList().subscribe((res) => {

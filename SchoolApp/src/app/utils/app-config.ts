@@ -6,6 +6,12 @@ export class AppConfig {
       'parent': 'name_class',
       'css': 'fa fa-university',
       'child': [{
+        'name': 'add_division',
+        'ref': 'division/new'
+      }, {
+        'name': 'list_division',
+        'ref': 'list/division'
+      }, {
         'name': 'add_class',
         'ref': 'class/new'
       }, {

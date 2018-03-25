@@ -42,11 +42,11 @@ export class SchoolLibraryComponent implements OnInit {
   }
 
   ngOnInit() {
-   //this.checkLogin();
+   this.checkLogin();
   }
 
   initializeBook() {
-    this.book = new Book(0, '', '', '', '', '', '', '', '');
+    this.book = new Book(0, '', '', '', '', '', 0 , '', '');
   }
 
   addBook(data) {

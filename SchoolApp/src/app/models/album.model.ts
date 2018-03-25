@@ -1,18 +1,13 @@
 export class Album {
 
-  public id: number;
+  public albumId: number;
   public title: string;
-  public imageUrl: string;
-  public createdAt: string;
-  public updatedAt: string;
+  public coverPic: string;
 
-  constructor(id: number, title: string, imageUrl: string,
-    createdAt: string, updatedAt: string
+  constructor(albumId: number, title: string, coverPic: string
   ) {
-    this.id = id;
+    this.albumId = albumId;
     this.title = title;
-    this.imageUrl = imageUrl;
-    this.createdAt = createdAt;
-    this.updatedAt = updatedAt;
+    this.coverPic = coverPic;
   }
 }

@@ -9,11 +9,11 @@ import { DataServiceService } from '../../services/data-service.service';
 import { Gallery } from '../../models/gallery.model';
 
 @Component({
-  selector: 'app-school-gallery',
-  templateUrl: './school-gallery.component.html',
-  styleUrls: ['./school-gallery.component.css']
+  selector: 'app-school-album',
+  templateUrl: './school-album.component.html',
+  styleUrls: ['./school-album.component.css']
 })
-export class SchoolGalleryComponent implements OnInit {
+export class SchoolAlbumComponent implements OnInit {
 
   action: string;
   viewFlag = false;

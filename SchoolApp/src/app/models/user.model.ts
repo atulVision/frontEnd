@@ -8,10 +8,11 @@ export class User {
   public email: string;
   public password: string;
   public profile: string;
+public dob: string;
 
   constructor(userId: number, firstName: string, lastName: string,
     contactNo: string, address: string, email: string, password: string,
-    profile: string
+    profile: string, dob: string
   ) {
     this.userId = userId;
     this.firstName = firstName;
@@ -21,6 +22,7 @@ export class User {
     this.email = email;
     this.password = password;
     this.profile = profile;
+    this.dob = dob;
   }
 
 }

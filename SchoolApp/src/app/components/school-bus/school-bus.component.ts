@@ -4,7 +4,6 @@ import { AppConfig } from '../../utils/app-config';
 import { Labels } from '../../utils/labels';
 import { Router } from '@angular/router';
 import { UtilFunctions } from '../../utils/util-functions';
-import { DataServiceService } from '../../services/data-service.service';
 import { Bus } from '../../models/bus.model';
 import { BusService } from '../../services/bus.service';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
@@ -51,7 +50,7 @@ export class SchoolBusComponent implements OnInit {
   }
 
   ngOnInit() {
-  //  this.checkLogin();
+    this.checkLogin();
   }
 
   initializeBus() {

@@ -40,7 +40,7 @@ export class SchoolAttendanceComponent implements OnInit {
   }
 
   ngOnInit() {
- //  this.checkLogin();
+   this.checkLogin();
   }
 
   checkLogin() {
@@ -53,5 +53,13 @@ export class SchoolAttendanceComponent implements OnInit {
 
   initializeAttendance() {
     this.attendance = new Attendance(0, '', '', '', '', '', '');
+  }
+
+  backToList() {
+    this.router.navigate(['/list/attendance']);
+  }
+
+  addAttendance(data) {
+
   }
 }

@@ -8,10 +8,11 @@ export class Driver {
   public email: string;
   public password: string;
   public profile: string;
-
+  public dob: Date;
 
   constructor(driverId: number, firstName: string, lastName: string, address: string,
-    adharNo: string, contactNo: string, email: string, password: string, profile: string
+    adharNo: string, contactNo: string, email: string, password: string, profile: string,
+    dob: Date
   ) {
     this.driverId = driverId;
     this.firstName = firstName;
@@ -22,5 +23,6 @@ export class Driver {
     this.email = email;
     this.password = password;
     this.profile = profile;
+    this.dob = dob;
   }
 }

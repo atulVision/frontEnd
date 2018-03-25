@@ -22,7 +22,7 @@ export class ResultMarksComponent implements OnInit {
   }
 
   ngOnInit() {
-  //  this.checkLogin();
+    this.checkLogin();
   }
 
   checkLogin() {

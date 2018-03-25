@@ -5,14 +5,13 @@ export class Book {
   public description: string;
   public edition: string;
   public coverPhoto: string;
-  public bookType: string;
+  public bookTypeId: number;
   public bookName: string;
   public isbn: string;
 
   constructor(bookId: number, publisher: string, authors: string,
-    description: string,
-    edition: string, coverPhoto: string, bookType: string,
-    bookName: string, isbn: string
+    description: string, edition: string, coverPhoto: string,
+    bookTypeId: number, bookName: string, isbn: string
   ) {
     this.bookId = bookId;
     this.publisher = publisher;
@@ -20,7 +19,7 @@ export class Book {
     this.description = description;
     this.edition = edition;
     this.coverPhoto = coverPhoto;
-    this.bookType = bookType;
+    this.bookTypeId = bookTypeId;
     this.bookName = bookName;
     this.isbn = isbn;
   }

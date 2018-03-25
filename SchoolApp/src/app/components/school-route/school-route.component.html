@@ -1,36 +1,35 @@
 <section class="content-header">
-  <h1>Add Route</h1>
+  <h1>{{pageTitle}}</h1>
 </section>
 <section class="content-header">
   <div class="form">
     <div class="box box-info">
       <div class="box-header with-border">
-        <h3 class="box-title">Route</h3>
+        <h3 class="box-title">{{locale.route}}</h3>
       </div>
       <form class="form-horizontal" id="routeForm" #routeForm="ngForm" (ngSubmit)="addRoute(routeForm.value)">
         <div class="box-body">
-
           <div class="form-group">
-            <label for="routeName" class="col-sm-2 control-label">Route name</label>
+            <label for="routeName" class="col-sm-2 control-label">{{formLocale.route_name}}</label>
             <div class="col-sm-10">
-              <input type="text" class="form-control" id="routeName" name="routeName" placeholder="Route name" [disabled]="viewFlag" #routeName="ngModel"
-                [(ngModel)]="busRoute.routeName">
+              <input type="text" class="form-control" id="routeName" name="routeName" placeholder="{{formLocale.route_name_placeholder}}"
+                [disabled]="viewFlag" #routeName="ngModel" [(ngModel)]="busRoute.routeName">
             </div>
           </div>
           <div class="form-group">
-            <label for="routeStart" class="col-sm-2 control-label">Route Start</label>
+            <label for="routeStart" class="col-sm-2 control-label">{{formLocale.route_start}}</label>
             <div class="col-sm-4">
               <select class="form-control" id="routeStart" name="routeStart" [disabled]="viewFlag" #routeStart="ngModel" [(ngModel)]="busRoute.fromBusStop">
-                <option value="" disabled selected>Route Start</option>
+                <option value="" disabled selected>{{formLocale.route_start_placeholder}}</option>
                 <option [ngValue]="1">xyz</option>
                 <option [ngValue]="2">asd</option>
                 <option [ngValue]="3">qwe</option>
               </select>
             </div>
-            <label for="routeEnd" class="col-sm-2 control-label">Route End</label>
+            <label for="routeEnd" class="col-sm-2 control-label">{{formLocale.route_end}}</label>
             <div class="col-sm-4">
               <select class="form-control" id="routeEnd" name="routeEnd" [disabled]="viewFlag" #routeEnd="ngModel" [(ngModel)]="busRoute.toBusStop">
-                <option value="" disabled selected>Route End</option>
+                <option value="" disabled selected>{{formLocale.route_end_placeholder}}</option>
                 <option [ngValue]="1">xyz</option>
                 <option [ngValue]="2">asd</option>
                 <option [ngValue]="3">qwe</option>
@@ -38,15 +37,60 @@
             </div>
           </div>
           <div class="form-group">
-            <label for="pickUpPoints" class="col-sm-2 control-label">Pick Up Points</label>
-            <div class="col-sm-10">
+            <label for="pickUpPoints" class="col-sm-2 control-label">{{formLocale.pick_up}}</label>
+            <div class="col-sm-6">
               <select class="form-control" id="pickUpPoints" name="pickUpPoints" [disabled]="viewFlag" #pickUpPoints="ngModel" [(ngModel)]="busRoute.pickUpPoints">
-                <option value="" disabled selected>Pick Up Points</option>
+                <option value="" disabled selected>{{formLocale.pick_up_placeholder}}</option>
                 <option [ngValue]="1">xyz</option>
                 <option [ngValue]="2">asd</option>
                 <option [ngValue]="3">qwe</option>
               </select>
             </div>
+            <button type="button" class="btn btn-success " (click)="addPickUp()">{{formLocale.pick_up_add_btn}}</button>
+          </div>
+          <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+              <div class="table-responsive table-fixed">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>Sequence No.</th>
+                      <th>Stop Name</th>
+                      <th>Latitude</th>
+                      <th>Longitude</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <ng-container>
+                      <tr *ngFor="let item of [1,2,3]">
+                        <td>{{item}}</td>
+                        <td>{{item}}</td>
+                        <td>{{item}}</td>
+                        <td>{{item}}</td>
+                        <td>
+                          <button type="button" class="btn btn-danger" (click)="deletePickUp()">
+                            <i class="fa fa-trash"></i>
+                          </button>
+                        </td>
+                      </tr>
+                    </ng-container>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div class="map">
+            <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom" [disableDefaultUI]="false" [scrollwheel]="false" [zoomControl]="true"
+              (mapClick)="mapClicked($event)">
+              <agm-marker *ngFor="let m of markers; let i = index" (markerClick)="clickedMarker(i)" [latitude]="m.lat" [longitude]="m.lng"
+                [label]="" [markerDraggable]="m.draggable" (dragEnd)="markerDragEnd(m, $event)">
+                <agm-info-window>
+                  <strong>Bus Stop {{i}}</strong>
+                </agm-info-window>
+              </agm-marker>
+              <agm-direction *ngIf="dir" [origin]="dir.origin" [destination]="dir.destination"></agm-direction>
+            </agm-map>
           </div>
         </div>
         <div class="box-footer">
@@ -66,14 +110,14 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
-        <h4 class="modal-title">Status</h4>
+        <h4 class="modal-title">{{formLocale.modal_status}}</h4>
       </div>
       <div class="modal-body">
-        <h5 *ngIf="action === 'new'">{{locale.driver}} is added successfully.</h5>
-        <h5 *ngIf="action === 'edit'">{{locale.driver}} is updated successfully.</h5>
+        <h5 *ngIf="action === 'new'">{{locale.route+formLocale.modal_add_msg}} </h5>
+        <h5 *ngIf="action === 'edit'">{{locale.route+formLocale.modal_update_msg}} </h5>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">OK</button>
+        <button type="button" class="btn btn-outline pull-left" data-dismiss="modal" (click)="backToList()">{{formLocale.ok_btn}}</button>
       </div>
     </div>
   </div>

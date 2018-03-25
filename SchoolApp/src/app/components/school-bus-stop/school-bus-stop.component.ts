@@ -4,13 +4,14 @@ import { AppConfig } from '../../utils/app-config';
 import { Labels } from '../../utils/labels';
 import { Router } from '@angular/router';
 import { UtilFunctions } from '../../utils/util-functions';
-import { DataServiceService } from '../../services/data-service.service';
 import { BusStop } from '../../models/bus-stop.model';
 import { BusStopService } from '../../services/bus-stop.service';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AgmCoreModule, MapsAPILoader } from '@agm/core';
 import {} from '@types/googlemaps';
+import { Broadcaster } from '../../utils/broadcaster';
+import { Marker } from '../../models/route.model';
 
 @Component({
   selector: 'app-school-bus-stop',
@@ -33,34 +34,36 @@ export class SchoolBusStopComponent implements OnInit {
   pageTitle: any;
   locale: any;
   formLocale: any;
-  markers: Marker[];
+  markers: Array<Marker> = [];
 
-  constructor(private route: ActivatedRoute, private router: Router,
+  constructor(private route: ActivatedRoute, private router: Router, private broadcaster: Broadcaster,
     private _busStop: BusStopService, private spinnerService: Ng4LoadingSpinnerService,
     private mapsAPILoader: MapsAPILoader, private ngZone: NgZone) {
     this.route.params.subscribe((params) => {
       this.action = params['action'];
-      this.initializeBus();
+      this.initializeBusStop();
       if (this.action === 'new') {
         this.viewFlag = false;
       }
       if (this.action === 'edit') {
         this.viewFlag = false;
+        this.busStop = this.broadcaster.storage;
       }
       if (this.action === 'view') {
         this.viewFlag = true;
+        this.busStop = this.broadcaster.storage;
       }
       this.locale = Labels.en_IN.labels.page_title;
       this.formLocale = Labels.en_IN.labels.form_labels;
-      this.pageTitle = this.locale[this.action] + ' ' + this.locale.bus;
+      this.pageTitle = this.locale[this.action] + ' ' + this.locale.bus_stop;
     });
   }
 
   ngOnInit() {
-   // this.checkLogin();
+    this.checkLogin();
      this.zoom = 4;
-     this.latitude = 39.8282;
-     this.longitude = -98.5795;
+     this.latitude = 18.5206688662618;
+     this.longitude = 73.8581528668874;
      this.searchControl = new FormControl();
      this.setCurrentPosition();
 
@@ -77,19 +80,22 @@ export class SchoolBusStopComponent implements OnInit {
            this.latitude = place.geometry.location.lat();
            this.longitude = place.geometry.location.lng();
            this.zoom = 12;
+           this.busStop.stopLat = place.geometry.location.lat().toString();
+           this.busStop.stopLong = place.geometry.location.lng().toString();
          });
        });
      });
   }
 
-  initializeBus() {
+  private initializeBusStop() {
     this.busStop = new BusStop(0, '', '', '');
   }
 
-  addBus(data) {
+  private addbusStop(data) {
+  console.log(data);
   this.spinnerService.show();
   if (this.action === 'new') {
-    this._busStop.saveBusStop(this.busStop).subscribe((res) => {
+    this._busStop.saveBusStop(data).subscribe((res) => {
       console.log(res);
       this.spinnerService.hide();
   }, (resError) => {
@@ -104,11 +110,11 @@ export class SchoolBusStopComponent implements OnInit {
   }
   }
 
-  backToList() {
+  private backToList() {
     this.router.navigate(['/list/bus']);
   }
 
-  checkLogin() {
+  private checkLogin() {
     const user = UtilFunctions.getLocalStorage('user');
     if ( user ) {
       return;
@@ -116,25 +122,25 @@ export class SchoolBusStopComponent implements OnInit {
     this.router.navigate(['/login']);
   }
 
-  getCoordinates() {
-
-  }
-
-  clickedMarker(label: string, index: number) {
+  private clickedMarker(label: string, index: number) {
     console.log(`clicked the marker: ${label || index}`);
   }
 
-  mapClicked($event) {
+  private mapClicked($event) {
     this.markers.pop();
     this.markers.push({
       lat: $event.coords.lat,
       lng: $event.coords.lng,
       draggable: true
     });
+    this.busStop.stopLat = $event.coords.lat;
+    this.busStop.stopLong = $event.coords.lng;
   }
 
-  markerDragEnd(m: Marker, $event) {
+  private markerDragEnd(m: Marker, $event) {
     console.log('dragEnd', m, $event);
+    this.busStop.stopLat = $event.coords.lat;
+    this.busStop.stopLong = $event.coords.lng;
   }
 
   private setCurrentPosition() {
@@ -147,11 +153,5 @@ export class SchoolBusStopComponent implements OnInit {
     }
   }
 
-}
-
-interface Marker {
-lat: number;
-lng: number;
-draggable: boolean;
 }
 

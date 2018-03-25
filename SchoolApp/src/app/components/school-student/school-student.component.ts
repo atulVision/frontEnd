@@ -6,6 +6,8 @@ import { Router } from '@angular/router';
 import { UtilFunctions } from '../../utils/util-functions';
 import { Student } from '../../models/student.model';
 import { StudentService } from '../../services/student.service';
+import { Broadcaster } from '../../utils/broadcaster';
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 
 @Component({
   selector: 'app-school-student',
@@ -20,9 +22,10 @@ export class SchoolStudentComponent implements OnInit {
   pageTitle: any;
   locale: any;
   formLocale: any;
-role: any;
+  role: any;
 
-  constructor(private route: ActivatedRoute, private router: Router, private _student: StudentService) {
+  constructor(private route: ActivatedRoute, private router: Router, private _student: StudentService,
+    private broadcaster: Broadcaster, private spinnerService: Ng4LoadingSpinnerService) {
     this.route.params.subscribe((params) => {
       this.action = params['action'];
       this.initializeStudent();
@@ -31,9 +34,11 @@ role: any;
       }
       if (this.action === 'edit') {
         this.viewFlag = false;
+        this.student = this.broadcaster.storage;
       }
       if (this.action === 'view') {
         this.viewFlag = true;
+        this.student = this.broadcaster.storage;
       }
       this.locale = Labels.en_IN.labels.page_title;
       this.formLocale = Labels.en_IN.labels.form_labels;
@@ -42,20 +47,31 @@ role: any;
   }
 
   ngOnInit() {
-  //  this.checkLogin();
+    this.checkLogin();
+    this.role = UtilFunctions.getLocalStorage('role');
   }
 
   initializeStudent() {
-    this.student = new Student(0, '', '', '', '', '', '', '', '', '', '');
+    this.student = new Student(0, '', '', '', '', '', '', '', '', '', '', '' , '' , '' , 0, 0, '', '', '', '', 0, 0, '');
   }
 
   addStudent(data) {
     console.log(data);
-  this._student.saveStudent(data).subscribe((res) => {
-    console.log(res);
-}, (resError) => {
-});
-
+    this.spinnerService.show();
+    if (this.action === 'new') {
+      this._student.saveStudent(data).subscribe((res) => {
+        console.log(res);
+        this.spinnerService.hide();
+    }, (resError) => {
+    });
+    }
+    if (this.action === 'edit') {
+      this._student.updateStudent(this.student.studentId, this.student).subscribe((res) => {
+        console.log(res);
+        this.spinnerService.hide();
+      }, (resError) => {
+      });
+    }
   }
 
   backToList() {

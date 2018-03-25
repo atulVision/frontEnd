@@ -1,0 +1,38 @@
+<section class="content-header">
+  <h1>Album</h1>
+</section>
+<section class="content-header">
+<div class="form">
+<div class="box box-info">
+  <div class="box-header with-border">
+    <h3 class="box-title">Album</h3>
+  </div>
+  <form class="form-horizontal" id="albumForm" #albumForm="ngForm" (ngSubmit)="addAlbum(albumForm.value)">
+    <div class="box-body">
+
+      <div class="form-group">
+        <label for="title" class="col-sm-2 control-label">title</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="title" name="title" placeholder="title" [disabled]="viewFlag" #title="ngModel" [(ngModel)]="album.title" >
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="imageUrl" class="col-sm-2 control-label">imageUrl</label>
+
+        <div class="col-sm-8">
+          <input type="file" class="form-control" id="imageUrl" name="imageUrl" placeholder="imageUrl" [disabled]="viewFlag" #imageUrl="ngModel" [(ngModel)]="album.imageUrl" accept="image/jpeg,image/png">
+        </div>
+        <div class="media-right">
+            <img src="assets/images/Tushar_Upadhyay.jpg" class="media-object" style="width:60px">
+          </div>
+      </div>
+    </div>
+    <div class="box-footer">
+      <button type="button" class="btn btn-default">Back</button>
+      <button type="submit" class="btn btn-info pull-right">OK</button>
+    </div>
+  </form>
+</div>
+
+</div>
+</section>

@@ -1,33 +1,31 @@
 export class Teacher {
 
     public teacherId: number;
-    public name: string;
+    public firstName: string;
+    public lastName: string;
     public address: string;
     public profile: string;
     public contactNo: string;
     public email: string;
-    public position: string;
-    public userName: string;
+    public designation: string;
     public password: string;
-    public age: string;
-    public imei: string;
+    public dob: string;
 
 
-    constructor(teacherId: number, name: string, address: string,
-     adharNUmber: string,
-      contactNo: string, email: string, position: string,
-      userName: string, password: string, age: string, profile: string, imei: string
+
+    constructor(teacherId: number, firstName: string, lastName: string,
+      address: string, contactNo: string, email: string, designation: string,
+       password: string, dob: string, profile: string
     ) {
       this.teacherId = teacherId;
-      this.name = name;
+      this.firstName = firstName;
       this.address = address;
-      this.imei = imei;
+      this.lastName = lastName;
       this.contactNo = contactNo;
       this.email = email;
-      this.position = position;
-      this.userName = userName;
+      this.designation = designation;
       this.password = password;
-      this.age = age;
+      this.dob = dob;
       this.profile = profile;
     }
   }

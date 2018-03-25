@@ -22,7 +22,7 @@ export class SchoolTimeTableComponent implements OnInit {
   }
 
   ngOnInit() {
-  // this.checkLogin();
+   this.checkLogin();
   }
 
   checkLogin() {

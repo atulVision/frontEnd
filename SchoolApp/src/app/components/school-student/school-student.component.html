@@ -13,27 +13,151 @@
             <label for="firstName" class="col-sm-2 control-label">{{formLocale.student_f_name}}</label>
             <div class="col-sm-4">
               <input type="text" class="form-control" id="firstName" name="firstName" placeholder="{{formLocale.student_f_name_placeholder}}"
-                [disabled]="viewFlag || !(role === '3')" #firstName="ngModel" [(ngModel)]="student.firstName">
+                [disabled]="viewFlag " #firstName="ngModel" [(ngModel)]="student.firstName">
             </div>
             <label for="lastName" class="col-sm-2 control-label">{{formLocale.studengt_l_name}}</label>
             <div class="col-sm-4">
               <input type="text" class="form-control" id="lastName" name="lastName" placeholder="{{formLocale.studengt_l_name_placeholder}}"
-                [disabled]="viewFlag || !(role === '3')" #lastName="ngModel" [(ngModel)]="student.lastName">
+                [disabled]="viewFlag" #lastName="ngModel" [(ngModel)]="student.lastName">
             </div>
           </div>
           <div class="form-group">
-            <label for="rollNo" class="col-sm-2 control-label">{{formLocale.student_roll}}</label>
+            <label for="fatherName" class="col-sm-2 control-label">{{formLocale.student_father_name}}</label>
             <div class="col-sm-4">
-              <input type="text" class="form-control" id="rollNo" name="rollNo" placeholder="{{formLocale.student_roll_placeholder}}"
-              [disabled]="viewFlag || !(role === '3')" #rollNo="ngModel" [(ngModel)]="student.rollNo">
+              <input type="text" class="form-control" id="fatherName" name="fatherName" placeholder="{{formLocale.student_father_name_placeholder}}"
+                [disabled]="viewFlag " #fatherName="ngModel" [(ngModel)]="student.fatherName">
             </div>
-            <label for="mobile" class="col-sm-2 control-label">{{formLocale.student_mobile}}</label>
+            <label for="fatherContactNo" class="col-sm-2 control-label">{{formLocale.student_father_contactNo}}</label>
             <div class="col-sm-4">
-              <input type="text" class="form-control" id="mobile" name="mobile" placeholder="{{formLocale.student_mobile_placeholder}}"
-                [disabled]="viewFlag || !(role === '3')" #mobile="ngModel" [(ngModel)]="student.contactNo">
+              <input type="text" class="form-control" id="fatherContactNo" name="fatherContactNo" placeholder="{{formLocale.student_father_contactNo_placeholder}}"
+                [disabled]="viewFlag" #fatherContactNo="ngModel" [(ngModel)]="student.fatherContactNo">
             </div>
           </div>
-          <div class="form-group" *ngIf="role === '3'">
+          <div class="form-group">
+            <label for="motherName" class="col-sm-2 control-label">{{formLocale.studengt_mother_name}}</label>
+            <div class="col-sm-4">
+              <input type="text" class="form-control" id="motherName" name="motherName" placeholder="{{formLocale.studengt_mother_name_placeholder}}"
+                [disabled]="viewFlag " #motherName="ngModel" [(ngModel)]="student.motherName">
+            </div>
+            <label for="motherContactNo" class="col-sm-2 control-label">{{formLocale.student_mother_contactNo}}</label>
+            <div class="col-sm-4">
+              <input type="text" class="form-control" id="motherContactNo" name="motherContactNo" placeholder="{{formLocale.student_mother_contactNo_placeholder}}"
+                [disabled]="viewFlag" #motherContactNo="ngModel" [(ngModel)]="student.motherContactNo">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="guardianName" class="col-sm-2 control-label">{{formLocale.studengt_guardian_name}}</label>
+            <div class="col-sm-4">
+              <input type="text" class="form-control" id="guardianName" name="guardianName" placeholder="{{formLocale.studengt_guardian_name_placeholder}}"
+                [disabled]="viewFlag " #guardianName="ngModel" [(ngModel)]="student.guardianName">
+            </div>
+            <label for="guardianContactNo" class="col-sm-2 control-label">{{formLocale.student_guardian_contactNo}}</label>
+            <div class="col-sm-4">
+              <input type="text" class="form-control" id="guardianContactNo" name="guardianContactNo" placeholder="{{formLocale.student_guardian_contactNo_placeholder}}"
+                [disabled]="viewFlag" #guardianContactNo="ngModel" [(ngModel)]="student.guardianContactNo">
+            </div>
+          </div>
+          <div class="form-group">
+              <label for="emergencyContactNo" class="col-sm-2 control-label">{{formLocale.student_emergency_contactNo}}</label>
+              <div class="col-sm-4">
+                  <select class="form-control" id="emergencyContactNo" name="emergencyContactNo" [disabled]="viewFlag" #emergencyContactNo="ngModel" [(ngModel)]="student.emergencyContactNo">
+                      <option value="" disabled selected>{{formLocale.student_emergency_contactNo_placeholder}}</option>
+                      <option [ngValue]="">xyz</option>
+                      <option [ngValue]="">asd</option>
+                      <option [ngValue]="">qwe</option>
+                    </select>
+              </div>
+            </div>
+          <div class="form-group">
+            <label for="rollNo" class="col-sm-2 control-label">{{formLocale.student_roll}}</label>
+            <div class="col-sm-4">
+              <input type="text" class="form-control" id="rollNo" name="rollNo" placeholder="{{formLocale.student_roll_placeholder}}" [disabled]="viewFlag"
+                #rollNo="ngModel" [(ngModel)]="student.rollNo">
+            </div>
+            <label for="prn" class="col-sm-2 control-label">{{formLocale.student_prn}}</label>
+            <div class="col-sm-4">
+              <input type="text" class="form-control" id="prn" name="prn" placeholder="{{formLocale.student_prn_placeholder}}" [disabled]="viewFlag"
+                #prn="ngModel" [(ngModel)]="student.prn">
+            </div>
+          </div>
+          <div class="form-group">
+              <label for="dob" class="col-sm-2 control-label">{{formLocale.student_dob}}</label>
+            <div class="col-sm-4">
+              <div class="input-group">
+                  <div class="input-group-addon">
+                      <a (click)="dob.toggle()"><i class="fa fa-calendar" ></i></a>
+                    </div>
+                <input class="form-control" placeholder="yyyy-mm-dd" name="dob" [(ngModel)]="student.dob" ngbDatepicker #dob="ngbDatepicker">
+              </div>
+            </div>
+              <label for="bloodGroup" class="col-sm-2 control-label">{{formLocale.student_bloodG}}</label>
+              <div class="col-sm-4">
+                  <select class="form-control" id="bloodGroup" name="bloodGroup" [disabled]="viewFlag" #bloodGroup="ngModel" [(ngModel)]="student.bloodGroup">
+                      <option value="" disabled selected>{{formLocale.student_bloodG_placeholder}}</option>
+                      <option [ngValue]="'O-'">O-</option>
+                      <option [ngValue]="'O+'">O+</option>
+                      <option [ngValue]="'A-'">A-</option>
+                      <option [ngValue]="'A+'">A+</option>
+                      <option [ngValue]="'B-'">B-</option>
+                      <option [ngValue]="'B+'">B+</option>
+                      <option [ngValue]="'AB-'">AB-</option>
+                      <option [ngValue]="'AB+'">AB+</option>
+                    </select>
+              </div>
+            </div>
+          <div class="form-group" *ngIf="true">
+              <label for="adharNo" class="col-sm-2 control-label">{{formLocale.student_adharNo}}</label>
+              <div class="col-sm-4">
+                <input type="text" class="form-control" id="adharNo" name="adharNo" placeholder="{{formLocale.student_adharNo_placeholder}}" [disabled]="viewFlag"
+                  #adharNo="ngModel" [(ngModel)]="student.adharNo">
+              </div>
+            <label for="address" class="col-sm-2 control-label">{{formLocale.student_address}}</label>
+            <div class="col-sm-4">
+              <textarea class="form-control" id="address" name="address" placeholder="{{formLocale.student_address_placeholder}}" [disabled]="viewFlag"
+                #address="ngModel" [(ngModel)]="student.address"></textarea>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="classId" class="col-sm-2 control-label">{{formLocale.student_class}}</label>
+            <div class="col-sm-4">
+              <select class="form-control" id="classId" name="classId" [disabled]="viewFlag" #classId="ngModel" [(ngModel)]="student.classId">
+                <option value="" disabled selected>{{formLocale.student_class_placeholder}}</option>
+                <option [ngValue]="">xyz</option>
+                <option [ngValue]="">asd</option>
+                <option [ngValue]="">qwe</option>
+              </select>
+            </div>
+            <label for="divisionId" class="col-sm-2 control-label">{{formLocale.student_division}}</label>
+            <div class="col-sm-4">
+              <select class="form-control" id="divisionId" name="divisionId" [disabled]="viewFlag" #divisionId="ngModel" [(ngModel)]="student.divisionId">
+                <option value="" disabled selected>{{formLocale.student_division_placeholder}}</option>
+                <option [ngValue]="">xyz</option>
+                <option [ngValue]="">asd</option>
+                <option [ngValue]="">qwe</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="routeId" class="col-sm-2 control-label">{{formLocale.student_route}}</label>
+            <div class="col-sm-4">
+              <select class="form-control" id="routeId" name="routeId" [disabled]="viewFlag" #routeId="ngModel" [(ngModel)]="student.routeId">
+                <option value="" disabled selected>{{formLocale.student_route_placeholder}}</option>
+                <option [ngValue]="">xyz</option>
+                <option [ngValue]="">asd</option>
+                <option [ngValue]="">qwe</option>
+              </select>
+            </div>
+            <label for="stopId" class="col-sm-2 control-label">{{formLocale.student_stop}}</label>
+            <div class="col-sm-4">
+              <select class="form-control" id="stopId" name="stopId" [disabled]="viewFlag" #stopId="ngModel" [(ngModel)]="student.stopId">
+                <option value="" disabled selected>{{formLocale.student_stop_placeholder}}</option>
+                <option [ngValue]="">xyz</option>
+                <option [ngValue]="">asd</option>
+                <option [ngValue]="">qwe</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group" *ngIf="true">
             <label for="email" class="col-sm-2 control-label">{{formLocale.student_email}}</label>
             <div class="col-sm-4">
               <input type="text" class="form-control" id="email" name="email" placeholder="{{formLocale.student_email_placeholder}}" [disabled]="viewFlag"
@@ -45,41 +169,14 @@
                 [disabled]="viewFlag" #password="ngModel" [(ngModel)]="student.password">
             </div>
           </div>
-          <div class="form-group" *ngIf="role === '3'">
-            <label for="address" class="col-sm-2 control-label">{{formLocale.student_address}}</label>
-            <div class="col-sm-10">
-              <textarea class="form-control" id="address" name="address" placeholder="{{formLocale.student_address_placeholder}}" [disabled]="viewFlag"
-                #address="ngModel" [(ngModel)]="student.address"></textarea>
-            </div>
-          </div>
-          <div class="form-group">
-              <label for="routeName" class="col-sm-2 control-label">{{formLocale.student_route}}</label>
-              <div class="col-sm-4">
-                <select class="form-control" id="routeName" name="routeName" [disabled]="viewFlag" #routeName="ngModel" [(ngModel)]="student.routeName">
-                  <option value="" disabled selected>{{formLocale.student_route_placeholder}}</option>
-                  <option [ngValue]="">xyz</option>
-                  <option [ngValue]="">asd</option>
-                  <option [ngValue]="">qwe</option>
-                </select>
-              </div>
-              <label for="busStop" class="col-sm-2 control-label">{{formLocale.student_stop}}</label>
-            <div class="col-sm-4">
-              <select class="form-control" id="busStop" name="busStop" [disabled]="viewFlag" #busStop="ngModel" [(ngModel)]="student.busStop">
-                <option value="" disabled selected>{{formLocale.student_stop_placeholder}}</option>
-                <option [ngValue]="">xyz</option>
-                <option [ngValue]="">asd</option>
-                <option [ngValue]="">qwe</option>
-              </select>
-            </div>
-            </div>
-          <div class="form-group" *ngIf="role === '3'">
+          <div class="form-group" *ngIf="true">
             <label for="profile" class="col-sm-2 control-label">{{formLocale.student_profile}}</label>
             <div class="col-sm-8">
               <input type="file" class="form-control" id="profile" name="profile" [disabled]="viewFlag" #profile="ngModel" [(ngModel)]="student.profile"
                 accept="image/jpeg,image/png">
             </div>
             <div class="media-right">
-              <img src="assets/images/Tushar_Upadhyay.jpg" class="media-object" style="width:60px">
+              <img src="assets/images/Tushar_Upadhyay.jpg" class="media-object" style="width:80px">
             </div>
           </div>
         </div>
@@ -100,14 +197,14 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
-        <h4 class="modal-title">Status</h4>
+        <h4 class="modal-title">{{formLocale.modal_status}}</h4>
       </div>
       <div class="modal-body">
-        <h5 *ngIf="action === 'new'">{{locale.driver}} is added successfully.</h5>
-        <h5 *ngIf="action === 'edit'">{{locale.driver}} is updated successfully.</h5>
+        <h5 *ngIf="action === 'new'">{{locale.student+formLocale.modal_add_msg}} </h5>
+        <h5 *ngIf="action === 'edit'">{{locale.student+formLocale.modal_update_msg}} </h5>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">OK</button>
+        <button type="button" class="btn btn-outline pull-left" data-dismiss="modal" (click)="backToList()">{{formLocale.ok_btn}}</button>
       </div>
     </div>
   </div>

@@ -25,7 +25,7 @@ export class ProfileComponent implements OnInit {
   constructor(private route: ActivatedRoute, private router: Router, private _data: DataServiceService, private _user: UserService) {
     this.route.params.subscribe((params) => {
       this.action = params['action'];
-      this.initializeStudent();
+      this.initializeUser();
       if (this.action === 'new') {
         this.viewFlag = false;
       }
@@ -44,11 +44,11 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit() {
-  //  this.checkLogin();
+   this.checkLogin();
   }
 
-  initializeStudent() {
-    this.user = new User(0, '', '', '', '', '', '', '');
+  initializeUser() {
+    this.user = new User(0, '', '', '', '', '', '', '', '');
   }
 
   addStudent(data) {

@@ -4,9 +4,10 @@ import { AppConfig } from '../../utils/app-config';
 import { Labels } from '../../utils/labels';
 import { Router } from '@angular/router';
 import { UtilFunctions } from '../../utils/util-functions';
-import { DataServiceService } from '../../services/data-service.service';
 import { Classes } from '../../models/classes.model';
 import { ClassesService } from '../../services/classes.service';
+import { Broadcaster } from '../../utils/broadcaster';
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 
 @Component({
   selector: 'app-school-class',
@@ -22,7 +23,8 @@ export class SchoolClassComponent implements OnInit {
   locale: any;
   formLocale: any;
 
-  constructor(private route: ActivatedRoute, private router: Router, private _data: DataServiceService, private _class: ClassesService) {
+  constructor(private route: ActivatedRoute, private router: Router, private _class: ClassesService,
+    private broadcaster: Broadcaster, private spinnerService: Ng4LoadingSpinnerService) {
     this.route.params.subscribe((params) => {
       this.action = params['action'];
       this.initializeClass();
@@ -31,11 +33,11 @@ export class SchoolClassComponent implements OnInit {
       }
       if (this.action === 'edit') {
         this.viewFlag = false;
-        this.classes = this._data.storage;
+        this.classes = this.broadcaster.storage;
       }
       if (this.action === 'view') {
         this.viewFlag = true;
-        this.classes = this._data.storage;
+        this.classes = this.broadcaster.storage;
       }
       this.locale = Labels.en_IN.labels.page_title;
       this.formLocale = Labels.en_IN.labels.form_labels;
@@ -44,19 +46,30 @@ export class SchoolClassComponent implements OnInit {
   }
 
   ngOnInit() {
- //  this.checkLogin();
+   this.checkLogin();
   }
 
   initializeClass() {
-    this.classes = new Classes(0,'',1,1);
+    this.classes = new Classes(0, '', '', 0, 0);
   }
 
   addClass(data) {
     console.log(data);
-    this._class.saveClass(data).subscribe((res) => {
-      console.log(res);
-  }, (resError) => {
-  });
+    this.spinnerService.show();
+    if (this.action === 'new') {
+      this._class.saveClass(data).subscribe((res) => {
+        console.log(res);
+        this.spinnerService.hide();
+    }, (resError) => {
+    });
+    }
+    if (this.action === 'edit') {
+      this._class.updateClass(this.classes.classId, this.classes).subscribe((res) => {
+        console.log(res);
+        this.spinnerService.hide();
+    }, (resError) => {
+    });
+    }
   }
 
   backToList() {
