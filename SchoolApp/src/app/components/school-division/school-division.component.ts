@@ -49,22 +49,22 @@ export class SchoolDivisionComponent implements OnInit {
    this.checkLogin();
   }
 
-  initializeDivision() {
-    this.division = new Division(0, '');
+  private initializeDivision() {
+    this.division = new Division(null, '', '');
   }
 
-  addDivision(data) {
+  public addDivision(data) {
     console.log(data);
     this.spinnerService.show();
     if (this.action === 'new') {
-      this._division.saveDivision(data).subscribe((res) => {
+      this._division.saveDivision(this.division).subscribe((res) => {
         console.log(res);
         this.spinnerService.hide();
     }, (resError) => {
     });
     }
     if (this.action === 'edit') {
-      this._division.updateDivision(this.division.divisionId, this.division).subscribe((res) => {
+      this._division.updateDivision(this.division.id, this.division).subscribe((res) => {
         console.log(res);
         this.spinnerService.hide();
     }, (resError) => {
@@ -72,11 +72,11 @@ export class SchoolDivisionComponent implements OnInit {
     }
   }
 
-  backToList() {
+  public backToList() {
     this.router.navigate(['/list/division']);
   }
 
-  checkLogin() {
+  private checkLogin() {
     const user = UtilFunctions.getLocalStorage('user');
     if ( user ) {
       return;

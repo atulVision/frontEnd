@@ -9,7 +9,7 @@ import { BusStopService } from '../../services/bus-stop.service';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AgmCoreModule, MapsAPILoader } from '@agm/core';
-import {} from '@types/googlemaps';
+import { } from '@types/googlemaps';
 import { Broadcaster } from '../../utils/broadcaster';
 import { Marker } from '../../models/route.model';
 
@@ -20,21 +20,20 @@ import { Marker } from '../../models/route.model';
 })
 export class SchoolBusStopComponent implements OnInit {
 
+  @ViewChild('search')
+  public searchElementRef: ElementRef;
+
   public latitude: number;
   public longitude: number;
   public searchControl: FormControl;
   public zoom: number;
-
-  @ViewChild('search')
-  public searchElementRef: ElementRef;
-
-  action: string;
-  viewFlag = false;
-  busStop: BusStop;
-  pageTitle: any;
-  locale: any;
-  formLocale: any;
-  markers: Array<Marker> = [];
+  public action: string;
+  public viewFlag = false;
+  public busStop: BusStop;
+  public pageTitle: any;
+  public locale: any;
+  public formLocale: any;
+  public markers: Array<Marker> = [];
 
   constructor(private route: ActivatedRoute, private router: Router, private broadcaster: Broadcaster,
     private _busStop: BusStopService, private spinnerService: Ng4LoadingSpinnerService,
@@ -48,10 +47,22 @@ export class SchoolBusStopComponent implements OnInit {
       if (this.action === 'edit') {
         this.viewFlag = false;
         this.busStop = this.broadcaster.storage;
+        this.markers.push({
+          lat: Number(this.busStop.latitude),
+          lng: Number(this.busStop.longitude),
+          draggable: true
+        });
+        this.zoom = 12;
       }
       if (this.action === 'view') {
         this.viewFlag = true;
         this.busStop = this.broadcaster.storage;
+        this.markers.push({
+          lat: Number(this.busStop.latitude),
+          lng: Number(this.busStop.longitude),
+          draggable: false
+        });
+        this.zoom = 12;
       }
       this.locale = Labels.en_IN.labels.page_title;
       this.formLocale = Labels.en_IN.labels.form_labels;
@@ -61,86 +72,85 @@ export class SchoolBusStopComponent implements OnInit {
 
   ngOnInit() {
     this.checkLogin();
-     this.zoom = 4;
-     this.latitude = 18.5206688662618;
-     this.longitude = 73.8581528668874;
-     this.searchControl = new FormControl();
-     this.setCurrentPosition();
-
-     this.mapsAPILoader.load().then(() => {
-       const autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
-         types: ['address']
-       });
-       autocomplete.addListener('place_changed', () => {
-         this.ngZone.run(() => {
+    this.zoom = 4;
+    this.latitude = 18.5206688662618;
+    this.longitude = 73.8581528668874;
+    this.searchControl = new FormControl();
+    this.setCurrentPosition();
+    this.mapsAPILoader.load().then(() => {
+      const autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
+        types: ['address']
+      });
+      autocomplete.addListener('place_changed', () => {
+        this.ngZone.run(() => {
           const place: google.maps.places.PlaceResult = autocomplete.getPlace();
-           if (place.geometry === undefined || place.geometry === null) {
-             return;
-           }
-           this.latitude = place.geometry.location.lat();
-           this.longitude = place.geometry.location.lng();
-           this.zoom = 12;
-           this.busStop.stopLat = place.geometry.location.lat().toString();
-           this.busStop.stopLong = place.geometry.location.lng().toString();
-         });
-       });
-     });
+          if (place.geometry === undefined || place.geometry === null) {
+            return;
+          }
+          this.latitude = place.geometry.location.lat();
+          this.longitude = place.geometry.location.lng();
+          this.zoom = 12;
+          this.busStop.latitude = place.geometry.location.lat().toString();
+          this.busStop.longitude = place.geometry.location.lng().toString();
+        });
+      });
+    });
   }
 
   private initializeBusStop() {
-    this.busStop = new BusStop(0, '', '', '');
+    this.busStop = new BusStop(null, '', '', '');
   }
 
-  private addbusStop(data) {
-  console.log(data);
-  this.spinnerService.show();
-  if (this.action === 'new') {
-    this._busStop.saveBusStop(data).subscribe((res) => {
-      console.log(res);
-      this.spinnerService.hide();
-  }, (resError) => {
-  });
-  }
-  if (this.action === 'edit') {
-    this._busStop.updateBusStop(this.busStop.stopId, this.busStop).subscribe((res) => {
-      console.log(res);
-      this.spinnerService.hide();
-  }, (resError) => {
-  });
-  }
+  public addbusStop(data) {
+    console.log(data);
+    this.spinnerService.show();
+    if (this.action === 'new') {
+      this._busStop.saveBusStop(this.busStop).subscribe((res) => {
+        console.log(res);
+        this.spinnerService.hide();
+      }, (resError) => {
+      });
+    }
+    if (this.action === 'edit') {
+      this._busStop.updateBusStop(this.busStop.busStopId, this.busStop).subscribe((res) => {
+        console.log(res);
+        this.spinnerService.hide();
+      }, (resError) => {
+      });
+    }
   }
 
-  private backToList() {
-    this.router.navigate(['/list/bus']);
+  public backToList() {
+    this.router.navigate(['/list/busStop']);
   }
 
   private checkLogin() {
     const user = UtilFunctions.getLocalStorage('user');
-    if ( user ) {
+    if (user) {
       return;
     }
     this.router.navigate(['/login']);
   }
 
-  private clickedMarker(label: string, index: number) {
+  public clickedMarker(label: string, index: number) {
     console.log(`clicked the marker: ${label || index}`);
   }
 
-  private mapClicked($event) {
+  public mapClicked($event) {
     this.markers.pop();
     this.markers.push({
       lat: $event.coords.lat,
       lng: $event.coords.lng,
       draggable: true
     });
-    this.busStop.stopLat = $event.coords.lat;
-    this.busStop.stopLong = $event.coords.lng;
+    this.busStop.latitude = $event.coords.lat;
+    this.busStop.longitude = $event.coords.lng;
   }
 
-  private markerDragEnd(m: Marker, $event) {
+  public markerDragEnd(m: Marker, $event) {
     console.log('dragEnd', m, $event);
-    this.busStop.stopLat = $event.coords.lat;
-    this.busStop.stopLong = $event.coords.lng;
+    this.busStop.latitude = $event.coords.lat;
+    this.busStop.longitude = $event.coords.lng;
   }
 
   private setCurrentPosition() {

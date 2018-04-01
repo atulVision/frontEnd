@@ -1,16 +1,16 @@
 export class BusStop {
-  public stopId: number;
-  public stopName: string;
-  public stopLat: string;
-  public stopLong: string;
+  public busStopId: number;
+  public name: string;
+  public latitude: string;
+  public longitude: string;
 
 
-  constructor(stopId: number, stopName: string,
-    stopLat: string, stopLong: string
+  constructor(busStopId: number, name: string,
+    latitude: string, longitude: string
   ) {
-    this.stopId = stopId;
-    this.stopName = stopName;
-    this.stopLat = stopLat;
-    this.stopLong = stopLong;
+    this.busStopId = busStopId;
+    this.name = name;
+    this.latitude = latitude;
+    this.longitude = longitude;
   }
 }

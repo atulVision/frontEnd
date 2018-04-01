@@ -17,36 +17,30 @@
             </div>
           </div>
           <div class="form-group">
-            <label for="routeStart" class="col-sm-2 control-label">{{formLocale.route_start}}</label>
+            <label for="fromBusStop" class="col-sm-2 control-label">{{formLocale.route_start}}</label>
             <div class="col-sm-4">
-              <select class="form-control" id="routeStart" name="routeStart" [disabled]="viewFlag" #routeStart="ngModel" [(ngModel)]="busRoute.fromBusStop">
+              <select class="form-control" id="fromBusStop" name="fromBusStop" [disabled]="viewFlag" #fromBusStop="ngModel" [(ngModel)]="busRoute.fromBusStop.busStopId">
                 <option value="" disabled selected>{{formLocale.route_start_placeholder}}</option>
-                <option [ngValue]="1">xyz</option>
-                <option [ngValue]="2">asd</option>
-                <option [ngValue]="3">qwe</option>
+                <option *ngFor="let stop of stopList" [(ngValue)]="stop.busStopId">{{stop.name}}</option>
               </select>
             </div>
-            <label for="routeEnd" class="col-sm-2 control-label">{{formLocale.route_end}}</label>
+            <label for="toBusStop" class="col-sm-2 control-label">{{formLocale.route_end}}</label>
             <div class="col-sm-4">
-              <select class="form-control" id="routeEnd" name="routeEnd" [disabled]="viewFlag" #routeEnd="ngModel" [(ngModel)]="busRoute.toBusStop">
+              <select class="form-control" id="toBusStop" name="toBusStop" [disabled]="viewFlag" #toBusStop="ngModel" [(ngModel)]="busRoute.toBusStop.busStopId">
                 <option value="" disabled selected>{{formLocale.route_end_placeholder}}</option>
-                <option [ngValue]="1">xyz</option>
-                <option [ngValue]="2">asd</option>
-                <option [ngValue]="3">qwe</option>
+                <option *ngFor="let stop of stopList" [(ngValue)]="stop.busStopId">{{stop.name}}</option>
               </select>
             </div>
           </div>
           <div class="form-group">
-            <label for="pickUpPoints" class="col-sm-2 control-label">{{formLocale.pick_up}}</label>
+            <label for="pickUp" class="col-sm-2 control-label">{{formLocale.pick_up}}</label>
             <div class="col-sm-6">
-              <select class="form-control" id="pickUpPoints" name="pickUpPoints" [disabled]="viewFlag" #pickUpPoints="ngModel" [(ngModel)]="busRoute.pickUpPoints">
+              <select class="form-control" id="pickUp" name="pickUp" [disabled]="viewFlag" [(ngModel)]="pickUp">
                 <option value="" disabled selected>{{formLocale.pick_up_placeholder}}</option>
-                <option [ngValue]="1">xyz</option>
-                <option [ngValue]="2">asd</option>
-                <option [ngValue]="3">qwe</option>
+                <option *ngFor="let stop of stopList" [ngValue]="stop">{{stop.name}}</option>
               </select>
             </div>
-            <button type="button" class="btn btn-success " (click)="addPickUp()">{{formLocale.pick_up_add_btn}}</button>
+            <button type="button" class="btn btn-success " (click)="addPickUp()" [disabled]="viewFlag">{{formLocale.pick_up_add_btn}}</button>
           </div>
           <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -63,13 +57,13 @@
                   </thead>
                   <tbody>
                     <ng-container>
-                      <tr *ngFor="let item of [1,2,3]">
-                        <td>{{item}}</td>
-                        <td>{{item}}</td>
-                        <td>{{item}}</td>
-                        <td>{{item}}</td>
+                      <tr *ngFor="let stop of pickUps; let i = index" [attr.data-index]="i">
+                        <td>{{i+1}}</td>
+                        <td>{{stop.busStop.name}}</td>
+                        <td>{{stop.busStop.latitude}}</td>
+                        <td>{{stop.busStop.longitude}}</td>
                         <td>
-                          <button type="button" class="btn btn-danger" (click)="deletePickUp()">
+                          <button type="button" class="btn btn-danger" (click)="deletePickUp(i)" [disabled]="viewFlag">
                             <i class="fa fa-trash"></i>
                           </button>
                         </td>

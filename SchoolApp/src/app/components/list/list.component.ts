@@ -19,6 +19,8 @@ import { RouteService } from '../../services/route.service';
 import { AlbumService } from '../../services/album.service';
 import { NotificationService } from '../../services/notification.service';
 import { BusService } from '../../services/bus.service';
+import { Broadcaster } from '../../utils/broadcaster';
+import { BusStopService } from '../../services/bus-stop.service';
 
 @Component({
   selector: 'app-list',
@@ -37,14 +39,14 @@ export class ListComponent implements OnInit {
   columns = [];
   filterColumns = [];
   ref: any;
-sr_no: any;
+  sr_no: any;
 
   constructor(private route: ActivatedRoute, private router: Router, private _classes: ClassesService, private _teacher: TeacherService,
     private _student: StudentService, private _attendance: AttendanceService, private _timeT: TimeTableService,
     private _homeW: HomeWorkService, private _exam: ExamService, private _result: ResultService,
-    private _driver: DriverService, private _bus: BusService, private _route: RouteService,
+    private _driver: DriverService, private _bus: BusService, private _busS: BusStopService, private _route: RouteService,
     private _book: BookService, private _album: AlbumService, private _notification: NotificationService,
-    private _data: DataServiceService) {
+    private broadcaster: Broadcaster, private _busStop: BusStopService) {
     this.route.params.subscribe((params) => {
       this.type = params['type'];
       this.rows = [];
@@ -76,15 +78,15 @@ sr_no: any;
 
     // });
     // }
-    // if (type === 'teacher') {
-    //   this._teacher.getTeacherList().subscribe((res) => {
-    //     this.rows = res;
-    //     this._data.storage_teacher = res;
-    //     console.log(this.rows);
-    // }, (resError) => {
+    if (type === 'teacher') {
+      this._teacher.getTeacherList().subscribe((res) => {
+        this.rows = res;
+        this.broadcaster.storage = res;
+        console.log(this.rows);
+      }, (resError) => {
 
-    //   });
-    // }
+      });
+    }
     // if (type === 'student') {
     // this._student.getStudentList().subscribe((res) => {
     //   this.rows = res;
@@ -101,25 +103,54 @@ sr_no: any;
     // }, (resError) => {
     //   });
     // }
+    if (type === 'driver') {
+      this._driver.getDriverList().subscribe((res) => {
+        this.rows = res;
+        console.log(this.rows);
+      }, (resError) => {
+      });
+    }
+    if (type === 'busS') {
+      this._busS.getBusStopList().subscribe((res) => {
+        this.rows = res;
+        console.log(this.rows);
+      }, (resError) => {
+      });
+    }
+    if (type === 'route') {
+      this._route.getRouteList().subscribe((res) => {
+        this.rows = res;
+        console.log(this.rows);
+      }, (resError) => {
+      });
+    }
+
+
     this.initializeTable(this.type);
   }
 
   view(row: any) {
-    this._data.storage = row;
+    this.broadcaster.storage = row;
     this.router.navigate([this.ref.viewRef]);
   }
 
   edit(row: any) {
     console.log(row);
-    this._data.storage = row;
+    this.broadcaster.storage = row;
     this.router.navigate([this.ref.editRef]);
   }
 
   delete(row: any, go: any) {
-    if ( go ) {
+    if (go) {
       if (this.type === 'teacher') {
         this._teacher.deleteTeacher(this.deleteCache.teacherId).subscribe((res) => {
-      }, (resError) => {
+        }, (resError) => {
+
+        });
+      }
+      if (this.type === 'busS') {
+        this._busStop.deleteBusStop(this.deleteCache.busStopId).subscribe((res) => {
+        }, (resError) => {
 
         });
       }
@@ -134,7 +165,7 @@ sr_no: any;
 
   checkLogin() {
     const user = UtilFunctions.getLocalStorage('user');
-    if ( user ) {
+    if (user) {
       return;
     }
     this.router.navigate(['/login']);

@@ -13,15 +13,15 @@
             <label for="firstName" class="col-sm-2 control-label">{{formLocale.student_f_name}}</label>
             <div class="col-sm-4">
               <input type="text" class="form-control" id="firstName" name="firstName" placeholder="{{formLocale.student_f_name_placeholder}}"
-                [disabled]="viewFlag " #firstName="ngModel" [(ngModel)]="student.firstName">
+                [disabled]="viewFlag || role==3" #firstName="ngModel" [(ngModel)]="student.firstName">
             </div>
             <label for="lastName" class="col-sm-2 control-label">{{formLocale.studengt_l_name}}</label>
             <div class="col-sm-4">
               <input type="text" class="form-control" id="lastName" name="lastName" placeholder="{{formLocale.studengt_l_name_placeholder}}"
-                [disabled]="viewFlag" #lastName="ngModel" [(ngModel)]="student.lastName">
+                [disabled]="viewFlag || role==3" #lastName="ngModel" [(ngModel)]="student.lastName">
             </div>
           </div>
-          <div class="form-group">
+          <div class="form-group" *ngIf="!(role==3)">
             <label for="fatherName" class="col-sm-2 control-label">{{formLocale.student_father_name}}</label>
             <div class="col-sm-4">
               <input type="text" class="form-control" id="fatherName" name="fatherName" placeholder="{{formLocale.student_father_name_placeholder}}"
@@ -33,7 +33,7 @@
                 [disabled]="viewFlag" #fatherContactNo="ngModel" [(ngModel)]="student.fatherContactNo">
             </div>
           </div>
-          <div class="form-group">
+          <div class="form-group" *ngIf="!(role==3)">
             <label for="motherName" class="col-sm-2 control-label">{{formLocale.studengt_mother_name}}</label>
             <div class="col-sm-4">
               <input type="text" class="form-control" id="motherName" name="motherName" placeholder="{{formLocale.studengt_mother_name_placeholder}}"
@@ -45,7 +45,7 @@
                 [disabled]="viewFlag" #motherContactNo="ngModel" [(ngModel)]="student.motherContactNo">
             </div>
           </div>
-          <div class="form-group">
+          <div class="form-group" *ngIf="!(role==3)">
             <label for="guardianName" class="col-sm-2 control-label">{{formLocale.studengt_guardian_name}}</label>
             <div class="col-sm-4">
               <input type="text" class="form-control" id="guardianName" name="guardianName" placeholder="{{formLocale.studengt_guardian_name_placeholder}}"
@@ -57,7 +57,7 @@
                 [disabled]="viewFlag" #guardianContactNo="ngModel" [(ngModel)]="student.guardianContactNo">
             </div>
           </div>
-          <div class="form-group">
+          <div class="form-group" *ngIf="!(role==3)">
               <label for="emergencyContactNo" class="col-sm-2 control-label">{{formLocale.student_emergency_contactNo}}</label>
               <div class="col-sm-4">
                   <select class="form-control" id="emergencyContactNo" name="emergencyContactNo" [disabled]="viewFlag" #emergencyContactNo="ngModel" [(ngModel)]="student.emergencyContactNo">
@@ -68,19 +68,19 @@
                     </select>
               </div>
             </div>
-          <div class="form-group">
+          <div class="form-group" >
             <label for="rollNo" class="col-sm-2 control-label">{{formLocale.student_roll}}</label>
             <div class="col-sm-4">
-              <input type="text" class="form-control" id="rollNo" name="rollNo" placeholder="{{formLocale.student_roll_placeholder}}" [disabled]="viewFlag"
+              <input type="text" class="form-control" id="rollNo" name="rollNo" placeholder="{{formLocale.student_roll_placeholder}}" [disabled]="viewFlag || role==3"
                 #rollNo="ngModel" [(ngModel)]="student.rollNo">
             </div>
             <label for="prn" class="col-sm-2 control-label">{{formLocale.student_prn}}</label>
             <div class="col-sm-4">
-              <input type="text" class="form-control" id="prn" name="prn" placeholder="{{formLocale.student_prn_placeholder}}" [disabled]="viewFlag"
+              <input type="text" class="form-control" id="prn" name="prn" placeholder="{{formLocale.student_prn_placeholder}}" [disabled]="viewFlag || role==3 || role==2"
                 #prn="ngModel" [(ngModel)]="student.prn">
             </div>
           </div>
-          <div class="form-group">
+          <div class="form-group" *ngIf="!(role==3)">
               <label for="dob" class="col-sm-2 control-label">{{formLocale.student_dob}}</label>
             <div class="col-sm-4">
               <div class="input-group">
@@ -105,7 +105,7 @@
                     </select>
               </div>
             </div>
-          <div class="form-group" *ngIf="true">
+          <div class="form-group" *ngIf="!(role==3)">
               <label for="adharNo" class="col-sm-2 control-label">{{formLocale.student_adharNo}}</label>
               <div class="col-sm-4">
                 <input type="text" class="form-control" id="adharNo" name="adharNo" placeholder="{{formLocale.student_adharNo_placeholder}}" [disabled]="viewFlag"
@@ -117,7 +117,7 @@
                 #address="ngModel" [(ngModel)]="student.address"></textarea>
             </div>
           </div>
-          <div class="form-group">
+          <div class="form-group" *ngIf="!(role==3)">
             <label for="classId" class="col-sm-2 control-label">{{formLocale.student_class}}</label>
             <div class="col-sm-4">
               <select class="form-control" id="classId" name="classId" [disabled]="viewFlag" #classId="ngModel" [(ngModel)]="student.classId">
@@ -140,7 +140,7 @@
           <div class="form-group">
             <label for="routeId" class="col-sm-2 control-label">{{formLocale.student_route}}</label>
             <div class="col-sm-4">
-              <select class="form-control" id="routeId" name="routeId" [disabled]="viewFlag" #routeId="ngModel" [(ngModel)]="student.routeId">
+              <select class="form-control" id="routeId" name="routeId" [disabled]="viewFlag || role==2" #routeId="ngModel" [(ngModel)]="student.routeId">
                 <option value="" disabled selected>{{formLocale.student_route_placeholder}}</option>
                 <option [ngValue]="">xyz</option>
                 <option [ngValue]="">asd</option>
@@ -149,7 +149,7 @@
             </div>
             <label for="stopId" class="col-sm-2 control-label">{{formLocale.student_stop}}</label>
             <div class="col-sm-4">
-              <select class="form-control" id="stopId" name="stopId" [disabled]="viewFlag" #stopId="ngModel" [(ngModel)]="student.stopId">
+              <select class="form-control" id="stopId" name="stopId" [disabled]="viewFlag || role==2" #stopId="ngModel" [(ngModel)]="student.stopId">
                 <option value="" disabled selected>{{formLocale.student_stop_placeholder}}</option>
                 <option [ngValue]="">xyz</option>
                 <option [ngValue]="">asd</option>
@@ -157,7 +157,7 @@
               </select>
             </div>
           </div>
-          <div class="form-group" *ngIf="true">
+          <div class="form-group" *ngIf="!(role==3)">
             <label for="email" class="col-sm-2 control-label">{{formLocale.student_email}}</label>
             <div class="col-sm-4">
               <input type="text" class="form-control" id="email" name="email" placeholder="{{formLocale.student_email_placeholder}}" [disabled]="viewFlag"
@@ -169,7 +169,7 @@
                 [disabled]="viewFlag" #password="ngModel" [(ngModel)]="student.password">
             </div>
           </div>
-          <div class="form-group" *ngIf="true">
+          <div class="form-group" *ngIf="!(role==3)">
             <label for="profile" class="col-sm-2 control-label">{{formLocale.student_profile}}</label>
             <div class="col-sm-8">
               <input type="file" class="form-control" id="profile" name="profile" [disabled]="viewFlag" #profile="ngModel" [(ngModel)]="student.profile"
@@ -182,9 +182,9 @@
         </div>
         <div class="box-footer">
           <button type="button" class="btn btn-default" (click)="backToList()">{{formLocale.back_btn}}</button>
-          <button *ngIf="action === 'new'" type="submit" class="btn btn-success pull-right" data-toggle="modal" data-target="#modal-success">{{formLocale.submit_btn}}</button>
-          <button *ngIf="action === 'view'" type="button" class="btn btn-info btn-info pull-right" (click)="backToList()">{{formLocale.ok_btn}}</button>
-          <button *ngIf="action === 'edit'" type="submit" class="btn btn-success pull-right" data-toggle="modal" data-target="#modal-success">{{formLocale.update_btn}}</button>
+          <button *ngIf="action == 'new'" type="submit" class="btn btn-success pull-right" data-toggle="modal" data-target="#modal-success">{{formLocale.submit_btn}}</button>
+          <button *ngIf="action == 'view'" type="button" class="btn btn-info btn-info pull-right" (click)="backToList()">{{formLocale.ok_btn}}</button>
+          <button *ngIf="action == 'edit'" type="submit" class="btn btn-success pull-right" data-toggle="modal" data-target="#modal-success">{{formLocale.update_btn}}</button>
         </div>
       </form>
     </div>
@@ -200,8 +200,8 @@
         <h4 class="modal-title">{{formLocale.modal_status}}</h4>
       </div>
       <div class="modal-body">
-        <h5 *ngIf="action === 'new'">{{locale.student+formLocale.modal_add_msg}} </h5>
-        <h5 *ngIf="action === 'edit'">{{locale.student+formLocale.modal_update_msg}} </h5>
+        <h5 *ngIf="action == 'new'">{{locale.student+formLocale.modal_add_msg}} </h5>
+        <h5 *ngIf="action == 'edit'">{{locale.student+formLocale.modal_update_msg}} </h5>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-outline pull-left" data-dismiss="modal" (click)="backToList()">{{formLocale.ok_btn}}</button>

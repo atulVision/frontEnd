@@ -1,20 +1,21 @@
 import { Division } from './division.model';
+import { Teacher } from './teacher.model';
 
 export class Classes {
 
-  public classId: number;
+  public id: number;
   public className: string;
   public classDescription: string;
-  public divisionId: number;
-  public teacherId: number;
+  public division: Division;
+  public teacher: Teacher;
 
-  constructor(classId: number, className: string, classDescription: string,
-    divisionId: number, teacherId: number
+  constructor(id: number, className: string, classDescription: string,
+    division: Division, teacher: Teacher
   ) {
-    this.classId = classId;
+    this.id = id;
     this.className = className;
     this.classDescription = classDescription;
-    this.divisionId = divisionId;
-    this.teacherId = teacherId;
+    this.division = division;
+    this.teacher = teacher;
   }
 }

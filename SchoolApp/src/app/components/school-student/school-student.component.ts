@@ -28,6 +28,8 @@ export class SchoolStudentComponent implements OnInit {
     private broadcaster: Broadcaster, private spinnerService: Ng4LoadingSpinnerService) {
     this.route.params.subscribe((params) => {
       this.action = params['action'];
+      this.role = UtilFunctions.getLocalStorage('role');
+      console.log(this.role);
       this.initializeStudent();
       if (this.action === 'new') {
         this.viewFlag = false;
@@ -48,14 +50,13 @@ export class SchoolStudentComponent implements OnInit {
 
   ngOnInit() {
     this.checkLogin();
-    this.role = UtilFunctions.getLocalStorage('role');
   }
 
-  initializeStudent() {
+  private initializeStudent() {
     this.student = new Student(0, '', '', '', '', '', '', '', '', '', '', '' , '' , '' , 0, 0, '', '', '', '', 0, 0, '');
   }
 
-  addStudent(data) {
+  public addStudent(data) {
     console.log(data);
     this.spinnerService.show();
     if (this.action === 'new') {
@@ -74,11 +75,11 @@ export class SchoolStudentComponent implements OnInit {
     }
   }
 
-  backToList() {
+  public backToList() {
     this.router.navigate(['/list/student']);
   }
 
-  checkLogin() {
+  private checkLogin() {
     const user = UtilFunctions.getLocalStorage('user');
     if ( user ) {
       return;

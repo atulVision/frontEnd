@@ -24,20 +24,16 @@
           <div class="form-group">
             <label for="divisionId" class="col-sm-2 control-label">{{formLocale.division_name}}</label>
             <div class="col-sm-4">
-              <select class="form-control" id="divisionId" name="divisionId" [disabled]="viewFlag" #divisionId="ngModel" [(ngModel)]="classes.divisionId">
+              <select class="form-control" id="divisionId" name="divisionId" [disabled]="viewFlag" #divisionId="ngModel" [(ngModel)]="classes.division.id">
                 <option value="" disabled selected>{{formLocale.division_name_placeholder}}</option>
-                <option [ngValue]="">xyz</option>
-                <option [ngValue]="">asd</option>
-                <option [ngValue]="">qwe</option>
+                <option *ngFor="let division of divisionList" [(ngValue)]="division.id">{{division.divisionName}}</option>
               </select>
             </div>
             <label for="classTeacher" class="col-sm-2 control-label">{{formLocale.class_teacher}}</label>
             <div class="col-sm-4">
-              <select class="form-control" id="classTeacher" name="classTeacher" [disabled]="viewFlag" #classTeacher="ngModel" [(ngModel)]="classes.teacherId">
+              <select class="form-control" id="classTeacher" name="classTeacher" [disabled]="viewFlag" #classTeacher="ngModel" [(ngModel)]="classes.teacher.teacherId">
                 <option value="" disabled selected>{{formLocale.class_teacher_placeholder}}</option>
-                <option [ngValue]="">xyz</option>
-                <option [ngValue]="">asd</option>
-                <option [ngValue]="">qwe</option>
+                <option *ngFor="let teacher of teacherList" [(ngValue)]="teacher.teacherId">{{teacher.firstName}} {{teacher.lastName}}</option>
               </select>
             </div>
           </div>

@@ -121,7 +121,7 @@ export class AppConfig {
         'ref': 'busStop/new'
       }, {
         'name': 'list_bus_stop',
-        'ref': 'list/busS'
+        'ref': 'list/busStop'
       }, {
         'name': 'add_route',
         'ref': 'route/new'
@@ -166,6 +166,11 @@ export class AppConfig {
   };
 
   public static tableNavigationConfig: any = {
+    'division': {
+      'addRef': '../../division/new',
+      'viewRef': '../../division/view',
+      'editRef': '../../division/edit'
+    },
     'class': {
       'addRef': '../../class/new',
       'viewRef': '../../class/view',
@@ -248,6 +253,11 @@ export class AppConfig {
     { prop: 'division' },
   ];
 
+  public static division: any = [
+    { prop: 'divisionName' },
+    { prop: 'divisionDesc' },
+  ];
+
   public static teacher: any = [
     { prop: 'name' },
     { prop: 'contactNo' },
@@ -303,19 +313,19 @@ export class AppConfig {
   ];
 
   public static bus: any = [
-    { prop: 'bus_no' },
+    { prop: 'busNo' },
     { prop: 'driver' },
     { prop: 'route' }
   ];
 
   public static busS: any = [
-    { prop: 'stopName' }
+    { prop: 'name' }
   ];
 
   public static route: any = [
-    { prop: 'name' },
-    { prop: 'from' },
-    { prop: 'to' }
+    { prop: 'routeName' },
+    { prop: 'fromBusStop' },
+    { prop: 'toBusStop' }
   ];
 
   public static book: any = [

@@ -24,20 +24,16 @@
           <div class="form-group">
             <label for="driver" class="col-sm-2 control-label">{{formLocale.bus_driver}}</label>
             <div class="col-sm-4">
-              <select class="form-control" id="driver" name="driver" [disabled]="viewFlag" #driver="ngModel" [(ngModel)]="bus.driverId">
+              <select class="form-control" id="driver" name="driver" [disabled]="viewFlag" #driver="ngModel" [(ngModel)]="bus.driver.driverId">
                 <option value="" disabled selected>{{formLocale.bus_driver_placeholder}}</option>
-                <option [ngValue]="1">xyz</option>
-                <option [ngValue]="2">asd</option>
-                <option [ngValue]="3">qwe</option>
+                <option *ngFor="let driver of driverList" [(ngValue)]="driver.driverId">{{driver.firstName}} {{driver.lastName}}</option>
               </select>
             </div>
             <label for="route" class="col-sm-2 control-label">{{formLocale.bus_route}}</label>
             <div class="col-sm-4">
-              <select class="form-control" id="route" name="route" [disabled]="viewFlag" #route="ngModel" [(ngModel)]="bus.routeId">
+              <select class="form-control" id="route" name="route" [disabled]="viewFlag" #route="ngModel" [(ngModel)]="bus.route.routeId">
                 <option value="" disabled selected>{{formLocale.bus_route_placeholder}}</option>
-                <option [ngValue]="1">xyz</option>
-                <option [ngValue]="2">asd</option>
-                <option [ngValue]="3">qwe</option>
+                <option *ngFor="let route of routeList" [(ngValue)]="route.route.routeId">{{route.route.routeName}}</option>
               </select>
             </div>
           </div>

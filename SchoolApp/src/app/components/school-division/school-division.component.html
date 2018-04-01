@@ -11,8 +11,12 @@
     <div class="box-body">
       <div class="form-group">
         <label for="divisionName" class="col-sm-2 control-label">{{formLocale.division_name}}</label>
-        <div class="col-sm-10">
+        <div class="col-sm-4">
           <input type="text" class="form-control" id="divisionName" name="divisionName" placeholder="{{formLocale.division_name_placeholder}}" [disabled]="viewFlag" #divisionName="ngModel" [(ngModel)]="division.divisionName" >
+        </div>
+        <label for="divisionDesc" class="col-sm-2 control-label">{{formLocale.division_desc}}</label>
+        <div class="col-sm-4">
+          <input type="text" class="form-control" id="divisionDesc" name="divisionDesc" placeholder="{{formLocale.division_desc_placeholder}}" [disabled]="viewFlag" #divisionDesc="ngModel" [(ngModel)]="division.divisionDesc" >
         </div>
       </div>
     </div>

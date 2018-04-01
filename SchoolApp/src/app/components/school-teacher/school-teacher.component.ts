@@ -49,11 +49,11 @@ export class SchoolTeacherComponent implements OnInit {
     this.checkLogin();
   }
 
-  initializeTeacher() {
+  private initializeTeacher() {
     this.teacher = new Teacher(0, '', '', '', '', '', '', '', '', '');
   }
 
-  addTeacher(data) {
+  public addTeacher(data) {
     console.log(data);
     this.spinnerService.show();
     if (this.action === 'new') {
@@ -72,11 +72,11 @@ export class SchoolTeacherComponent implements OnInit {
     }
   }
 
-  backToList() {
+  public backToList() {
     this.router.navigate(['/list/teacher']);
   }
 
-  checkLogin() {
+  private checkLogin() {
     const user = UtilFunctions.getLocalStorage('user');
     if (user) {
       return;

@@ -93,17 +93,21 @@ export class Labels {
           head_action_col: 'ACTION',
           head_sr_no: 'SR NO.'
         },
+        division: {
+          table_title: 'List of Divisions',
+          add_btn: 'Add Division',
+          divisionName: 'DIVISION NAME',
+          divisionDesc: 'DIVISION DESCRIPTION',
+        },
         class: {
           table_title: 'List of Classes',
           add_btn: 'Add Class',
-          sr_no: 'SR NO.',
           class: 'CLASS',
           division: 'DIVISION',
         },
         teacher: {
           table_title: 'List of Teacher\'s',
           add_btn: 'Add Teacher',
-          sr_no: 'SR NO.',
           name: 'NAME',
           userName: 'USERNAME',
           contactNo: 'MOBILE NO.',
@@ -112,7 +116,6 @@ export class Labels {
         student: {
           table_title: 'List of Student\'s',
           add_btn: 'Add Student',
-          sr_no: 'SR NO.',
           roll_no: 'ROLL NO.',
           fname: 'FIRST NAME',
           lname: 'LAST NAME',
@@ -123,7 +126,6 @@ export class Labels {
         attendance: {
           table_title: 'Attendance Sheet',
           add_btn: 'Mark Attendance',
-          sr_no: 'SR NO.',
           class: 'CLASS',
           division: 'DIVISION',
           date: 'DATE'
@@ -131,7 +133,6 @@ export class Labels {
         homeW: {
           table_title: 'List of Home Work',
           add_btn: 'Assign Home Work',
-          sr_no: 'SR NO.',
           class: 'CLASS',
           division: 'DIVISION',
           date: 'ASSIGNED ON'
@@ -139,7 +140,6 @@ export class Labels {
         timeT: {
           table_title: 'Time Tables',
           add_btn: 'Create Time Table',
-          sr_no: 'SR NO.',
           class: 'CLASS',
           division: 'DIVISION',
           date: 'DATE',
@@ -148,7 +148,6 @@ export class Labels {
         exam: {
           table_title: 'List of Exams',
           add_btn: 'Add Exam',
-          sr_no: 'SR NO.',
           name: 'NAME',
           class: 'CLASS',
           division: 'DIVISION',
@@ -157,7 +156,6 @@ export class Labels {
         result: {
           table_title: 'Result Board',
           add_btn: 'Add Result',
-          sr_no: 'SR NO.',
           name: 'NAME',
           class: 'CLASS',
           division: 'DIVISION',
@@ -167,7 +165,6 @@ export class Labels {
         driver: {
           table_title: 'List of Drivers',
           add_btn: 'Add Driver',
-          sr_no: 'SR NO.',
           firstName: 'FIRST NAME',
           lastName: 'LAST NAME',
           contactNo: 'MOBILE'
@@ -175,22 +172,19 @@ export class Labels {
         bus: {
           table_title: 'List of Bus',
           add_btn: 'Add Bus',
-          sr_no: 'SR NO.',
-          bus_no: 'BUS NO.',
+          busNo: 'BUS NO.',
           driver: 'DRIVER NAME',
           route: 'ROUTE NAME'
         },
         busS: {
-          table_title: 'List of Bus',
-          add_btn: 'Add Bus',
-          sr_no: 'SR NO.',
-          stopName: 'STOP NAME',
+          table_title: 'List of Bus Stop',
+          add_btn: 'Add Bus Stop',
+          name: 'STOP NAME',
         },
         route: {
           table_title: 'List of Routes',
           add_btn: 'Add Route',
-          sr_no: 'SR NO.',
-          name: 'ROUTE NAME',
+          routeName: 'ROUTE NAME',
           from: 'FROM',
           to: 'TO'
         },
@@ -206,14 +200,12 @@ export class Labels {
         album: {
           table_title: 'List of Albums',
           add_btn: 'Create Album',
-          sr_no: 'SR NO.',
           name: 'NAME',
           count: 'IMAGE COUNT'
         },
         notification: {
           table_title: 'List of Notifications',
           add_btn: 'Send Notification',
-          sr_no: 'SR NO.',
           title: 'TITLE',
           class: 'CLASS',
           division: 'DIVISION',
@@ -236,6 +228,7 @@ export class Labels {
         division: 'Division'
       },
       form_labels: {
+        mobile_prefix: '+91',
         modal_status: 'Status',
         modal_add_msg: ' is added successfully.',
         modal_update_msg: ' is updated successfully.',
@@ -290,11 +283,13 @@ export class Labels {
         driver_position_placeholder: 'Enter Position',
         class_name: 'Standard',
         division_name: 'Division Name',
+        division_desc: 'Division Description',
         class_desc: 'Class Descrption',
         class_teacher: 'Class Teacher',
         total_students: 'Total Students',
         class_name_placeholder: 'Enter Standard',
         division_name_placeholder: 'Enter Division Name',
+        division_desc_placeholder: 'Enter Division Description',
         class_desc_placeholder: 'Enter Class Description',
         class_teacher_placeholder: 'Select Class Teacher',
         teacher_f_name: 'First Name',

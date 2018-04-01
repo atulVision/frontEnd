@@ -50,13 +50,14 @@ export class SchoolDriverComponent implements OnInit {
   }
 
   private initializeDriver() {
-    this.driver = new Driver(0, '', '', '', '', '', '', '', '', new Date());
+    this.driver = new Driver(0, '', '', '', '', '', '', '', '', '');
   }
 
-  private addDriver(data) {
+  public addDriver(data) {
     console.log(data);
     this.spinnerService.show();
     if (this.action === 'new') {
+      if (data.dob != null) {data.dob = data.dob.year + '-' + data.dob.month + '-' + data.dob.day; }
       this._driver.saveDriver(data).subscribe((res) => {
         console.log(res);
         this.spinnerService.hide();
@@ -64,6 +65,7 @@ export class SchoolDriverComponent implements OnInit {
       });
     }
     if (this.action === 'edit') {
+      this.driver.dob = data.year + '-' + data.month + '-' + data.day;
       this._driver.updateDriver(this.driver.driverId, this.driver).subscribe((res) => {
         console.log(res);
         this.spinnerService.hide();
@@ -72,7 +74,7 @@ export class SchoolDriverComponent implements OnInit {
     }
   }
 
-  private backToList() {
+  public backToList() {
     this.router.navigate(['/list/driver']);
   }
 

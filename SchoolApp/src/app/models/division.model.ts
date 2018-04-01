@@ -1,12 +1,14 @@
 export class Division {
 
-  public divisionId: number;
+  public id: number;
   public divisionName: string;
+  public divisionDesc: string;
 
-  constructor(divisionId: number, divisionName: string
+  constructor(id: number, divisionName: string, divisionDesc: string
   ) {
-    this.divisionId = divisionId;
+    this.id = id;
     this.divisionName = divisionName;
+    this.divisionDesc = divisionDesc;
   }
 
 }

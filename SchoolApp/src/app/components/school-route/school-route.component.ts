@@ -4,11 +4,12 @@ import { AppConfig } from '../../utils/app-config';
 import { Labels } from '../../utils/labels';
 import { Router } from '@angular/router';
 import { UtilFunctions } from '../../utils/util-functions';
-import { Route, PickUpPoint, Marker } from '../../models/route.model';
+import { Route, Marker, BusStopDetails, BusRoute } from '../../models/route.model';
 import { BusStop } from '../../models/bus-stop.model';
 import { Broadcaster } from '../../utils/broadcaster';
 import { RouteService } from '../../services/route.service';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
+import { BusStopService } from '../../services/bus-stop.service';
 
 @Component({
   selector: 'app-school-route',
@@ -20,20 +21,25 @@ export class SchoolRouteComponent implements OnInit {
   public latitude: number;
   public longitude: number;
   public zoom: number;
-  action: string;
-  viewFlag = false;
-  pageTitle: any;
-  locale: any;
-  formLocale: any;
-  busRoute: Route;
-  from: BusStop;
-  to: BusStop;
-  pickUps: Array<PickUpPoint> = [];
-  markers: Array<Marker> = [];
-  dir: any;
+  public action: string;
+  public viewFlag = false;
+  public pageTitle: any;
+  public locale: any;
+  public formLocale: any;
+  public busRoute: Route;
+  public from: BusStop;
+  public to: BusStop;
+  public busStopDetail: BusStopDetails;
+  public pickUp: BusStop;
+  public seq: number;
+  public pickUps: Array<BusStopDetails> = [];
+  public markers: Array<Marker> = [];
+  public dir: any;
+  public stopList: Array<BusStop> = [];
+  public dataToSend: BusRoute;
 
   constructor(private route: ActivatedRoute, private router: Router, private broadcaster: Broadcaster,
-    private _route: RouteService, private spinnerService: Ng4LoadingSpinnerService) {
+    private _route: RouteService, private _busS: BusStopService, private spinnerService: Ng4LoadingSpinnerService) {
     this.route.params.subscribe((params) => {
       this.action = params['action'];
       this.initializeBusRoute();
@@ -42,11 +48,17 @@ export class SchoolRouteComponent implements OnInit {
       }
       if (this.action === 'edit') {
         this.viewFlag = false;
-        this.busRoute = this.broadcaster.storage;
+        this.dataToSend = this.broadcaster.storage;
+        this.busRoute = this.dataToSend.route;
+        this.pickUps = this.dataToSend.busStopDetails;
+        console.log(this.dataToSend );
       }
       if (this.action === 'view') {
         this.viewFlag = true;
-        this.busRoute = this.broadcaster.storage;
+        this.dataToSend = this.broadcaster.storage;
+        this.busRoute = this.dataToSend.route;
+        this.pickUps = this.dataToSend.busStopDetails;
+        console.log(this.dataToSend );
       }
       this.locale = Labels.en_IN.labels.page_title;
       this.formLocale = Labels.en_IN.labels.form_labels;
@@ -56,6 +68,10 @@ export class SchoolRouteComponent implements OnInit {
 
   ngOnInit() {
     this.checkLogin();
+    this._busS.getBusStopList().subscribe((res) => {
+      this.stopList = res;
+    }, (resError) => {
+    });
     this.zoom = 4;
     this.latitude = 18.5206688662618;
     this.longitude = 73.8581528668874;
@@ -66,7 +82,7 @@ export class SchoolRouteComponent implements OnInit {
     };
   }
 
-  checkLogin() {
+  private checkLogin() {
     const user = UtilFunctions.getLocalStorage('user');
     if (user) {
       return;
@@ -74,49 +90,65 @@ export class SchoolRouteComponent implements OnInit {
     this.router.navigate(['/login']);
   }
 
-  initializeBusRoute() {
-    this.from = new BusStop(0, '', '', '');
-    this.to = new BusStop(0, '', '', '');
+  private initializeBusRoute() {
+    this.seq = 1;
+    this.pickUp = new BusStop(null, '', '', '');
+    this.from = new BusStop(null, '', '', '');
+    this.to = new BusStop(null, '', '', '');
     this.pickUps = [];
-    this.busRoute = new Route(0, '', this.from, this.to, this.pickUps);
+    this.busRoute = new Route(null, '', this.from, this.to);
+    this.dataToSend = new BusRoute(this.busRoute, this.pickUps);
+    this.busStopDetail = new BusStopDetails(this.pickUp, null);
   }
 
-  backToList() {
+  public backToList() {
     this.router.navigate(['/list/route']);
   }
 
-  addRoute(data) {
+  public addRoute(data) {
     console.log(data);
-    this.spinnerService.show();
-    if (this.action === 'new') {
-      this._route.saveRoute(data).subscribe((res) => {
-        console.log(res);
-        this.spinnerService.hide();
-    }, (resError) => {
+    console.log(this.dataToSend);
+    // this.spinnerService.show();
+    // if (this.action === 'new') {
+    //   this._route.saveRoute(data).subscribe((res) => {
+    //     console.log(res);
+    //     this.spinnerService.hide();
+    //   }, (resError) => {
+    //   });
+    // }
+    // if (this.action === 'edit') {
+    //   this._route.updateRoute(this.busRoute.routeId, this.busRoute).subscribe((res) => {
+    //     console.log(res);
+    //     this.spinnerService.hide();
+    //   }, (resError) => {
+    //   });
+    // }
+  }
+
+  public addPickUp() {
+    this.busStopDetail.sequenceNo = this.seq;
+    this.busStopDetail.busStop = this.pickUp;
+    this.pickUps.push(this.busStopDetail);
+    this.busStopDetail = new BusStopDetails(new BusStop(null, '', '', ''), null);
+    this.seq = this.seq + 1;
+    this.markers.push({
+      lat: Number(this.pickUp.latitude),
+      lng: Number(this.pickUp.longitude),
+      draggable: false
     });
-    }
-    if (this.action === 'edit') {
-      this._route.updateRoute(this.busRoute.routeId, this.busRoute).subscribe((res) => {
-        console.log(res);
-        this.spinnerService.hide();
-    }, (resError) => {
-    });
-    }
   }
 
-  addPickUp() {
-
+  public deletePickUp(index) {
+    console.log(index);
+    this.pickUps.splice(index, 1);
+    console.log(this.pickUps);
   }
 
-  deletePickUp() {
-
-  }
-
-  private clickedMarker(index: number) {
+  public clickedMarker(index: number) {
     console.log(`clicked the marker: ${index}`);
   }
 
-  private mapClicked($event) {
+  public mapClicked($event) {
     this.markers.push({
       lat: $event.coords.lat,
       lng: $event.coords.lng,
@@ -124,7 +156,7 @@ export class SchoolRouteComponent implements OnInit {
     });
   }
 
-  private markerDragEnd(m: Marker, $event) {
+  public markerDragEnd(m: Marker, $event) {
     console.log('dragEnd', m, $event);
   }
 

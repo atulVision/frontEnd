@@ -8,7 +8,11 @@ import { Bus } from '../../models/bus.model';
 import { BusService } from '../../services/bus.service';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { Broadcaster } from '../../utils/broadcaster';
-
+import { DriverService } from '../../services/driver.service';
+import { RouteService } from '../../services/route.service';
+import { Driver } from '../../models/driver.model';
+import { Route } from '../../models/route.model';
+import { BusStop } from '../../models/bus-stop.model';
 
 @Component({
   selector: 'app-school-bus',
@@ -23,12 +27,14 @@ export class SchoolBusComponent implements OnInit {
   pageTitle: any;
   locale: any;
   formLocale: any;
-
-  driverList = [{driverId : 1, name: 'Vishal'}, {driverId : 2, name: 'Ram'}, {driverId : 3, name: 'Vijay'}];
-  routeList = [{routeId : 1, name: 'Hadapsar'}, {routeId : 2, name: 'Hinjewadi'}, {routeId : 3, name: 'Wakad'}];
+  driverObj: Driver;
+  routeObj: Route;
+  driverList: any;
+  routeList: any;
 
   constructor(private route: ActivatedRoute, private router: Router, private broadcaster: Broadcaster,
-    private _bus: BusService, private spinnerService: Ng4LoadingSpinnerService) {
+    private _bus: BusService, private spinnerService: Ng4LoadingSpinnerService, private _driver: DriverService,
+    private _route: RouteService) {
     this.route.params.subscribe((params) => {
       this.action = params['action'];
       this.initializeBus();
@@ -51,13 +57,28 @@ export class SchoolBusComponent implements OnInit {
 
   ngOnInit() {
     this.checkLogin();
+
+    this._driver.getDriverList().subscribe((res) => {
+      this.driverList = res;
+    }, (resError) => {
+    });
+
+    this._route.getRouteList().subscribe((res) => {
+      this.routeList = res;
+      console.log(res);
+    }, (resError) => {
+    });
+
   }
 
-  initializeBus() {
-    this.bus = new Bus(0, '', '', 0, 0);
+  private initializeBus() {
+    this.driverObj = new Driver (null, '', '', '', '', '', '', '', '', '');
+    this.routeObj = new Route (null, '', new BusStop (null, '', '', ''), new BusStop (null, '', '', ''))
+    this.bus = new Bus(null, '', '', this.driverObj, this.routeObj);
   }
 
-  addBus(data) {
+  public addBus(data) {
+    console.log(this.bus);
   this.spinnerService.show();
     if (this.action === 'new') {
       this._bus.saveBus(this.bus).subscribe((res) => {
@@ -75,11 +96,11 @@ export class SchoolBusComponent implements OnInit {
     }
   }
 
-  backToList() {
+  public backToList() {
     this.router.navigate(['/list/bus']);
   }
 
-  checkLogin() {
+  private checkLogin() {
     const user = UtilFunctions.getLocalStorage('user');
     if ( user ) {
       return;

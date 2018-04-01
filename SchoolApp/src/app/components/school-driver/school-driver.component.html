@@ -22,15 +22,18 @@
             </div>
           </div>
           <div class="form-group">
-            <label for="adharNo" class="col-sm-2 control-label">{{formLocale.driver_adhar_no}}</label>
+            <label for="aadharNo" class="col-sm-2 control-label">{{formLocale.driver_adhar_no}}</label>
             <div class="col-sm-4">
-              <input type="text" class="form-control" id="adharNo" name="adharNo" placeholder="{{formLocale.driver_adhar_no_placeholder}}"
-                [disabled]="viewFlag" #adharNo="ngModel" [(ngModel)]="driver.adharNo">
+              <input type="text" class="form-control" id="aadharNo" name="aadharNo" placeholder="{{formLocale.driver_adhar_no_placeholder}}"
+                [disabled]="viewFlag" #aadharNo="ngModel" [(ngModel)]="driver.aadharNo">
             </div>
             <label for="contactNo" class="col-sm-2 control-label">{{formLocale.driver_mobile_no}}</label>
             <div class="col-sm-4">
-              <input type="text" class="form-control" id="contactNo" name="contactNo" placeholder="{{formLocale.driver_mobile_no_placeholder}}"
-                [disabled]="viewFlag" #contactNo="ngModel" [(ngModel)]="driver.contactNo">
+              <div class="input-group">
+                <div class="input-group-addon">{{formLocale.mobile_prefix}}</div>
+                <input type="text" class="form-control" id="contactNo" name="contactNo" placeholder="{{formLocale.driver_mobile_no_placeholder}}"
+                  [disabled]="viewFlag" #contactNo="ngModel" [(ngModel)]="driver.contactNo" maxlength="10">
+              </div>
             </div>
           </div>
           <div class="form-group">
@@ -42,10 +45,12 @@
             <label for="dob" class="col-sm-2 control-label">{{formLocale.driver_dob}}</label>
             <div class="col-sm-4">
               <div class="input-group">
-                  <div class="input-group-addon">
-                      <a (click)="dob.toggle()"><i class="fa fa-calendar" ></i></a>
-                    </div>
-                <input class="form-control" placeholder="yyyy-mm-dd" name="dob" [(ngModel)]="driver.dob" ngbDatepicker #dob="ngbDatepicker">
+                <div class="input-group-addon">
+                  <a (click)="dob.toggle()">
+                    <i class="fa fa-calendar"></i>
+                  </a>
+                </div>
+                <input class="form-control" placeholder="yyyy-mm-dd" name="dob" [(ngModel)]="driver.dob" ngbDatepicker #dob="ngbDatepicker" [disabled]="viewFlag">
               </div>
             </div>
           </div>

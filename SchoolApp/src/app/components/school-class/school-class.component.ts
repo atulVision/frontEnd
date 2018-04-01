@@ -8,6 +8,10 @@ import { Classes } from '../../models/classes.model';
 import { ClassesService } from '../../services/classes.service';
 import { Broadcaster } from '../../utils/broadcaster';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
+import { Division } from '../../models/division.model';
+import { Teacher } from '../../models/teacher.model';
+import { DivisionService } from '../../services/division.service';
+import { TeacherService } from '../../services/teacher.service';
 
 @Component({
   selector: 'app-school-class',
@@ -22,9 +26,14 @@ export class SchoolClassComponent implements OnInit {
   pageTitle: any;
   locale: any;
   formLocale: any;
+division: Division;
+teaacher: Teacher;
+divisionList: any;
+teacherList: any;
 
   constructor(private route: ActivatedRoute, private router: Router, private _class: ClassesService,
-    private broadcaster: Broadcaster, private spinnerService: Ng4LoadingSpinnerService) {
+    private broadcaster: Broadcaster, private spinnerService: Ng4LoadingSpinnerService, private _division: DivisionService,
+  private _teacher: TeacherService) {
     this.route.params.subscribe((params) => {
       this.action = params['action'];
       this.initializeClass();
@@ -47,24 +56,37 @@ export class SchoolClassComponent implements OnInit {
 
   ngOnInit() {
    this.checkLogin();
+
+   this._division.getDivisionList().subscribe((res) => {
+    this.divisionList = res;
+    console.log(this.divisionList);
+  }, (resError) => {
+  });
+  this._teacher.getTeacherList().subscribe((res) => {
+    this.teacherList = res;
+    console.log(this.teacherList);
+  }, (resError) => {
+  });
   }
 
-  initializeClass() {
-    this.classes = new Classes(0, '', '', 0, 0);
+  private initializeClass() {
+    this.division = new Division (null, '' , '');
+    this.teaacher = new Teacher (null, '', '', '', '', '', '', '', '', '');
+    this.classes = new Classes(null, '', '', this.division , this.teaacher);
   }
 
-  addClass(data) {
-    console.log(data);
+  public addClass(data) {
+    console.log(this.classes);
     this.spinnerService.show();
     if (this.action === 'new') {
-      this._class.saveClass(data).subscribe((res) => {
+      this._class.saveClass(this.classes).subscribe((res) => {
         console.log(res);
         this.spinnerService.hide();
     }, (resError) => {
     });
     }
     if (this.action === 'edit') {
-      this._class.updateClass(this.classes.classId, this.classes).subscribe((res) => {
+      this._class.updateClass(this.classes.id, this.classes).subscribe((res) => {
         console.log(res);
         this.spinnerService.hide();
     }, (resError) => {
@@ -72,11 +94,11 @@ export class SchoolClassComponent implements OnInit {
     }
   }
 
-  backToList() {
+  public backToList() {
     this.router.navigate(['/list/class']);
   }
 
-  checkLogin() {
+  private checkLogin() {
     const user = UtilFunctions.getLocalStorage('user');
     if ( user ) {
       return;

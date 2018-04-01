@@ -54,32 +54,70 @@ import { ResultSubjectsComponent } from './components/result-subjects/result-sub
 import { SchoolAlbumComponent } from './components/school-album/school-album.component';
 import { SchoolBookTypeComponent } from './components/school-book-type/school-book-type.component';
 import { SchoolDivisionComponent } from './components/school-division/school-division.component';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {NgbModule, NgbTypeaheadModule} from '@ng-bootstrap/ng-bootstrap';
 import { FormModalComponent } from './components/form-modal/form-modal.component';
 import { DivisionService } from './services/division.service';
+import { SchoolSubjectComponent } from './components/school-subject/school-subject.component';
+import { ExamTimeTableComponent } from './components/exam-time-table/exam-time-table.component';
+import { SchoolDayComponent } from './components/school-day/school-day.component';
+import { ListBusStopComponent } from './components/list-bus-stop/list-bus-stop.component';
+import { ListRouteComponent } from './components/list-route/list-route.component';
+import { ListBusComponent } from './components/list-bus/list-bus.component';
+import { ListDriverComponent } from './components/list-driver/list-driver.component';
+import { ListDivisionComponent } from './components/list-division/list-division.component';
+import { ListClassesComponent } from './components/list-classes/list-classes.component';
+import { ListTeacherComponent } from './components/list-teacher/list-teacher.component';
+import { ListStudentComponent } from './components/list-student/list-student.component';
+import { ListAlbumComponent } from './components/list-album/list-album.component';
+import { ListGalleryComponent } from './components/list-gallery/list-gallery.component';
+import { ListBookTypeComponent } from './components/list-book-type/list-book-type.component';
+import { ListBookComponent } from './components/list-book/list-book.component';
+import { ListNotificationComponent } from './components/list-notification/list-notification.component';
+import { ListAttendanceComponent } from './components/list-attendance/list-attendance.component';
+import { ListHomeWorkComponent } from './components/list-home-work/list-home-work.component';
+import { ListTimeTableComponent } from './components/list-time-table/list-time-table.component';
+import { ListExamComponent } from './components/list-exam/list-exam.component';
+import { ListSubjectComponent } from './components/list-subject/list-subject.component';
+import { ListExamTimeTableComponent } from './components/list-exam-time-table/list-exam-time-table.component';
+import { ListResultComponent } from './components/list-result/list-result.component';
 
 const appRoutes: Routes = [
   { path: '', component: DashboardComponent },
   { path: 'login', component: LoginComponent },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'profile', component: ProfileComponent },
-  { path: 'list/:type', component: ListComponent },
   { path: 'division/:action', component: SchoolDivisionComponent },
+  { path: 'list/division', component: ListDivisionComponent },
   { path: 'class/:action', component: SchoolClassComponent },
+  { path: 'list/class', component: ListClassesComponent },
   { path: 'student/:action', component: SchoolStudentComponent },
+  { path: 'list/student', component: ListStudentComponent },
   { path: 'teacher/:action', component: SchoolTeacherComponent },
+  { path: 'list/teacher', component: ListTeacherComponent },
   { path: 'driver/:action', component: SchoolDriverComponent },
+  { path: 'list/driver', component: ListDriverComponent },
   { path: 'bus/:action', component: SchoolBusComponent },
+  { path: 'list/bus', component: ListBusComponent },
   { path: 'route/:action', component: SchoolRouteComponent },
+  { path: 'list/route', component: ListRouteComponent },
   { path: 'homeWork/:action', component: SchoolHomeWorkComponent },
+  { path: 'list/homeWork', component: ListClassesComponent },
   { path: 'attendance/:action', component: SchoolAttendanceComponent },
+  { path: 'list/attendance', component: ListClassesComponent },
   { path: 'timeTable/:action', component: SchoolTimeTableComponent },
+  { path: 'list/timeTable', component: ListClassesComponent },
   { path: 'album/:action', component: SchoolGalleryComponent },
+  { path: 'list/album', component: ListClassesComponent },
   { path: 'book/:action', component: SchoolLibraryComponent },
+  { path: 'list/book', component: ListClassesComponent },
   { path: 'notification/:action', component: SchoolNotificationComponent },
+  { path: 'list/notification', component: ListClassesComponent },
   { path: 'exam/:action', component: SchoolExamComponent },
+  { path: 'list/exam', component: ListClassesComponent },
   { path: 'result/:action', component: ResultMarksComponent },
+  { path: 'list/result', component: ListClassesComponent },
   { path: 'busStop/:action', component: SchoolBusStopComponent },
+  { path: 'list/busStop', component: ListBusStopComponent },
   { path: '**', component: ErrorComponent }
 ];
 
@@ -114,7 +152,30 @@ const appRoutes: Routes = [
     SchoolAlbumComponent,
     SchoolBookTypeComponent,
     SchoolDivisionComponent,
-    FormModalComponent
+    FormModalComponent,
+    SchoolSubjectComponent,
+    ExamTimeTableComponent,
+    SchoolDayComponent,
+    ListBusStopComponent,
+    ListRouteComponent,
+    ListBusComponent,
+    ListDriverComponent,
+    ListDivisionComponent,
+    ListClassesComponent,
+    ListTeacherComponent,
+    ListStudentComponent,
+    ListAlbumComponent,
+    ListGalleryComponent,
+    ListBookTypeComponent,
+    ListBookComponent,
+    ListNotificationComponent,
+    ListAttendanceComponent,
+    ListHomeWorkComponent,
+    ListTimeTableComponent,
+    ListExamComponent,
+    ListSubjectComponent,
+    ListExamTimeTableComponent,
+    ListResultComponent
   ],
   imports: [
     BrowserModule,
