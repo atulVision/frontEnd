@@ -5,29 +5,29 @@ import { HttpModule } from '@angular/http';
 import { RouterModule, Route, Routes } from '@angular/router';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './components/header/header.component';
-import { NavBarComponent } from './components/nav-bar/nav-bar.component';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { FooterComponent } from './components/footer/footer.component';
-import { SchoolClassComponent } from './components/school-class/school-class.component';
-import { SchoolTeacherComponent } from './components/school-teacher/school-teacher.component';
-import { SchoolDriverComponent } from './components/school-driver/school-driver.component';
-import { SchoolBusComponent } from './components/school-bus/school-bus.component';
-import { SchoolRouteComponent } from './components/school-route/school-route.component';
+import { HeaderComponent } from './components/common/header/header.component';
+import { NavBarComponent } from './components/common/nav-bar/nav-bar.component';
+import { DashboardComponent } from './components/common/dashboard/dashboard.component';
+import { FooterComponent } from './components/common/footer/footer.component';
+import { SchoolClassComponent } from './components/administration/class-module/school-class/school-class.component';
+import { SchoolTeacherComponent } from './components/administration/teacher-module/school-teacher/school-teacher.component';
+import { SchoolDriverComponent } from './components/transportation/driver-module/school-driver/school-driver.component';
+import { SchoolBusComponent } from './components/transportation/bus-module/school-bus/school-bus.component';
+import { SchoolRouteComponent } from './components/transportation/route-module/school-route/school-route.component';
 import { SchoolHomeWorkComponent } from './components/school-home-work/school-home-work.component';
 import { SchoolAttendanceComponent } from './components/school-attendance/school-attendance.component';
 import { SchoolTimeTableComponent } from './components/school-time-table/school-time-table.component';
-import { SchoolGalleryComponent } from './components/school-gallery/school-gallery.component';
-import { SchoolLibraryComponent } from './components/school-library/school-library.component';
-import { SchoolNotificationComponent } from './components/school-notification/school-notification.component';
+import { SchoolGalleryComponent } from './components/administration/gallery-module/school-gallery/school-gallery.component';
+import { SchoolLibraryComponent } from './components/administration/library-module/school-library/school-library.component';
+import { SchoolNotificationComponent } from './components/administration/notification-module/school-notification/school-notification.component';
 import { SchoolResultComponent } from './components/school-result/school-result.component';
-import { LoginComponent } from './components/login/login.component';
+import { LoginComponent } from './components/common/login/login.component';
 import { ResultMarksComponent } from './components/result-marks/result-marks.component';
-import { SchoolStudentComponent } from './components/school-student/school-student.component';
-import { ErrorComponent } from './components/error/error.component';
+import { SchoolStudentComponent } from './components/administration/student-module/school-student/school-student.component';
+import { ErrorComponent } from './components/common/error/error.component';
 import { ListComponent } from './components/list/list.component';
 import { SchoolExamComponent } from './components/school-exam/school-exam.component';
-import { ProfileComponent } from './components/profile/profile.component';
+import { ProfileComponent } from './components/common/profile/profile.component';
 import { DataServiceService } from './services/data-service.service';
 import { BookService } from './services/book.service';
 import { TeacherService } from './services/teacher.service';
@@ -48,31 +48,31 @@ import { AgmCoreModule } from '@agm/core';
 import { AgmDirectionModule } from 'agm-direction';
 import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 import { Broadcaster } from './utils/broadcaster';
-import { SchoolBusStopComponent } from './components/school-bus-stop/school-bus-stop.component';
+import { SchoolBusStopComponent } from './components/transportation/bus-stop-module/school-bus-stop/school-bus-stop.component';
 import { BusStopService } from './services/bus-stop.service';
 import { ResultSubjectsComponent } from './components/result-subjects/result-subjects.component';
-import { SchoolAlbumComponent } from './components/school-album/school-album.component';
-import { SchoolBookTypeComponent } from './components/school-book-type/school-book-type.component';
-import { SchoolDivisionComponent } from './components/school-division/school-division.component';
+import { SchoolAlbumComponent } from './components/administration/gallery-module/school-album/school-album.component';
+import { SchoolBookTypeComponent } from './components/administration/library-module/school-book-type/school-book-type.component';
+import { SchoolDivisionComponent } from './components/administration/division-module/school-division/school-division.component';
 import {NgbModule, NgbTypeaheadModule} from '@ng-bootstrap/ng-bootstrap';
 import { FormModalComponent } from './components/form-modal/form-modal.component';
 import { DivisionService } from './services/division.service';
 import { SchoolSubjectComponent } from './components/school-subject/school-subject.component';
 import { ExamTimeTableComponent } from './components/exam-time-table/exam-time-table.component';
 import { SchoolDayComponent } from './components/school-day/school-day.component';
-import { ListBusStopComponent } from './components/list-bus-stop/list-bus-stop.component';
-import { ListRouteComponent } from './components/list-route/list-route.component';
-import { ListBusComponent } from './components/list-bus/list-bus.component';
-import { ListDriverComponent } from './components/list-driver/list-driver.component';
-import { ListDivisionComponent } from './components/list-division/list-division.component';
-import { ListClassesComponent } from './components/list-classes/list-classes.component';
-import { ListTeacherComponent } from './components/list-teacher/list-teacher.component';
-import { ListStudentComponent } from './components/list-student/list-student.component';
-import { ListAlbumComponent } from './components/list-album/list-album.component';
-import { ListGalleryComponent } from './components/list-gallery/list-gallery.component';
-import { ListBookTypeComponent } from './components/list-book-type/list-book-type.component';
-import { ListBookComponent } from './components/list-book/list-book.component';
-import { ListNotificationComponent } from './components/list-notification/list-notification.component';
+import { ListBusStopComponent } from './components/transportation/bus-stop-module/list-bus-stop/list-bus-stop.component';
+import { ListRouteComponent } from './components/transportation/route-module/list-route/list-route.component';
+import { ListBusComponent } from './components/transportation/bus-module/list-bus/list-bus.component';
+import { ListDriverComponent } from './components/transportation/driver-module/list-driver/list-driver.component';
+import { ListDivisionComponent } from './components/administration/division-module/list-division/list-division.component';
+import { ListClassesComponent } from './components/administration/class-module/list-classes/list-classes.component';
+import { ListTeacherComponent } from './components/administration/teacher-module/list-teacher/list-teacher.component';
+import { ListStudentComponent } from './components/administration/student-module/list-student/list-student.component';
+import { ListAlbumComponent } from './components/administration/gallery-module/list-album/list-album.component';
+import { ListGalleryComponent } from './components/administration/gallery-module/list-gallery/list-gallery.component';
+import { ListBookTypeComponent } from './components/administration/library-module/list-book-type/list-book-type.component';
+import { ListBookComponent } from './components/administration//library-module/list-book/list-book.component';
+import { ListNotificationComponent } from './components/administration/notification-module/list-notification/list-notification.component';
 import { ListAttendanceComponent } from './components/list-attendance/list-attendance.component';
 import { ListHomeWorkComponent } from './components/list-home-work/list-home-work.component';
 import { ListTimeTableComponent } from './components/list-time-table/list-time-table.component';
@@ -80,6 +80,7 @@ import { ListExamComponent } from './components/list-exam/list-exam.component';
 import { ListSubjectComponent } from './components/list-subject/list-subject.component';
 import { ListExamTimeTableComponent } from './components/list-exam-time-table/list-exam-time-table.component';
 import { ListResultComponent } from './components/list-result/list-result.component';
+import { UserService } from './services/user.service';
 
 const appRoutes: Routes = [
   { path: '', component: DashboardComponent },
@@ -211,7 +212,8 @@ const appRoutes: Routes = [
     NotificationService,
     Broadcaster,
     BusStopService,
-    DivisionService
+    DivisionService,
+    UserService
   ],
   bootstrap: [AppComponent]
 })

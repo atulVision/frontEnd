@@ -102,23 +102,24 @@ export class Labels {
         class: {
           table_title: 'List of Classes',
           add_btn: 'Add Class',
-          class: 'CLASS',
+          className: 'CLASS',
           division: 'DIVISION',
+          teacher: 'TEACHER'
         },
         teacher: {
           table_title: 'List of Teacher\'s',
           add_btn: 'Add Teacher',
-          name: 'NAME',
-          userName: 'USERNAME',
+          firstName: 'FIRST NAME',
+          lastName: 'LAST NAME',
           contactNo: 'MOBILE NO.',
           email: 'EMAIL ID'
         },
         student: {
           table_title: 'List of Student\'s',
           add_btn: 'Add Student',
-          roll_no: 'ROLL NO.',
-          fname: 'FIRST NAME',
-          lname: 'LAST NAME',
+          rollNo: 'ROLL NO.',
+          firstName: 'FIRST NAME',
+          lastName: 'LAST NAME',
           class: 'CLASS',
           division: 'DIVISION',
           username: 'USERNAME'
@@ -225,22 +226,42 @@ export class Labels {
         login: 'Login',
         bus_stop: 'Bus Stop',
         route: 'Route',
-        division: 'Division'
+        division: 'Division',
+        profile: 'Profile'
       },
       form_labels: {
+        user_f_name: 'First Name',
+        user_l_name: 'Last Name',
+        user_contact_no: 'Mobile Number',
+        user_address: 'Address',
+        user_email: 'Email Id',
+        user_password: 'Password',
+        user_dob: 'Date of Birth',
+        user_f_name_placeholder: 'Enter First Name',
+        user_l_name_placeholder: 'Enter Last Name',
+        user_contact_no_placeholder: 'Enter Mobile Number',
+        user_address_placeholder: 'Enter Address',
+        user_email_placeholder: 'Enter Email Id',
+        user_password_placeholder: 'Enter Password',
+
         mobile_prefix: '+91',
+
         modal_status: 'Status',
         modal_add_msg: ' is added successfully.',
         modal_update_msg: ' is updated successfully.',
-        modal_delete_msg: '',
+        modal_delete_msg: 'Are you sure you want to delete this entry!',
+
         login_email: 'Email Id',
         login_pass: 'Password',
         login_email_placeholder: 'Enter Email Id',
         login_pass_placeholder: 'Enter Password',
+
         ok_btn: 'OK',
         submit_btn: 'Submit',
         back_btn: 'Back',
         update_btn: 'Update',
+        delete_btn: 'Delete',
+
         bus_no: 'Bus No.',
         bus_owner: 'Owner Name',
         bus_driver: 'Driver Name',
@@ -251,6 +272,7 @@ export class Labels {
         bus_driver_placeholder: 'Select Driver',
         bus_route_placeholder: 'Select Bus Route',
         bus_contact_no_placeholder: 'Enter Contact No.',
+
         stop_name: 'Bus Stop Name',
         stop_lat: 'Bust Stop Latitude',
         stop_lng: 'Bust Stop Longitude',
@@ -259,6 +281,7 @@ export class Labels {
         stop_name_placeholder: 'Enter Bus Stop Name',
         stop_lat_placeholder: 'Click on Map or Search',
         stop_lng_placeholder: 'Click on Map or Search',
+
         driver_f_name: 'First Name',
         driver_l_name: 'Last Name',
         driver_adhar_no: 'Adhar No.',
@@ -281,17 +304,18 @@ export class Labels {
         driver_pass_placeholder: 'Enter Password',
         driver_bus_placeholder: 'Select Bus',
         driver_position_placeholder: 'Enter Position',
+
         class_name: 'Standard',
         division_name: 'Division Name',
         division_desc: 'Division Description',
         class_desc: 'Class Descrption',
         class_teacher: 'Class Teacher',
-        total_students: 'Total Students',
         class_name_placeholder: 'Enter Standard',
         division_name_placeholder: 'Enter Division Name',
         division_desc_placeholder: 'Enter Division Description',
         class_desc_placeholder: 'Enter Class Description',
         class_teacher_placeholder: 'Select Class Teacher',
+
         teacher_f_name: 'First Name',
         teacher_l_name: 'Last Name',
         teacher_dob: 'Date of Birth',
@@ -308,6 +332,7 @@ export class Labels {
         teacher_designation_placeholder: 'Enter Designation',
         teacher_address_placeholder: 'Enter Address',
         teacher_pass_placeholder: 'Enter Password',
+
         student_f_name: 'First Name',
         studengt_l_name: 'Last Name',
         student_father_name: 'Father Name',
@@ -330,6 +355,8 @@ export class Labels {
         student_route: 'Route Name',
         student_pass: 'Password',
         student_stop: 'Bus Stop',
+        student_gender: 'Gender',
+        student_admission_date: 'Admission Date',
         student_f_name_placeholder: 'Enter First Name',
         studengt_l_name_placeholder: 'Enter Last Name',
         student_father_name_placeholder: 'Enter Father\'s Name',
@@ -350,6 +377,8 @@ export class Labels {
         student_route_placeholder: 'Select Route Name',
         student_stop_placeholder: 'Select Bus Stop',
         student_pass_placeholder: 'Enter Password',
+        student_gender_placeholder: 'Select Gender',
+
         route_name: ' Route Name',
         route_start: 'Starting Bus Stop',
         route_end: 'Last Bus Stop',

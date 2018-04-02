@@ -1,0 +1,91 @@
+<section class="content-header">
+  <h1>{{locale.profile}}</h1>
+</section>
+<section class="content-header">
+  <div class="form">
+    <div class="box box-info">
+      <div class="box-header with-border">
+        <h3 class="box-title">{{locale.profile}}</h3>
+      </div>
+      <form class="form-horizontal" id="profileForm" #profileForm="ngForm" (ngSubmit)="updateProfile(profileForm.value)">
+        <div class="box-body">
+          <div class="form-group">
+            <label for="firstName" class="col-sm-2 control-label">{{formLocale.user_f_name}}</label>
+            <div class="col-sm-4">
+              <input type="text" class="form-control" id="firstName" name="firstName" placeholder="{{formLocale.user_f_name_placeholder}}"
+                [disabled]="viewFlag" #firstName="ngModel" [(ngModel)]="user.firstName">
+            </div>
+            <label for="lastName" class="col-sm-2 control-label">{{formLocale.user_l_name}}</label>
+            <div class="col-sm-4">
+              <input type="text" class="form-control" id="lastName" name="lastName" placeholder="{{formLocale.user_l_name_placeholder}}"
+                [disabled]="viewFlag" #lastName="ngModel" [(ngModel)]="user.lastName">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="address" class="col-sm-2 control-label">{{formLocale.user_address}}</label>
+            <div class="col-sm-4">
+              <textarea class="form-control" id="address" name="address" placeholder="{{formLocale.user_address_placeholder}}" [disabled]="viewFlag"
+                #address="ngModel" [(ngModel)]="user.address"></textarea>
+            </div>
+            <label for="mobile" class="col-sm-2 control-label">{{formLocale.student_mobile}}</label>
+            <div class="col-sm-4">
+              <div class="input-group">
+                <div class="input-group-addon">{{formLocale.mobile_prefix}}</div>
+                <input type="text" class="form-control" id="contactNo" name="contactNo" placeholder="{{formLocale.user_contact_no_placeholder}}"
+                  [disabled]="viewFlag" #contactNo="ngModel" [(ngModel)]="user.contactNo" maxlength="10">
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="dob" class="col-sm-2 control-label">{{formLocale.user_dob}}</label>
+            <div class="col-sm-4">
+              <div class="input-group">
+                <div class="input-group-addon">
+                  <a (click)="dob.toggle()">
+                    <i class="fa fa-calendar"></i>
+                  </a>
+                </div>
+                <input class="form-control" placeholder="yyyy-mm-dd" name="dob" [(ngModel)]="user.dob" ngbDatepicker #dob="ngbDatepicker"
+                  [disabled]="viewFlag">
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="email" class="col-sm-2 control-label">{{formLocale.user_email}}</label>
+            <div class="col-sm-4">
+              <input type="text" class="form-control" id="email" name="email" placeholder="{{formLocale.user_email_placeholder}}" [disabled]="viewFlag"
+                #email="ngModel" [(ngModel)]="user.email">
+            </div>
+            <label for="password" class="col-sm-2 control-label">{{formLocale.user_password}}</label>
+            <div class="col-sm-4">
+              <input type="text" class="form-control" id="password" name="password" placeholder="{{formLocale.user_password_placeholder}}"
+                [disabled]="viewFlag" #password="ngModel" [(ngModel)]="user.password">
+            </div>
+          </div>
+        </div>
+        <div class="box-footer">
+          <button type="button" class="btn btn-default" (click)="backToList()">{{formLocale.back_btn}}</button>
+          <button type="submit" class="btn btn-success pull-right" data-toggle="modal" data-target="#modal-success">{{formLocale.update_btn}}</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+<div class="modal modal-success fade" id="modal-success">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="modal-title">{{formLocale.modal_status}}</h4>
+        </div>
+        <div class="modal-body">
+          <h5>{{locale.profile+formLocale.modal_update_msg}} </h5>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline pull-left" data-dismiss="modal" (click)="backToList()">{{formLocale.ok_btn}}</button>
+        </div>
+      </div>
+    </div>
+  </div>

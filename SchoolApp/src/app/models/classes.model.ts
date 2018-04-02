@@ -5,17 +5,17 @@ export class Classes {
 
   public id: number;
   public className: string;
-  public classDescription: string;
+  public classDesc: string;
   public division: Division;
-  public teacher: Teacher;
+  public classTeacher: Teacher;
 
-  constructor(id: number, className: string, classDescription: string,
-    division: Division, teacher: Teacher
+  constructor(id: number, className: string, classDesc: string,
+    division: Division, classTeacher: Teacher
   ) {
     this.id = id;
     this.className = className;
-    this.classDescription = classDescription;
+    this.classDesc = classDesc;
     this.division = division;
-    this.teacher = teacher;
+    this.classTeacher = classTeacher;
   }
 }

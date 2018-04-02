@@ -1,0 +1,69 @@
+<section class="content-header">
+  <h1>{{pageTitle}}</h1>
+</section>
+<section class="content-header">
+  <div class="form">
+    <div class="box box-info">
+      <div class="box-header with-border">
+        <h3 class="box-title">{{locale.class}}</h3>
+      </div>
+      <form class="form-horizontal" id="classForm" #classForm="ngForm" (ngSubmit)="addClass(classForm.value)">
+        <div class="box-body">
+          <div class="form-group">
+            <label for="className" class="col-sm-2 control-label">{{formLocale.class_name}}</label>
+            <div class="col-sm-4">
+              <input type="text" class="form-control" id="className" name="className" placeholder="{{formLocale.class_name_placeholder}}"
+                [disabled]="viewFlag" #className="ngModel" [(ngModel)]="classes.className">
+            </div>
+            <label for="classDescription" class="col-sm-2 control-label">{{formLocale.class_desc}}</label>
+            <div class="col-sm-4">
+              <input type="text" class="form-control" id="classDescription" name="classDescription" placeholder="{{formLocale.class_desc_placeholder}}"
+                [disabled]="viewFlag" #classDescription="ngModel" [(ngModel)]="classes.classDesc">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="divisionId" class="col-sm-2 control-label">{{formLocale.division_name}}</label>
+            <div class="col-sm-4">
+              <select class="form-control" id="divisionId" name="divisionId" [disabled]="viewFlag" #divisionId="ngModel" [(ngModel)]="classes.division.id">
+                <option value="" disabled selected>{{formLocale.division_name_placeholder}}</option>
+                <option *ngFor="let division of divisionList" [(ngValue)]="division.id">{{division.divisionName}}</option>
+              </select>
+            </div>
+            <label for="classTeacher" class="col-sm-2 control-label">{{formLocale.class_teacher}}</label>
+            <div class="col-sm-4">
+              <select class="form-control" id="classTeacher" name="classTeacher" [disabled]="viewFlag" #classTeacher="ngModel" [(ngModel)]="classes.classTeacher.teacherId">
+                <option value="" disabled selected>{{formLocale.class_teacher_placeholder}}</option>
+                <option *ngFor="let teacher of teacherList" [(ngValue)]="teacher.teacherId">{{teacher.firstName}} {{teacher.lastName}}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="box-footer">
+          <button type="button" class="btn btn-default" (click)="backToList()">{{formLocale.back_btn}}</button>
+          <button *ngIf="action === 'new'" type="submit" class="btn btn-success pull-right" data-toggle="modal" data-target="#modal-success">{{formLocale.submit_btn}}</button>
+          <button *ngIf="action === 'view'" type="button" class="btn btn-info btn-info pull-right" (click)="backToList()">{{formLocale.ok_btn}}</button>
+          <button *ngIf="action === 'edit'" type="submit" class="btn btn-success pull-right" data-toggle="modal" data-target="#modal-success">{{formLocale.update_btn}}</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+<div class="modal modal-success fade" id="modal-success">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title">{{formLocale.modal_status}}</h4>
+      </div>
+      <div class="modal-body">
+        <h5 *ngIf="action === 'new'">{{locale.class+formLocale.modal_add_msg}} </h5>
+        <h5 *ngIf="action === 'edit'">{{locale.class+formLocale.modal_update_msg}} </h5>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline pull-left" data-dismiss="modal" (click)="backToList()">{{formLocale.ok_btn}}</button>
+      </div>
+    </div>
+  </div>
+</div>

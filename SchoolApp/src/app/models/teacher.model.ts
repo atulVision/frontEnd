@@ -9,13 +9,13 @@ export class Teacher {
     public email: string;
     public designation: string;
     public password: string;
-    public dob: string;
+    public dob: any;
 
 
 
     constructor(teacherId: number, firstName: string, lastName: string,
       address: string, contactNo: string, email: string, designation: string,
-       password: string, dob: string, profile: string
+       password: string, dob: any, profile: string
     ) {
       this.teacherId = teacherId;
       this.firstName = firstName;

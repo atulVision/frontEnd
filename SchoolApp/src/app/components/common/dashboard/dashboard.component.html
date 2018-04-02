@@ -1,0 +1,235 @@
+<section class="content-header">
+  <h1>{{locale.head_title}}</h1>
+  <h4 *ngIf="role == 1">(ADMIN)</h4>
+  <h4 *ngIf="role == 2">(TEACHER)</h4>
+  <h4 *ngIf="role == 3">(TRANSPORTATION)</h4>
+</section>
+<section class="content-header">
+  <div class="row">
+    <div class="col-lg-2 col-xs-6" *ngIf="role == 1">
+      <div class="small-box bg-aqua">
+        <div class="inner">
+          <h3>1</h3>
+          <p>{{locale.division_box}}</p>
+        </div>
+        <div class="icon">
+          <i class="fa fa-university"></i>
+        </div>
+        <a routerLink="../list/division" routerLinkActive="active" class="small-box-footer">
+          {{locale.view_detail}}
+          <i class="fa fa-arrow-circle-right"></i>
+        </a>
+      </div>
+    </div>
+    <div class="col-lg-2 col-xs-6" *ngIf="role == 1">
+      <div class="small-box bg-green">
+        <div class="inner">
+          <h3>1</h3>
+          <p>{{locale.class_box}}</p>
+        </div>
+        <div class="icon">
+          <i class="fa fa-university"></i>
+        </div>
+        <a routerLink="../list/class" routerLinkActive="active" class="small-box-footer">
+          {{locale.view_detail}}
+          <i class="fa fa-arrow-circle-right"></i>
+        </a>
+      </div>
+    </div>
+    <div class="col-lg-2 col-xs-6" *ngIf="role == 1">
+      <div class="small-box bg-red">
+        <div class="inner">
+          <h3>1</h3>
+          <p>{{locale.teacher_box}}</p>
+        </div>
+        <div class="icon">
+          <i class="fa fa-users"></i>
+        </div>
+        <a routerLink="../list/teacher" routerLinkActive="active" class="small-box-footer">
+          {{locale.view_detail}}
+          <i class="fa fa-arrow-circle-right"></i>
+        </a>
+      </div>
+    </div>
+    <div class="col-lg-2 col-xs-6" *ngIf="role == 1 || role == 3">
+      <div class="small-box bg-yellow">
+        <div class="inner">
+          <h3>4</h3>
+          <p>{{locale.student_box}}</p>
+        </div>
+        <div class="icon">
+          <i class="fa fa-child"></i>
+        </div>
+        <a routerLink="../list/student" routerLinkActive="active" class="small-box-footer">
+          {{locale.view_detail}}
+          <i class="fa fa-arrow-circle-right"></i>
+        </a>
+      </div>
+    </div>
+    <div class="col-lg-2 col-xs-6" *ngIf="role == 1">
+      <div class="small-box bg-aqua">
+        <div class="inner">
+          <h3>4</h3>
+          <p>{{locale.book_box}}</p>
+        </div>
+        <div class="icon">
+          <i class="fa fa-book"></i>
+        </div>
+        <a routerLink="../list/book" routerLinkActive="active" class="small-box-footer">
+          {{locale.view_detail}}
+          <i class="fa fa-arrow-circle-right"></i>
+        </a>
+      </div>
+    </div>
+    <div class="col-lg-2 col-xs-6" *ngIf="role == 1">
+      <div class="small-box bg-green">
+        <div class="inner">
+          <h3>4</h3>
+          <p>{{locale.album_box}}</p>
+        </div>
+        <div class="icon">
+          <i class="fa fa-image"></i>
+        </div>
+        <a routerLink="../list/album" routerLinkActive="active" class="small-box-footer">
+          {{locale.view_detail}}
+          <i class="fa fa-arrow-circle-right"></i>
+        </a>
+      </div>
+    </div>
+    <div class="col-lg-2 col-xs-6" *ngIf="role == 1">
+      <div class="small-box bg-red">
+        <div class="inner">
+          <h3>4</h3>
+          <p>{{locale.notification_box}}</p>
+        </div>
+        <div class="icon">
+          <i class="fa fa-bell-o"></i>
+        </div>
+        <a routerLink="../list/notification" routerLinkActive="active" class="small-box-footer">
+          {{locale.view_detail}}
+          <i class="fa fa-arrow-circle-right"></i>
+        </a>
+      </div>
+    </div>
+    <div class="col-lg-2 col-xs-6" *ngIf="role == 2">
+      <div class="small-box bg-aqua">
+        <div class="inner">
+          <p>Go To</p>
+          <h4>{{locale.attendance_box}}</h4>
+        </div>
+        <div class="icon">
+          <i class="fa fa-check"></i>
+        </div>
+        <a routerLink="../list/attendance" routerLinkActive="active" class="small-box-footer">
+          {{locale.view_detail}}
+          <i class="fa fa-arrow-circle-right"></i>
+        </a>
+      </div>
+    </div>
+    <div class="col-lg-2 col-xs-6" *ngIf="role == 2">
+      <div class="small-box bg-green">
+        <div class="inner">
+          <p>Go To</p>
+          <h4>{{locale.time_table_box}}</h4>
+        </div>
+        <div class="icon">
+          <i class="fa fa-table"></i>
+        </div>
+        <a routerLink="../list/timeT" routerLinkActive="active" class="small-box-footer">
+          {{locale.view_detail}}
+          <i class="fa fa-arrow-circle-right"></i>
+        </a>
+      </div>
+    </div>
+    <div class="col-lg-2 col-xs-6" *ngIf="role == 2">
+      <div class="small-box bg-red">
+        <div class="inner">
+          <p>Go To</p>
+          <h4>{{locale.home_work_box}}</h4>
+        </div>
+        <div class="icon">
+          <i class="fa fa-pencil"></i>
+        </div>
+        <a routerLink="../list/homeW" routerLinkActive="active" class="small-box-footer">
+          {{locale.view_detail}}
+          <i class="fa fa-arrow-circle-right"></i>
+        </a>
+      </div>
+    </div>
+    <div class="col-lg-2 col-xs-6" *ngIf="role == 2">
+      <div class="small-box bg-yellow">
+        <div class="inner">
+          <p>Go To</p>
+          <h4>{{locale.result_box}}</h4>
+        </div>
+        <div class="icon">
+          <i class="fa fa-server"></i>
+        </div>
+        <a routerLink="../list/result" routerLinkActive="active" class="small-box-footer">
+          {{locale.view_detail}}
+          <i class="fa fa-arrow-circle-right"></i>
+        </a>
+      </div>
+    </div>
+    <div class="col-lg-2 col-xs-6" *ngIf="role == 3">
+      <div class="small-box bg-aqua">
+        <div class="inner">
+          <h3>5</h3>
+          <p>{{locale.driver_box}}</p>
+        </div>
+        <div class="icon">
+          <i class="fa fa-user"></i>
+        </div>
+        <a routerLink="../list/driver" routerLinkActive="active" class="small-box-footer">
+          {{locale.view_detail}}
+          <i class="fa fa-arrow-circle-right"></i>
+        </a>
+      </div>
+    </div>
+    <div class="col-lg-2 col-xs-6" *ngIf="role == 3">
+      <div class="small-box bg-green">
+        <div class="inner">
+          <h3>5</h3>
+          <p>{{locale.bus_box}}</p>
+        </div>
+        <div class="icon">
+          <i class="fa fa-bus"></i>
+        </div>
+        <a routerLink="../list/bus" routerLinkActive="active" class="small-box-footer">
+          {{locale.view_detail}}
+          <i class="fa fa-arrow-circle-right"></i>
+        </a>
+      </div>
+    </div>
+    <div class="col-lg-2 col-xs-6" *ngIf="role == 3">
+      <div class="small-box bg-red">
+        <div class="inner">
+          <h3>5</h3>
+          <p>{{locale.route_box}}</p>
+        </div>
+        <div class="icon">
+          <i class=" fa fa-map-o"></i>
+        </div>
+        <a routerLink="../list/route" routerLinkActive="active" class="small-box-footer">
+          {{locale.view_detail}}
+          <i class="fa fa-arrow-circle-right"></i>
+        </a>
+      </div>
+    </div>
+    <div class="col-lg-2 col-xs-6" *ngIf="role == 3">
+      <div class="small-box bg-yellow">
+        <div class="inner">
+          <h3>4</h3>
+          <p>{{locale.bus_stop_box}}</p>
+        </div>
+        <div class="icon">
+          <i class="fa fa-thumb-tack"></i>
+        </div>
+        <a routerLink="../list/busS" routerLinkActive="active" class="small-box-footer">
+          {{locale.view_detail}}
+          <i class="fa fa-arrow-circle-right"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,97 @@
+<section class="content-header">
+  <h1>{{pageTitle}}</h1>
+</section>
+<section class="content-header">
+  <div class="form">
+    <div class="box box-info">
+      <div class="box-header with-border">
+        <h3 class="box-title">{{locale.driver}}</h3>
+      </div>
+      <form class="form-horizontal" id="driverForm" #driverForm="ngForm" (ngSubmit)="addDriver(driverForm.value)">
+        <div class="box-body">
+          <div class="form-group">
+            <label for="firstName" class="col-sm-2 control-label">{{formLocale.driver_f_name}}</label>
+            <div class="col-sm-4">
+              <input type="text" class="form-control" id="firstName" name="firstName" placeholder="{{formLocale.driver_f_name_placeholder}}"
+                [disabled]="viewFlag" #firstName="ngModel" [(ngModel)]="driver.firstName">
+            </div>
+            <label for="lastName" class="col-sm-2 control-label">{{formLocale.driver_l_name}}</label>
+            <div class="col-sm-4">
+              <input type="text" class="form-control" id="lastName" name="lastName" placeholder="{{formLocale.driver_l_name_placeholder}}"
+                [disabled]="viewFlag" #lastName="ngModel" [(ngModel)]="driver.lastName">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="aadharNo" class="col-sm-2 control-label">{{formLocale.driver_adhar_no}}</label>
+            <div class="col-sm-4">
+              <input type="text" class="form-control" id="aadharNo" name="aadharNo" placeholder="{{formLocale.driver_adhar_no_placeholder}}"
+                [disabled]="viewFlag" #aadharNo="ngModel" [(ngModel)]="driver.aadharNo">
+            </div>
+            <label for="contactNo" class="col-sm-2 control-label">{{formLocale.driver_mobile_no}}</label>
+            <div class="col-sm-4">
+              <div class="input-group">
+                <div class="input-group-addon">{{formLocale.mobile_prefix}}</div>
+                <input type="text" class="form-control" id="contactNo" name="contactNo" placeholder="{{formLocale.driver_mobile_no_placeholder}}"
+                  [disabled]="viewFlag" #contactNo="ngModel" [(ngModel)]="driver.contactNo" maxlength="10">
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="address" class="col-sm-2 control-label">{{formLocale.driver_address}}</label>
+            <div class="col-sm-4">
+              <textarea class="form-control" id="address" name="address" placeholder="{{formLocale.driver_address_placeholder}}" [disabled]="viewFlag"
+                #address="ngModel" [(ngModel)]="driver.address"></textarea>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="email" class="col-sm-2 control-label">{{formLocale.driver_email}}</label>
+            <div class="col-sm-4">
+              <input type="text" class="form-control" id="email" name="email" placeholder="{{formLocale.driver_email_placeholder}}" [disabled]="viewFlag"
+                #email="ngModel" [(ngModel)]="driver.email">
+            </div>
+            <label for="password" class="col-sm-2 control-label">{{formLocale.driver_pass}}</label>
+            <div class="col-sm-4">
+              <input type="text" class="form-control" id="password" name="password" placeholder="{{formLocale.driver_pass_placeholder}}"
+                [disabled]="viewFlag" #password="ngModel" [(ngModel)]="driver.password">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="profile" class="col-sm-2 control-label">{{formLocale.driver_profile}}</label>
+            <div class="col-sm-8">
+              <input type="file" class="form-control" id="profile" name="profile" [disabled]="viewFlag" #profile="ngModel" [(ngModel)]="driver.profile"
+                accept="image/jpeg,image/png">
+            </div>
+            <div class="media-right">
+              <img src="assets/images/Tushar_Upadhyay.jpg" class="media-object" style="width:80px">
+            </div>
+          </div>
+        </div>
+        <div class="box-footer">
+          <button type="button" class="btn btn-default" (click)="backToList()">{{formLocale.back_btn}}</button>
+          <button *ngIf="action === 'new'" type="submit" class="btn btn-success pull-right" data-toggle="modal" data-target="#modal-success">{{formLocale.submit_btn}}</button>
+          <button *ngIf="action === 'view'" type="button" class="btn btn-info btn-info pull-right" (click)="backToList()">{{formLocale.ok_btn}}</button>
+          <button *ngIf="action === 'edit'" type="submit" class="btn btn-success pull-right" data-toggle="modal" data-target="#modal-success">{{formLocale.update_btn}}</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+<div class="modal modal-success fade" id="modal-success">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title">{{formLocale.modal_status}}</h4>
+      </div>
+      <div class="modal-body">
+        <h5 *ngIf="action === 'new'">{{locale.driver+formLocale.modal_add_msg}} </h5>
+        <h5 *ngIf="action === 'edit'">{{locale.driver+formLocale.modal_update_msg}} </h5>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline pull-left" data-dismiss="modal" (click)="backToList()">{{formLocale.ok_btn}}</button>
+      </div>
+    </div>
+  </div>
+</div>

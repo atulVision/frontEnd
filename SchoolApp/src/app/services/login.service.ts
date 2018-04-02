@@ -12,7 +12,7 @@ export class LoginService {
   constructor(private _http: Http) { }
 
   login(role: any, user: User) {
-    return this._http.post(Constants.URL.host_url + Constants.URL.loginURL , user)
+    return this._http.post(Constants.URL.host_url + Constants.URL.loginURL + '/' + role, user)
       .map((response: Response) => {
         return response.json();
       })

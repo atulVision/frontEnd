@@ -7,12 +7,10 @@ export class User {
   public address: string;
   public email: string;
   public password: string;
-  public profile: string;
-public dob: string;
+  public dob: any;
 
-  constructor(userId: number, firstName: string, lastName: string,
-    contactNo: string, address: string, email: string, password: string,
-    profile: string, dob: string
+  constructor(userId: number, firstName: string, lastName: string, contactNo: string,
+    address: string, email: string, password: string, dob: any
   ) {
     this.userId = userId;
     this.firstName = firstName;
@@ -21,8 +19,6 @@ public dob: string;
     this.address = address;
     this.email = email;
     this.password = password;
-    this.profile = profile;
     this.dob = dob;
   }
-
 }

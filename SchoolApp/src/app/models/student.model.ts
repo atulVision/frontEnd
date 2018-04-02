@@ -1,3 +1,8 @@
+import { Classes } from './classes.model';
+import { Division } from './division.model';
+import {  Route } from './route.model';
+import { BusStop } from './bus-stop.model';
+
 export class Student {
   public studentId: number;
   public firstName: string;
@@ -8,26 +13,27 @@ export class Student {
   public fatherContactNo: string;
   public motherContactNo: string;
   public guardianContactNo: string;
-  public emergencyContactNo: string;
-  public adharNo: string;
-  public prn: string;
-  public dob: string;
+  public emergencyNo: string;
+  public prNo: string;
+  public dob: any;
   public bloodGroup: string;
-  public classId: number;
-  public divisionId: number;
+  public classDevision: Classes;
+  public division: Division;
   public email: string;
   public rollNo: string;
   public password: string;
   public address: string;
-  public profile: string;
-  public routeId: number;
-  public stopId: number;
+  public profilePic: string;
+  public route: Route;
+  public busStop: BusStop;
+  public gender: string;
+  public admissionDate: any;
 
   constructor(studentId: number, firstName: string, fatherName: string, motherName: string,
     guardianName: string, lastName: string, fatherContactNo: string, motherContactNo: string,
-    guardianContactNo: string, emergencyContactNo: string, adharNo: string, prn: string, dob: string,
-    bloodGroup: string, classId: number, divisionId: number, email: string, rollNo: string,
-    password: string, address: string, routeId: number, stopId: number, profile: string
+    guardianContactNo: string, emergencyNo: string, prNo: string, dob: any, admissionDate: any,
+    bloodGroup: string, classDevision: Classes, division: Division, email: string, rollNo: string,
+    password: string, address: string, route: Route, busStop: BusStop, profilePic: string, gender: string
   ) {
     this.studentId = studentId;
     this.firstName = firstName;
@@ -38,20 +44,21 @@ export class Student {
     this.fatherContactNo = fatherContactNo;
     this.motherContactNo = motherContactNo;
     this.guardianContactNo = guardianContactNo;
-    this.emergencyContactNo = emergencyContactNo;
-    this.adharNo = adharNo;
-    this.prn = prn;
+    this.emergencyNo = emergencyNo;
+    this.prNo = prNo;
     this.dob = dob;
     this.bloodGroup = bloodGroup;
-    this.classId = classId;
-    this.divisionId = divisionId;
+    this.classDevision = classDevision;
+    this.division = division;
     this.rollNo = rollNo;
     this.email = email;
     this.password = password;
-    this.profile = profile;
+    this.profilePic = profilePic;
     this.address = address;
-    this.routeId = routeId;
-    this.stopId = stopId;
+    this.route = route;
+    this.busStop = busStop;
+    this.gender = gender;
+    this.admissionDate = admissionDate;
   }
 
 }
