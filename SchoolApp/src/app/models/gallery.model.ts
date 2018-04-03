@@ -1,15 +1,17 @@
+import { Album } from './album.model';
+
 export class Gallery {
 
-  public galleryId: number;
-  public albumId: number;
+  public id: number;
+  public album: Album;
   public title: string;
   public imageUrl: string;
 
-  constructor(galleryId: number, albumId: number,
+  constructor(id: number, album: Album,
     title: string, imageUrl: string
   ) {
-    this.galleryId = galleryId;
-    this.albumId = albumId;
+    this.id = id;
+    this.album = album;
     this.title = title;
     this.imageUrl = imageUrl;
   }

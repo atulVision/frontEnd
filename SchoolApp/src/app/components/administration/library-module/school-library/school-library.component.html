@@ -1,76 +1,102 @@
-  <!-- <section class="content-header">
-      <h1>{{pageTitle}}</h1>
-  </section>
-  <section class="content-header">
-<div class="form">
-  <div class="box box-info">
+<section class="content-header">
+  <h1>{{pageTitle}}</h1>
+</section>
+<section class="content-header">
+  <div class="form">
+    <div class="box box-info">
       <div class="box-header with-border">
         <h3 class="box-title">{{locale.book}}</h3>
       </div>
       <form class="form-horizontal" id="bookForm" #bookForm="ngForm" (ngSubmit)="addBook(bookForm.value)">
         <div class="box-body">
-
           <div class="form-group">
-            <label for="bookName" class="col-sm-2 control-label">Book Name</label>
+            <label for="bookName" class="col-sm-2 control-label">{{formLocale.book_name}}</label>
             <div class="col-sm-4">
-              <input type="text" class="form-control" id="bookName" name="bookName" placeholder="bookName" [disabled]="viewFlag" #bookName="ngModel" [(ngModel)]="book.bookName" >
+              <input type="text" class="form-control" id="bookName" name="bookName" placeholder="{{formLocale.book_name_placeholder}}"
+                [disabled]="viewFlag" #bookName="ngModel" [(ngModel)]="book.bookName">
             </div>
-            <label for="bookType" class="col-sm-2 control-label">Book Type</label>
+            <label for="bookType" class="col-sm-2 control-label">{{formLocale.book_type_name}}</label>
             <div class="col-sm-4">
-              <input type="text" class="form-control" id="bookType" name="bookType" placeholder="bookType" [disabled]="viewFlag" #bookType="ngModel" [(ngModel)]="book.bookType">
+              <select class="form-control" id="bookType" name="bookType" [disabled]="viewFlag" #bookType="ngModel" [(ngModel)]="book.bookType.id">
+                <option value="" disabled selected>{{formLocale.book_type_name_placeholder}}</option>
+                <option *ngFor="let bookType of bookTypeList" [(ngValue)]="bookType.id">{{bookType.name}}</option>
+              </select>
             </div>
           </div>
-
           <div class="form-group">
-              <label for="subject" class="col-sm-2 control-label">Subject</label>
-              <div class="col-sm-4">
-                <input type="text" class="form-control" id="subject" name="subject" placeholder="subject" [disabled]="viewFlag" #subject="ngModel" [(ngModel)]="book.bookName" >
-              </div>
-              <label for="publisher" class="col-sm-2 control-label">Publisher</label>
-              <div class="col-sm-4">
-                <input type="text" class="form-control" id="publisher" name="publisher" placeholder="publisher" [disabled]="viewFlag" #publisher="ngModel" [(ngModel)]="book.publisher">
-              </div>
-            </div>
-
-          <div class="form-group">
-            <label for="authors" class="col-sm-2 control-label">Authors</label>
+            <label for="authors" class="col-sm-2 control-label">{{formLocale.book_author}}</label>
             <div class="col-sm-4">
-              <input type="text" class="form-control" id="authors" name="authors" placeholder="authors" [disabled]="viewFlag" #authors="ngModel" [(ngModel)]="book.authors">
+              <input type="text" class="form-control" id="authors" name="authors" placeholder="{{formLocale.book_author_placeholder}}"
+                [disabled]="viewFlag" #authors="ngModel" [(ngModel)]="book.authors">
             </div>
-            <label for="edition" class="col-sm-2 control-label">Edition</label>
+            <label for="publisher" class="col-sm-2 control-label">{{formLocale.book_publisher}}</label>
             <div class="col-sm-4">
-              <input type="text" class="form-control" id="edition" name="edition" placeholder="edition" [disabled]="viewFlag" #edition="ngModel" [(ngModel)]="book.edition">
+              <input type="text" class="form-control" id="publisher" name="publisher" placeholder="{{formLocale.book_publisher_placeholder}}"
+                [disabled]="viewFlag" #publisher="ngModel" [(ngModel)]="book.publisher">
             </div>
           </div>
-
           <div class="form-group">
-            <label for="isbn" class="col-sm-2 control-label">ISBN</label>
+            <label for="subject" class="col-sm-2 control-label">{{formLocale.book_subject}}</label>
             <div class="col-sm-4">
-              <input type="text" class="form-control" id="isbn" name="isbn" placeholder="isbn" [disabled]="viewFlag" #isbn="ngModel" [(ngModel)]="book.isbn">
+              <input type="text" class="form-control" id="subject" name="subject" placeholder="{{formLocale.book_subject_placeholder}}"
+                [disabled]="viewFlag" #subject="ngModel" [(ngModel)]="book.subject">
             </div>
-            <label for="description" class="col-sm-2 control-label">Description</label>
+            <label for="edition" class="col-sm-2 control-label">{{formLocale.book_edition}}</label>
             <div class="col-sm-4">
-              <textarea class="form-control" id="description" name="description" placeholder="description" [disabled]="viewFlag" #description="ngModel" [(ngModel)]="book.description"></textarea>
+              <input type="text" class="form-control" id="edition" name="edition" placeholder="{{formLocale.book_edition_placeholder}}"
+                [disabled]="viewFlag" #edition="ngModel" [(ngModel)]="book.edition">
             </div>
           </div>
-
           <div class="form-group">
-            <label for="coverPhoto" class="col-sm-2 control-label">Cover Photo</label>
-
-            <div class="col-sm-5">
-              <input type="file" class="form-control" id="coverPhoto" name="coverPhoto" placeholder="coverPhoto" [disabled]="viewFlag" #coverPhoto="ngModel" [(ngModel)]="book.coverPhoto" accept="image/jpeg,image/png">
+            <label for="isbn" class="col-sm-2 control-label">{{formLocale.book_isbn}}</label>
+            <div class="col-sm-4">
+              <input type="text" class="form-control" id="isbn" name="isbn" placeholder="{{formLocale.book_isbn_placeholder}}" [disabled]="viewFlag"
+                #isbn="ngModel" [(ngModel)]="book.isbn">
+            </div>
+            <label for="description" class="col-sm-2 control-label">{{formLocale.book_desc}}</label>
+            <div class="col-sm-4">
+              <textarea class="form-control" id="description" name="description" placeholder="{{formLocale.book_desc_placeholder}}" [disabled]="viewFlag"
+                #description="ngModel" [(ngModel)]="book.description"></textarea>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="coverPhoto" class="col-sm-2 control-label">{{formLocale.book_cover_pic}}</label>
+            <div class="col-sm-6">
+              <input type="file" class="form-control" id="coverPhoto" name="coverPhoto" [disabled]="viewFlag" #coverPhoto="ngModel" [(ngModel)]="book.coverPhoto"
+                accept="image/jpeg,image/png">
             </div>
             <div class="media-right">
-                <img src="assets/images/Tushar_Upadhyay.jpg" class="media-object" style="width:60px">
-              </div>
+              <img src="assets/images/Tushar_Upadhyay.jpg" class="media-object" style="width:80px">
+            </div>
           </div>
         </div>
         <div class="box-footer">
-          <button type="button" class="btn btn-default">Back</button>
-          <button type="submit" class="btn btn-info pull-right">OK</button>
-        </div>
+          <button type="button" class="btn btn-default" (click)="backToList()">{{formLocale.back_btn}}</button>
+        <button *ngIf="action === 'new'" type="submit" class="btn btn-success pull-right" data-toggle="modal" data-target="#modal-success">{{formLocale.submit_btn}}</button>
+        <button *ngIf="action === 'view'" type="button" class="btn btn-info btn-info pull-right" (click)="backToList()">{{formLocale.ok_btn}}</button>
+        <button *ngIf="action === 'edit'" type="submit" class="btn btn-success pull-right" data-toggle="modal" data-target="#modal-success">{{formLocale.update_btn}}</button>
+      </div>
       </form>
     </div>
 
   </div>
-</section> -->
+</section>
+<div class="modal modal-success fade" id="modal-success">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title">{{formLocale.modal_status}}</h4>
+      </div>
+      <div class="modal-body">
+        <h5 *ngIf="action === 'new'">{{locale.book+formLocale.modal_add_msg}} </h5>
+        <h5 *ngIf="action === 'edit'">{{locale.book+formLocale.modal_update_msg}} </h5>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline pull-left" data-dismiss="modal" (click)="backToList()">{{formLocale.ok_btn}}</button>
+      </div>
+    </div>
+  </div>
+</div>

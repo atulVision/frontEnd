@@ -1,9 +1,9 @@
 export class BookType {
-  public bookTypeId: number;
-  public bookTypeName: string;
+  public id: number;
+  public name: string;
 
-  constructor(bookTypeId: number, bookTypeName: string) {
-    this.bookTypeId = bookTypeId;
-    this.bookTypeName = bookTypeName;
+  constructor(id: number, name: string) {
+    this.id = id;
+    this.name = name;
   }
 }

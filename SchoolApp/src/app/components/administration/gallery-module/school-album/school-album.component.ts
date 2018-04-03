@@ -5,8 +5,9 @@ import { Labels } from '../../../../utils/labels';
 import { Router } from '@angular/router';
 import { UtilFunctions } from '../../../../utils/util-functions';
 import { Album } from '../../../../models/album.model';
-import { DataServiceService } from '../../../../services/data-service.service';
-import { Gallery } from '../../../../models/gallery.model';
+import { Broadcaster } from '../../../../utils/broadcaster';
+import { AlbumService } from '../../../../services/album.service';
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 
 @Component({
   selector: 'app-school-album',
@@ -20,9 +21,10 @@ export class SchoolAlbumComponent implements OnInit {
   album: Album;
   pageTitle: any;
   locale: any;
-gallery: Gallery;
+  formLocale: any;
 
-  constructor(private route: ActivatedRoute, private router: Router, private _data: DataServiceService) {
+  constructor(private route: ActivatedRoute, private router: Router, private broadcaster: Broadcaster,
+  private _album: AlbumService, private spinnerService: Ng4LoadingSpinnerService) {
     this.route.params.subscribe((params) => {
       this.action = params['action'];
       this.initializeAlbum();
@@ -31,32 +33,49 @@ gallery: Gallery;
       }
       if (this.action === 'edit') {
         this.viewFlag = false;
-        this.album = this._data.storage;
+        this.album = this.broadcaster.storage;
       }
       if (this.action === 'view') {
         this.viewFlag = true;
-        this.album = this._data.storage;
+        this.album = this.broadcaster.storage;
       }
       this.locale = Labels.en_IN.labels.page_title;
-      this.pageTitle = this.locale[this.action] + ' ' + this.locale.book;
+      this.formLocale = Labels.en_IN.labels.form_labels;
+      this.pageTitle = this.locale[this.action] + ' ' + this.locale.album;
     });
   }
 
   ngOnInit() {
-   this.checkLogin();
+    this.checkLogin();
   }
 
   initializeAlbum() {
-    this.album = new Album(0, '', '');
+    this.album = new Album(null, '', '');
   }
 
   addAlbum(data) {
-    console.log(data);
+    this.spinnerService.show();
+    if (this.action === 'new') {
+      this._album.saveAlbum(this.album).subscribe((res) => {
+        this.spinnerService.hide();
+    }, (resError) => {
+    });
+    }
+    if (this.action === 'edit') {
+      this._album.updateAlbum(this.album.albumId, this.album).subscribe((res) => {
+        this.spinnerService.hide();
+    }, (resError) => {
+    });
+    }
+  }
+
+  public backToList() {
+    this.router.navigate(['/list/album']);
   }
 
   checkLogin() {
     const user = UtilFunctions.getLocalStorage('user');
-    if ( user ) {
+    if (user) {
       return;
     }
     this.router.navigate(['/login']);

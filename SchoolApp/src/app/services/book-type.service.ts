@@ -4,39 +4,39 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import { Constants } from '../utils/constants';
-import { Album } from '../models/album.model';
+import { BookType } from '../models/book-type.model';
+
 
 @Injectable()
-export class AlbumService {
-
+export class BookTypeService {
   constructor(private _http: Http) { }
 
-  getAlbumList() {
-    return this._http.get(Constants.URL.host_url + Constants.URL.albumURL + '/')
+  getBookTypeList() {
+    return this._http.get(Constants.URL.host_url + Constants.URL.bookTypeURL)
       .map((response: Response) => {
         return response.json();
       })
       .catch(this._errorHandler);
   }
 
-  saveAlbum(album: Album) {
-    return this._http.post(Constants.URL.host_url + Constants.URL.albumURL, album)
+  saveBookType(bookType: BookType) {
+    return this._http.post(Constants.URL.host_url + Constants.URL.bookTypeURL, bookType)
       .map((response: Response) => {
         return response.json();
       })
       .catch(this._errorHandler);
   }
 
-  updateAlbum(albumId: any, album: Album) {
-    return this._http.put(Constants.URL.host_url + Constants.URL.albumURL + '/' + albumId, album)
+  updateBookType(bookTypeId: any, bookType: BookType) {
+    return this._http.put(Constants.URL.host_url + Constants.URL.bookTypeURL + '/' + bookTypeId, bookType)
       .map((response: Response) => {
         return response.json();
       })
       .catch(this._errorHandler);
   }
 
-  deleteAlbum(albumId: any) {
-    return this._http.delete(Constants.URL.host_url + Constants.URL.albumURL + '/' + albumId)
+  deleteBookType(bookTypeId: any) {
+    return this._http.delete(Constants.URL.host_url + Constants.URL.bookTypeURL + '/' + bookTypeId)
       .map((response: Response) => {
         return response.json();
       })
@@ -46,5 +46,4 @@ export class AlbumService {
   _errorHandler(error: Response) {
     return Observable.throw(error || 'server error');
   }
-
 }

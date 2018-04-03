@@ -5,8 +5,11 @@ import { Labels } from '../../../../utils/labels';
 import { Router } from '@angular/router';
 import { UtilFunctions } from '../../../../utils/util-functions';
 import { Book } from '../../../../models/book.model';
-import { DataServiceService } from '../../../../services/data-service.service';
 import { BookService } from '../../../../services/book.service';
+import { Broadcaster } from '../../../../utils/broadcaster';
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
+import { BookType } from '../../../../models/book-type.model';
+import { BookTypeService } from '../../../../services/book-type.service';
 
 @Component({
   selector: 'app-school-library',
@@ -20,8 +23,12 @@ export class SchoolLibraryComponent implements OnInit {
   book: Book;
   pageTitle: any;
   locale: any;
+  bookType: BookType;
+  bookTypeList: any;
+  formLocale: any;
 
-  constructor(private route: ActivatedRoute, private router: Router, private _data: DataServiceService) {
+  constructor(private route: ActivatedRoute, private router: Router, private broadcaster: Broadcaster,
+    private _book: BookService, private _bookType: BookTypeService, private spinnerService: Ng4LoadingSpinnerService) {
     this.route.params.subscribe((params) => {
       this.action = params['action'];
       this.initializeBook();
@@ -30,32 +37,60 @@ export class SchoolLibraryComponent implements OnInit {
       }
       if (this.action === 'edit') {
         this.viewFlag = false;
-        this.book = this._data.storage;
+        this.book = this.broadcaster.storage;
       }
       if (this.action === 'view') {
         this.viewFlag = true;
-        this.book = this._data.storage;
+        this.book = this.broadcaster.storage;
       }
       this.locale = Labels.en_IN.labels.page_title;
+      this.formLocale = Labels.en_IN.labels.form_labels;
       this.pageTitle = this.locale[this.action] + ' ' + this.locale.book;
     });
   }
 
   ngOnInit() {
-   this.checkLogin();
+    this.checkLogin();
+    this.spinnerService.show();
+    this.getList();
+    this.spinnerService.hide();
+  }
+
+  private getList() {
+    this._bookType.getBookTypeList().subscribe((res) => {
+      this.bookTypeList = res;
+    }, (resError) => {
+    });
   }
 
   initializeBook() {
-    this.book = new Book(0, '', '', '', '', '', 0 , '', '');
+    this.bookType = new BookType(null, '');
+    this.book = new Book(null, '', '', '', '', '', this.bookType, '', '', '');
   }
 
   addBook(data) {
-    console.log(data);
+    this.spinnerService.show();
+    if (this.action === 'new') {
+      this._book.saveBook(this.book).subscribe((res) => {
+        this.spinnerService.hide();
+      }, (resError) => {
+      });
+    }
+    if (this.action === 'edit') {
+      this._book.updateBook(this.book.bookId, this.book).subscribe((res) => {
+        this.spinnerService.hide();
+      }, (resError) => {
+      });
+    }
+  }
+
+  public backToList() {
+    this.router.navigate(['/list/book']);
   }
 
   checkLogin() {
     const user = UtilFunctions.getLocalStorage('user');
-    if ( user ) {
+    if (user) {
       return;
     }
     this.router.navigate(['/login']);

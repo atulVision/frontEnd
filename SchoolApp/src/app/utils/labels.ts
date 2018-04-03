@@ -58,9 +58,13 @@ export class Labels {
         name_library: 'Library',
         add_book: 'Add Book',
         list_book: 'Book List',
+        add_book_type: 'Add Book Type',
+        list_book_ype: 'Book Type List',
         name_gallery: 'Gallery',
         add_album: 'Create Album',
         list_album: 'Album List',
+        add_image: 'Add Images',
+        list_gallery: 'List Gallery',
         name_notification: 'Notifications',
         add_notification: 'Create Notification',
         list_notification: 'Notification List',
@@ -189,6 +193,11 @@ export class Labels {
           from: 'FROM',
           to: 'TO'
         },
+        bookType: {
+          table_title: 'List of Book Types',
+          add_btn: 'Add Book Type',
+          name: 'BOOK TYPE NAME',
+        },
         book: {
           table_title: 'List of Books',
           add_btn: 'Add Book',
@@ -201,8 +210,13 @@ export class Labels {
         album: {
           table_title: 'List of Albums',
           add_btn: 'Create Album',
-          name: 'NAME',
-          count: 'IMAGE COUNT'
+          albumName: 'ALBUM NAME',
+        },
+        gallery: {
+          table_title: 'Gallery List',
+          add_btn: 'Add Images',
+          albumName: 'ALBUM NAME',
+          title: 'TITLE',
         },
         notification: {
           table_title: 'List of Notifications',
@@ -217,6 +231,7 @@ export class Labels {
         new: 'Add',
         view: 'Details of',
         edit: 'Edit',
+        bookType: 'Book Type',
         book: 'Book',
         bus: 'Bus',
         driver: 'Driver',
@@ -227,7 +242,9 @@ export class Labels {
         bus_stop: 'Bus Stop',
         route: 'Route',
         division: 'Division',
-        profile: 'Profile'
+        profile: 'Profile',
+        album: 'Album',
+        gallery: 'Gallery'
       },
       form_labels: {
         user_f_name: 'First Name',
@@ -387,7 +404,38 @@ export class Labels {
         route_start_placeholder: 'Select Starting Bus Stop',
         route_end_placeholder: 'Select Last Bus Stop',
         pick_up_placeholder: 'Select Pick Up Stops',
-        pick_up_add_btn: 'Add Pick Up'
+        pick_up_add_btn: 'Add Pick Up',
+
+        book_type: 'Book Type',
+        book_type_placeholder: 'Enter Book Type',
+
+        book_name: 'Book Name',
+        book_type_name: 'Book Type',
+        book_subject: 'Subject',
+        book_author: 'Authors',
+        book_publisher: 'Publisher',
+        book_desc: 'Description',
+        book_edition: 'Edition',
+        book_cover_pic: 'Cover Pic',
+        book_isbn: 'Isbn',
+        book_name_placeholder: 'Enter Book Name',
+        book_type_name_placeholder: 'Select Book Type',
+        book_subject_placeholder: 'Enter Subject',
+        book_author_placeholder: 'Enter Authors',
+        book_publisher_placeholder: 'Enter Publisher',
+        book_desc_placeholder: 'Enter Description',
+        book_edition_placeholder: 'Enter Edition',
+        book_isbn_placeholder: 'Enter Isbn',
+
+        album_name: 'Album Name',
+        album_img: 'Album Cover Pic',
+        album_name_placeholder: 'Enter Album Name',
+
+        gallery_title: 'Title',
+        gallery_album: 'Album',
+        gallery_img: 'Gallery Image',
+        gallery_title_placeholder: 'Enter Title',
+        gallery_album_placeholder: 'Select Album',
       }
     }
   };

@@ -1,38 +1,65 @@
-<!-- <section class="content-header">
-    <h1>Album</h1>
+<section class="content-header">
+  <h1>{{pageTitle}}</h1>
 </section>
 <section class="content-header">
-<div class="form">
-<div class="box box-info">
-    <div class="box-header with-border">
-      <h3 class="box-title">Album</h3>
-    </div>
-    <form class="form-horizontal" id="albumForm" #albumForm="ngForm" (ngSubmit)="addAlbum(albumForm.value)">
-      <div class="box-body">
-
-        <div class="form-group">
-          <label for="title" class="col-sm-2 control-label">title</label>
-          <div class="col-sm-10">
-            <input type="text" class="form-control" id="title" name="title" placeholder="title" [disabled]="viewFlag" #title="ngModel" [(ngModel)]="album.title" >
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="imageUrl" class="col-sm-2 control-label">imageUrl</label>
-
-          <div class="col-sm-8">
-            <input type="file" class="form-control" id="imageUrl" name="imageUrl" placeholder="imageUrl" [disabled]="viewFlag" #imageUrl="ngModel" [(ngModel)]="album.imageUrl" accept="image/jpeg,image/png">
-          </div>
-          <div class="media-right">
-              <img src="assets/images/Tushar_Upadhyay.jpg" class="media-object" style="width:60px">
+  <div class="form">
+    <div class="box box-info">
+      <div class="box-header with-border">
+        <h3 class="box-title">{{locale.gallery}}</h3>
+      </div>
+      <form class="form-horizontal" id="galleryForm" #galleryForm="ngForm" (ngSubmit)="addGallery(galleryForm.value)">
+        <div class="box-body">
+          <div class="form-group">
+            <label for="title" class="col-sm-2 control-label">{{formLocale.gallery_title}}</label>
+            <div class="col-sm-4">
+              <input type="text" class="form-control" id="title" name="title" placeholder="{{formLocale.gallery_title_placeholder}}" [disabled]="viewFlag"
+                #title="ngModel" [(ngModel)]="gallery.title">
             </div>
+            <label for="album" class="col-sm-2 control-label">{{formLocale.gallery_album}}</label>
+            <div class="col-sm-4">
+              <select class="form-control" id="album" name="album" [disabled]="viewFlag" #album="ngModel" [(ngModel)]="gallery.album.albumId">
+                <option value="" disabled selected>{{formLocale.gallery_album_placeholder}}</option>
+                <option *ngFor="let album of albumList" [(ngValue)]="album.albumId">{{album.albumName}}</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="imageUrl" class="col-sm-2 control-label">{{formLocale.gallery_img}}</label>
+            <div class="col-sm-7">
+              <input type="file" class="form-control" id="imageUrl" name="imageUrl" placeholder="imageUrl" [disabled]="viewFlag" #imageUrl="ngModel"
+                [(ngModel)]="gallery.imageUrl" accept="image/jpeg,image/png">
+            </div>
+            <div class="media-right">
+              <img src="assets/images/Tushar_Upadhyay.jpg" class="media-object" style="width:100px">
+            </div>
+          </div>
         </div>
-      </div>
-      <div class="box-footer">
-        <button type="button" class="btn btn-default">Back</button>
-        <button type="submit" class="btn btn-info pull-right">OK</button>
-      </div>
-    </form>
+        <div class="box-footer">
+          <button type="button" class="btn btn-default" (click)="backToList()">{{formLocale.back_btn}}</button>
+          <button *ngIf="action === 'new'" type="submit" class="btn btn-success pull-right" data-toggle="modal" data-target="#modal-success">{{formLocale.submit_btn}}</button>
+          <button *ngIf="action === 'view'" type="button" class="btn btn-info btn-info pull-right" (click)="backToList()">{{formLocale.ok_btn}}</button>
+          <button *ngIf="action === 'edit'" type="submit" class="btn btn-success pull-right" data-toggle="modal" data-target="#modal-success">{{formLocale.update_btn}}</button>
+        </div>
+      </form>
+    </div>
   </div>
-
+</section>
+<div class="modal modal-success fade" id="modal-success">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title">{{formLocale.modal_status}}</h4>
+      </div>
+      <div class="modal-body">
+        <h5 *ngIf="action === 'new'">{{locale.division+formLocale.modal_add_msg}} </h5>
+        <h5 *ngIf="action === 'edit'">{{locale.division+formLocale.modal_update_msg}} </h5>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline pull-left" data-dismiss="modal" (click)="backToList()">{{formLocale.ok_btn}}</button>
+      </div>
+    </div>
+  </div>
 </div>
-</section> -->

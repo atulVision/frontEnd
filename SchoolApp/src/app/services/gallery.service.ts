@@ -4,39 +4,40 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import { Constants } from '../utils/constants';
-import { Album } from '../models/album.model';
+import { Gallery } from '../models/gallery.model';
+
 
 @Injectable()
-export class AlbumService {
+export class GalleryService {
 
   constructor(private _http: Http) { }
 
-  getAlbumList() {
-    return this._http.get(Constants.URL.host_url + Constants.URL.albumURL + '/')
+  getGalleryList() {
+    return this._http.get(Constants.URL.host_url + Constants.URL.galleryURL + '/')
       .map((response: Response) => {
         return response.json();
       })
       .catch(this._errorHandler);
   }
 
-  saveAlbum(album: Album) {
-    return this._http.post(Constants.URL.host_url + Constants.URL.albumURL, album)
+  saveGallery(gallery: Gallery) {
+    return this._http.post(Constants.URL.host_url + Constants.URL.galleryURL, gallery)
       .map((response: Response) => {
         return response.json();
       })
       .catch(this._errorHandler);
   }
 
-  updateAlbum(albumId: any, album: Album) {
-    return this._http.put(Constants.URL.host_url + Constants.URL.albumURL + '/' + albumId, album)
+  updateGallery(galleryId: any, gallery: Gallery) {
+    return this._http.put(Constants.URL.host_url + Constants.URL.galleryURL + '/' + galleryId, gallery)
       .map((response: Response) => {
         return response.json();
       })
       .catch(this._errorHandler);
   }
 
-  deleteAlbum(albumId: any) {
-    return this._http.delete(Constants.URL.host_url + Constants.URL.albumURL + '/' + albumId)
+  deleteGallery(galleryId: any) {
+    return this._http.delete(Constants.URL.host_url + Constants.URL.galleryURL + '/' + galleryId)
       .map((response: Response) => {
         return response.json();
       })

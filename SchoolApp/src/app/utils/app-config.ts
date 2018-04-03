@@ -134,6 +134,12 @@ export class AppConfig {
       parent: 'name_library',
       css: 'fa fa-book',
       child: [{
+        name: 'add_book_type',
+        ref: 'bookType/new'
+      }, {
+        name: 'list_book_ype',
+        ref: 'list/bookType'
+      }, {
         name: 'add_book',
         ref: 'book/new'
       }, {
@@ -150,6 +156,12 @@ export class AppConfig {
       }, {
         name: 'list_album',
         ref: 'list/album'
+      }, {
+        name: 'add_image',
+        ref: 'gallery/new'
+      }, {
+        name: 'list_gallery',
+        ref: 'list/gallery'
       }]
     }, {
       role: '1',
@@ -231,6 +243,11 @@ export class AppConfig {
       viewRef: '../../route/view',
       editRef: '../../route/edit'
     },
+    bookType: {
+      addRef: '../../bookType/new',
+      viewRef: '../../bookType/view',
+      editRef: '../../bookType/edit'
+    },
     book: {
       addRef: '../../book/new',
       viewRef: '../../book/view',
@@ -240,6 +257,11 @@ export class AppConfig {
       addRef: '../../album/new',
       viewRef: '../../album/view',
       editRef: '../../album/edit'
+    },
+    gallery: {
+      addRef: '../../gallery/new',
+      viewRef: '../../gallery/view',
+      editRef: '../../gallery/edit'
     },
     notification: {
       addRef: '../../notification/new',
@@ -330,17 +352,25 @@ export class AppConfig {
     { prop: 'toBusStop' }
   ];
 
+  public static bookType: any = [
+    { prop: 'name' }
+  ];
+
   public static book: any = [
     { prop: 'bookName' },
-    { prop: 'authors' },
     { prop: 'bookType' },
     { prop: 'subject' },
+    { prop: 'authors' },
     { prop: 'isbn' }
   ];
 
   public static album: any = [
-    { prop: 'name' },
-    { prop: 'count' }
+    { prop: 'albumName' }
+  ];
+
+  public static gallery: any = [
+    { prop: 'albumName' },
+    { prop: 'title' }
   ];
 
   public static notification: any = [

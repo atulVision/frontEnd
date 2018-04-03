@@ -81,6 +81,8 @@ import { ListSubjectComponent } from './components/list-subject/list-subject.com
 import { ListExamTimeTableComponent } from './components/list-exam-time-table/list-exam-time-table.component';
 import { ListResultComponent } from './components/list-result/list-result.component';
 import { UserService } from './services/user.service';
+import { BookTypeService } from './services/book-type.service';
+import { GalleryService } from './services/gallery.service';
 
 const appRoutes: Routes = [
   { path: '', component: DashboardComponent },
@@ -99,26 +101,30 @@ const appRoutes: Routes = [
   { path: 'list/driver', component: ListDriverComponent },
   { path: 'bus/:action', component: SchoolBusComponent },
   { path: 'list/bus', component: ListBusComponent },
+  { path: 'busStop/:action', component: SchoolBusStopComponent },
+  { path: 'list/busStop', component: ListBusStopComponent },
   { path: 'route/:action', component: SchoolRouteComponent },
   { path: 'list/route', component: ListRouteComponent },
+  { path: 'album/:action', component: SchoolAlbumComponent },
+  { path: 'list/album', component: ListAlbumComponent },
+  { path: 'gallery/:action', component: SchoolGalleryComponent },
+  { path: 'list/gallery', component: ListGalleryComponent },
+  { path: 'bookType/:action', component: SchoolBookTypeComponent },
+  { path: 'list/bookType', component: ListBookTypeComponent },
+  { path: 'book/:action', component: SchoolLibraryComponent },
+  { path: 'list/book', component: ListBookComponent },
+  { path: 'notification/:action', component: SchoolNotificationComponent },
+  { path: 'list/notification', component: ListNotificationComponent },
+  { path: 'exam/:action', component: SchoolExamComponent },
+  { path: 'list/exam', component: ListClassesComponent },
+  { path: 'result/:action', component: ResultMarksComponent },
+  { path: 'list/result', component: ListClassesComponent },
   { path: 'homeWork/:action', component: SchoolHomeWorkComponent },
   { path: 'list/homeWork', component: ListClassesComponent },
   { path: 'attendance/:action', component: SchoolAttendanceComponent },
   { path: 'list/attendance', component: ListClassesComponent },
   { path: 'timeTable/:action', component: SchoolTimeTableComponent },
   { path: 'list/timeTable', component: ListClassesComponent },
-  { path: 'album/:action', component: SchoolGalleryComponent },
-  { path: 'list/album', component: ListClassesComponent },
-  { path: 'book/:action', component: SchoolLibraryComponent },
-  { path: 'list/book', component: ListClassesComponent },
-  { path: 'notification/:action', component: SchoolNotificationComponent },
-  { path: 'list/notification', component: ListClassesComponent },
-  { path: 'exam/:action', component: SchoolExamComponent },
-  { path: 'list/exam', component: ListClassesComponent },
-  { path: 'result/:action', component: ResultMarksComponent },
-  { path: 'list/result', component: ListClassesComponent },
-  { path: 'busStop/:action', component: SchoolBusStopComponent },
-  { path: 'list/busStop', component: ListBusStopComponent },
   { path: '**', component: ErrorComponent }
 ];
 
@@ -213,7 +219,9 @@ const appRoutes: Routes = [
     Broadcaster,
     BusStopService,
     DivisionService,
-    UserService
+    UserService,
+    BookTypeService,
+    GalleryService
   ],
   bootstrap: [AppComponent]
 })

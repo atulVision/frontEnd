@@ -17,8 +17,10 @@ export class Constants {
     busURL: '/bus',
     busStopURL: '/busStop',
     routeURL: '/route',
+    bookTypeURL: '/bookType',
     bookURL: '/book',
-    albumURL: '/gallery',
+    albumURL: '/album',
+    galleryURL: '/gallary',
     notificationURL: '/notification',
     AUTHENTICATE_URLS: ['dashboard']
   };
