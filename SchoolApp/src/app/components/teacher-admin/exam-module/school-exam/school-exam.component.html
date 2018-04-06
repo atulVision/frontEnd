@@ -1,0 +1,53 @@
+<section class="content-header">
+  <h1>{{pageTitle}}</h1>
+</section>
+<section class="content-header">
+  <div class="form">
+    <div class="box box-info">
+      <div class="box-header with-border">
+        <h3 class="box-title">{{locale.exam}}</h3>
+      </div>
+      <form class="form-horizontal" id="examForm" #examForm="ngForm" (ngSubmit)="addExam(examForm.value)">
+        <div class="box-body">
+          <div class="form-group">
+            <label for="examName" class="col-sm-2 control-label">{{formLocale.exam_name}}</label>
+            <div class="col-sm-4">
+              <input type="text" class="form-control" id="examName" name="examName" placeholder="{{formLocale.exam_name_placeholder}}"
+                [disabled]="viewFlag" #examName="ngModel" [(ngModel)]="exam.examName">
+            </div>
+            <label for="examDesc" class="col-sm-2 control-label">{{formLocale.exam_desc}}</label>
+            <div class="col-sm-4">
+              <input type="text" class="form-control" id="examDesc" name="examDesc" placeholder="{{formLocale.exam_desc_placeholder}}"
+                [disabled]="viewFlag" #examDesc="ngModel" [(ngModel)]="exam.examDesc">
+            </div>
+          </div>
+        </div>
+        <div class="box-footer">
+          <button type="button" class="btn btn-default" (click)="backToList()">{{formLocale.back_btn}}</button>
+          <button *ngIf="action === 'new'" type="submit" class="btn btn-success pull-right" data-toggle="modal" data-target="#modal-success">{{formLocale.submit_btn}}</button>
+          <button *ngIf="action === 'view'" type="button" class="btn btn-info btn-info pull-right" (click)="backToList()">{{formLocale.ok_btn}}</button>
+          <button *ngIf="action === 'edit'" type="submit" class="btn btn-success pull-right" data-toggle="modal" data-target="#modal-success">{{formLocale.update_btn}}</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+<div class="modal modal-success fade" id="modal-success">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title">{{formLocale.modal_status}}</h4>
+      </div>
+      <div class="modal-body">
+        <h5 *ngIf="action === 'new'">{{locale.exam+formLocale.modal_add_msg}} </h5>
+        <h5 *ngIf="action === 'edit'">{{locale.exam+formLocale.modal_update_msg}} </h5>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline pull-left" data-dismiss="modal" (click)="backToList()">{{formLocale.ok_btn}}</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -60,24 +60,42 @@ export class AppConfig {
         ref: 'homeWork/new'
       }, {
         name: 'list_home_work',
-        ref: 'list/homeW'
+        ref: 'list/homeWork'
       }]
     }, {
       role: '2',
       parent: 'name_time_table',
       css: 'fa fa-table',
       child: [{
+        name: 'add_day',
+        ref: 'day/new'
+      }, {
+        name: 'list_day',
+        ref: 'list/day'
+      }, {
         name: 'add_time_table',
         ref: 'timeTable/new'
       }, {
         name: 'list_time_table',
-        ref: 'list/timeT'
+        ref: 'list/timeTable'
+      }, {
+        name: 'add_exam_time_table',
+        ref: 'examTimeTable/new'
+      }, {
+        name: 'list_exam_time_table',
+        ref: 'list/examTimeTable'
       }]
     }, {
       role: '2',
       parent: 'name_result',
       css: 'fa fa-server',
       child: [{
+        name: 'add_subject',
+        ref: 'subject/new'
+      }, {
+        name: 'list_subject',
+        ref: 'list/subject'
+      }, {
         name: 'add_exam',
         ref: 'exam/new'
       }, {
@@ -208,10 +226,25 @@ export class AppConfig {
       viewRef: '../../homeWork/view',
       editRef: '../../homeWork/edit'
     },
+    day: {
+      addRef: '../../day/new',
+      viewRef: '../../day/view',
+      editRef: '../../day/edit'
+    },
     timeT: {
       addRef: '../../timeTable/new',
       viewRef: '../../timeTable/view',
       editRef: '../../timeTable/edit'
+    },
+    examTimeT: {
+      addRef: '../../examTimeTable/new',
+      viewRef: '../../examTimeTable/view',
+      editRef: '../../examTimeTable/edit'
+    },
+    subject: {
+      addRef: '../../subject/new',
+      viewRef: '../../subject/view',
+      editRef: '../../subject/edit'
     },
     exam: {
       addRef: '../../exam/new',
@@ -303,23 +336,44 @@ export class AppConfig {
   ];
 
   public static homeW: any = [
-    { prop: 'class' },
+    { prop: 'homeWorkDate' },
+    { prop: 'classId' },
     { prop: 'division' },
-    { prop: 'date' }
+    { prop: 'subject' },
+    { prop: 'status' }
+  ];
+
+  public static day: any = [
+    { prop: 'name' }
   ];
 
   public static timeT: any = [
-    { prop: 'class' },
+    { prop: 'title' },
+    { prop: 'classes' },
     { prop: 'division' },
-    { prop: 'date' },
-    { prop: 'day' }
+    { prop: 'subject' },
+    { prop: 'day' },
+    { prop: 'time' }
+  ];
+
+  public static examTimeT: any = [
+    { prop: 'examId' },
+    { prop: 'classes' },
+    { prop: 'division' },
+    { prop: 'subject' },
+    { prop: 'examDate' },
+    { prop: 'examTime' }
   ];
 
   public static exam: any = [
-    { prop: 'name' },
-    { prop: 'class' },
-    { prop: 'division' },
-    { prop: 'date' }
+    { prop: 'examName' },
+    { prop: 'examDesc' },
+  ];
+
+  public static subject: any = [
+    { prop: 'subjectName' },
+    { prop: 'classId' },
+    { prop: 'description' }
   ];
 
   public static result: any = [

@@ -12,7 +12,7 @@ export class AttendanceService {
   constructor(private _http: Http) { }
 
   getAttendanceList() {
-    return this._http.get(Constants.URL.host_url + Constants.URL.AttendanceURL)
+    return this._http.get(Constants.URL.host_url + Constants.URL.attendanceURL)
       .map((response: Response) => {
         const userResponse = response.json();
         return userResponse;
@@ -30,7 +30,7 @@ export class AttendanceService {
   }
 
   updateAttendance(attendanceId: any, attendance: Attendance) {
-    return this._http.put(Constants.URL.host_url + Constants.URL.bookURL + '/' + attendanceId, attendance)
+    return this._http.put(Constants.URL.host_url + Constants.URL.attendanceURL + '/' + attendanceId, attendance)
       .map((response: Response) => {
         const userResponse = response.json();
         return userResponse;
@@ -39,7 +39,7 @@ export class AttendanceService {
   }
 
   deleteAttendance(AttendanceId: any) {
-    return this._http.delete(Constants.URL.host_url + Constants.URL.bookURL + '/' + AttendanceId)
+    return this._http.delete(Constants.URL.host_url + Constants.URL.attendanceURL + '/' + AttendanceId)
       .map((response: Response) => {
         const userResponse = response.json();
         return userResponse;

@@ -39,9 +39,15 @@ export class Labels {
         add_home_work: 'Assign Home Work',
         list_home_work: 'Home Work List',
         name_time_table: 'Time Table',
+        add_day: 'Add Day',
+        list_day: 'Days List',
         add_time_table: 'Create Time Table',
-        list_time_table: 'View Time Tables',
+        list_time_table: 'Time Tables',
+        add_exam_time_table: 'Create Exam Time Table',
+        list_exam_time_table: 'Exam Time Tables',
         name_result: 'Results',
+        add_subject: 'Add Subject',
+        list_subject: 'Subjects List',
         add_exam: 'Create Exam',
         list_exam: 'Exam List',
         add_marks: 'Assign Marks',
@@ -131,32 +137,58 @@ export class Labels {
         attendance: {
           table_title: 'Attendance Sheet',
           add_btn: 'Mark Attendance',
-          class: 'CLASS',
+          classes: 'CLASS',
           division: 'DIVISION',
-          date: 'DATE'
+          date: 'DATE',
+          subject: 'SUBJECT',
+          status: 'STATUS'
         },
         homeW: {
           table_title: 'List of Home Work',
           add_btn: 'Assign Home Work',
-          class: 'CLASS',
+          classId: 'CLASS',
           division: 'DIVISION',
-          date: 'ASSIGNED ON'
+          homeWorkDate: 'DATE',
+          subject: 'SUBJECT',
+          status: 'STATUS'
+        },
+        day: {
+          table_title: 'Days',
+          add_btn: 'Add Day',
+          name: 'NAME',
         },
         timeT: {
           table_title: 'Time Tables',
           add_btn: 'Create Time Table',
-          class: 'CLASS',
+          title: 'TITLE',
+          classes: 'CLASS',
           division: 'DIVISION',
-          date: 'DATE',
+          subject: 'SUBJECT',
+          time: 'TIME',
           day: 'DAY'
+        },
+        examTimeT: {
+          table_title: 'Exam Time Tables',
+          add_btn: 'Create Exam Time Table',
+          examId: 'EXAM',
+          classes: 'CLASS',
+          division: 'DIVISION',
+          subject: 'SUBJECT',
+          examDate: 'EXAM DATE',
+          examTime: 'EXAM TIME'
+        },
+        subject: {
+          table_title: 'List of Subjects',
+          add_btn: 'Add Subject',
+          subjectName: 'SUBJECT NAME',
+          classId: 'CLASS',
+          description: 'DESCRIPTION'
         },
         exam: {
           table_title: 'List of Exams',
           add_btn: 'Add Exam',
-          name: 'NAME',
-          class: 'CLASS',
-          division: 'DIVISION',
-          date: 'DATE'
+          examName: 'EXAM NAME',
+          examDesc: 'DESCRIPTION'
         },
         result: {
           table_title: 'Result Board',
@@ -244,7 +276,13 @@ export class Labels {
         division: 'Division',
         profile: 'Profile',
         album: 'Album',
-        gallery: 'Gallery'
+        gallery: 'Gallery',
+        subject: 'Subject',
+        exam: 'Exam',
+        day: 'Day',
+        timeTable: 'Time Table',
+        examTimeTable: 'Exam Time Table',
+        homeWork: 'Home Work'
       },
       form_labels: {
         user_f_name: 'First Name',
@@ -262,7 +300,6 @@ export class Labels {
         user_password_placeholder: 'Enter Password',
 
         mobile_prefix: '+91',
-
         modal_status: 'Status',
         modal_add_msg: ' is added successfully.',
         modal_update_msg: ' is updated successfully.',
@@ -436,6 +473,56 @@ export class Labels {
         gallery_img: 'Gallery Image',
         gallery_title_placeholder: 'Enter Title',
         gallery_album_placeholder: 'Select Album',
+
+        subject_name: 'Subject Name',
+        subject_desc: 'Description',
+        subject_class: 'Class Name',
+        subject_name_placeholder: 'Enter Subject Name',
+        subject_desc_placeholder: 'Enter Description',
+        subject_class_placeholder: 'Select Class',
+
+        exam_name: 'Exam Name',
+        exam_desc: 'Description',
+        exam_name_placeholder: 'Enter Exam Name',
+        exam_desc_placeholder: 'Enter Description',
+
+        day_name: 'Day Name',
+        day_name_placeholder: 'Enter Day Name',
+
+        time_table_title: 'Title',
+        time_table_class: 'Class',
+        time_table_division: 'Division',
+        time_table_subject: 'Subject',
+        time_day: 'Day',
+        time_table_time: 'Time',
+        time_table_title_placeholder: 'Enter Title',
+        time_table_class_placeholder: 'Select Class',
+        time_table_division_placeholder: 'Select Division',
+        time_table_subject_placeholder: 'Select Subject',
+        time_day_placeholder: 'Select Day',
+        time_table_time_placeholder: 'Enter Time',
+
+        exam_time_table_exam: 'Exam',
+        exam_time_table_class: 'Class',
+        exam_time_table_division: 'Division',
+        exam_time_table_subject: 'Subject',
+        exam_time_date: 'Date',
+        exam_time_table_time: 'Time',
+        exam_time_table_exam_placeholder: 'Select Exam',
+        exam_time_table_time_placeholder: 'Enter Time',
+
+        home_work_date: 'Assigned Date',
+        home_work_desc: 'Description',
+        home_work_class: 'Class',
+        home_work_division: 'Division',
+        home_work_subject: 'Subject',
+        home_work_status: 'Home Work Status',
+        home_work_attachment: 'Attachment Pic',
+        home_work_description_placeholder: 'Enter Description',
+        home_work_class_placeholder: 'Select Class',
+        home_work_division_placeholder: 'Select Division',
+        home_work_subject_placeholder: 'Select Subject',
+        home_work_status_placeholder: 'Select Status',
       }
     }
   };

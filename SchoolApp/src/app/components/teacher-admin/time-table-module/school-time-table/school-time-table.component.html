@@ -1,0 +1,84 @@
+<section class="content-header">
+  <h1>{{pageTitle}}</h1>
+</section>
+<section class="content-header">
+  <div class="form">
+    <div class="box box-info">
+      <div class="box-header with-border">
+        <h3 class="box-title">{{locale.timeTable}}</h3>
+      </div>
+      <form class="form-horizontal" id="timeTableForm" #timeTableForm="ngForm" (ngSubmit)="addTimeTable(timeTableForm.value)">
+        <div class="box-body">
+          <div class="form-group">
+            <label for="title" class="col-sm-2 control-label">{{formLocale.time_table_title}}</label>
+            <div class="col-sm-4">
+              <input type="text" class="form-control" id="title" name="title" placeholder="{{formLocale.time_table_title_placeholder}}"
+                [disabled]="viewFlag" #title="ngModel" [(ngModel)]="timeT.title">
+            </div>
+            <label for="time" class="col-sm-2 control-label">{{formLocale.time_table_time}}</label>
+            <div class="col-sm-4">
+                <ngb-timepicker [seconds]="true" id="time" name="time" [(ngModel)]="timeT.time" [disabled]="viewFlag" #time="ngModel"></ngb-timepicker>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="classes" class="col-sm-2 control-label">{{formLocale.time_table_class}}</label>
+            <div class="col-sm-4">
+              <select class="form-control" id="classes" name="classes" [disabled]="viewFlag" #classes="ngModel" [(ngModel)]="timeT.classes.id">
+                <option value="" disabled selected>{{formLocale.time_table_class_placeholder}}</option>
+                <option *ngFor="let class of classList" [(ngValue)]="class.id">{{class.className}}</option>
+              </select>
+            </div>
+            <label for="division" class="col-sm-2 control-label">{{formLocale.time_table_division}}</label>
+            <div class="col-sm-4">
+              <select class="form-control" id="division" name="division" [disabled]="viewFlag" #division="ngModel" [(ngModel)]="timeT.division.id">
+                <option value="" disabled selected>{{formLocale.time_table_division_placeholder}}</option>
+                <option *ngFor="let division of divisionList" [(ngValue)]="division.id">{{division.divisionName}}</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="subject" class="col-sm-2 control-label">{{formLocale.time_table_subject}}</label>
+            <div class="col-sm-4">
+              <select class="form-control" id="subject" name="subject" [disabled]="viewFlag" #subject="ngModel" [(ngModel)]="timeT.subject.subjectId">
+                <option value="" disabled selected>{{formLocale.time_table_subject_placeholder}}</option>
+                <option *ngFor="let subject of subjectList" [(ngValue)]="subject.subjectId">{{subject.subjectName}}</option>
+              </select>
+            </div>
+            <label for="day" class="col-sm-2 control-label">{{formLocale.time_day}}</label>
+            <div class="col-sm-4">
+              <select class="form-control" id="day" name="day" [disabled]="viewFlag" #day="ngModel" [(ngModel)]="timeT.day.id">
+                <option value="" disabled selected>{{formLocale.time_day_placeholder}}</option>
+                <option *ngFor="let day of dayList" [(ngValue)]="day.id">{{day.name}}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="box-footer">
+          <button type="button" class="btn btn-default" (click)="backToList()">{{formLocale.back_btn}}</button>
+          <button *ngIf="action == 'new'" type="submit" class="btn btn-success pull-right" data-toggle="modal" data-target="#modal-success">{{formLocale.submit_btn}}</button>
+          <button *ngIf="action == 'view'" type="button" class="btn btn-info btn-info pull-right" (click)="backToList()">{{formLocale.ok_btn}}</button>
+          <button *ngIf="action == 'edit'" type="submit" class="btn btn-success pull-right" data-toggle="modal" data-target="#modal-success">{{formLocale.update_btn}}</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+<div class="modal modal-success fade" id="modal-success">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title">{{formLocale.modal_status}}</h4>
+      </div>
+      <div class="modal-body">
+        <h5 *ngIf="action == 'new'">{{locale.timeTable+formLocale.modal_add_msg}} </h5>
+        <h5 *ngIf="action == 'edit'">{{locale.timeTable+formLocale.modal_update_msg}} </h5>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline pull-left" data-dismiss="modal" (click)="backToList()">{{formLocale.ok_btn}}</button>
+      </div>
+    </div>
+  </div>
+</div>
