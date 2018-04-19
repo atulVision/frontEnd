@@ -8,6 +8,8 @@ import { isUndefined } from 'util';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { Broadcaster } from '../../../utils/broadcaster';
 
+// Author : Tushar Upadhay
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',

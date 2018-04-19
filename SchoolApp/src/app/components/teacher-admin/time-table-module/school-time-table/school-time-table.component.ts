@@ -17,6 +17,8 @@ import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { DayService } from '../../../../services/day.service';
 import { Day } from '../../../../models/day.model';
 
+// Author : Tushar Upadhyay
+
 @Component({
   selector: 'app-school-time-table',
   templateUrl: './school-time-table.component.html',

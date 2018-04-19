@@ -4,6 +4,8 @@ import { Labels } from '../../../utils/labels';
 import { UtilFunctions } from '../../../utils/util-functions';
 import * as $ from 'jquery';
 
+// Author : Tushar Upadhay
+
 @Component({
   selector: 'app-nav-bar',
   templateUrl: './nav-bar.component.html',
@@ -32,6 +34,11 @@ export class NavBarComponent implements OnInit {
 
   checkRole(role) {
     this.role = UtilFunctions.getLocalStorage('role');
-    return this.role === role ? true : (role === '0' ? true : false);
+    if (role.length > 1) {
+      const rolesArr = role.split(',');
+      return rolesArr.indexOf(this.role) !== -1 ? true : false;
+    }
+    return this.role === role ? true : false;
   }
+
 }

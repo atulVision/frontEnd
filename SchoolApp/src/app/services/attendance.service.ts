@@ -6,13 +6,15 @@ import 'rxjs/add/operator/catch';
 import { Constants } from '../utils/constants';
 import { Attendance } from '../models/attendance.model';
 
+// Author : Tushar Upadhyay
+
 @Injectable()
 export class AttendanceService {
 
   constructor(private _http: Http) { }
 
-  getAttendanceList() {
-    return this._http.get(Constants.URL.host_url + Constants.URL.attendanceURL)
+  getAttendanceList(obj: any) {
+    return this._http.post(Constants.URL.host_url + Constants.URL.attendanceListURL, obj)
       .map((response: Response) => {
         const userResponse = response.json();
         return userResponse;

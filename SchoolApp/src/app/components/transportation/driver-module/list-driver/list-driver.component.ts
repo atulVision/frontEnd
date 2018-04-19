@@ -7,6 +7,8 @@ import { AppConfig } from '../../../../utils/app-config';
 import { UtilFunctions } from '../../../../utils/util-functions';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 
+// Author : Tushar Upadhay
+
 @Component({
   selector: 'app-list-driver',
   templateUrl: './list-driver.component.html',
@@ -35,7 +37,6 @@ export class ListDriverComponent implements OnInit {
   }
 
   initializeTable() {
-    this.filteredData = [this.rows];
     this.commonLocale = Labels.en_IN.labels.table.common;
     this.locale = Labels.en_IN.labels.table.driver;
     this.columns = AppConfig.driver;
@@ -48,6 +49,7 @@ export class ListDriverComponent implements OnInit {
     this.spinnerService.show();
     this._driver.getDriverList().subscribe((res) => {
       this.rows = res;
+      this.filteredData = this.rows;
       this.spinnerService.hide();
     }, (resError) => {
     });
@@ -92,10 +94,10 @@ export class ListDriverComponent implements OnInit {
 
   updateFilter(event) {
     const val = event.target.value.toLowerCase();
-    const colsAmt = this.rows[0].length;
-    const keys = Object.keys(this.rows[0]);
+    const keys = ['firstName', 'lastName', 'contactNo'];
+    const colAmt = keys.length;
     this.rows = this.filteredData.filter(function (item) {
-      for (let i = 0; i < colsAmt; i++) {
+      for (let i = 0; i < colAmt; i++) {
         if (item[keys[i]].toLowerCase().indexOf(val) !== -1 || !val) {
           return true;
         }

@@ -1,24 +1,54 @@
+import { Student } from './student.model';
+import { Classes } from './classes.model';
+import { Division } from './division.model';
+import { Subject } from './subject.model';
+import { Teacher } from './teacher.model';
+
+// Author : Tushar Upadhyay
+
 export class Attendance {
-
   public attendanceId: number;
-  public className: string;
-  public division: string;
-  public date: any;
-  public time: any;
-  public day: string;
-  public students: string;
-  public presentEntries: string;
+  public classes: Classes;
+  public division: Division;
+  public attendanceDate: any;
+  public attendanceTime: any;
+  public subjectId: Subject;
+  public studentAttendanes: Array<StudentAttendance>;
+  public teacherId: Teacher;
 
-  constructor(attendanceId: number, className: string, division: string,
-    date: any, time: any, day: string, students: string,
-    presentEntries: string
+  constructor(attendanceId: number,
+    classes: Classes,
+    division: Division,
+    attendanceDate: any,
+    attendanceTime: any,
+    subjectId: Subject,
+    studentAttendanes: Array<StudentAttendance>,
+    teacherId: Teacher
   ) {
     this.attendanceId = attendanceId;
-    this.className = className;
+    this.classes = classes;
     this.division = division;
-    this.date = date;
-    this.time = time;
-    this.students = students;
-    this.presentEntries = presentEntries;
+    this.attendanceDate = attendanceDate;
+    this.attendanceTime = attendanceTime;
+    this.subjectId = subjectId;
+    this.studentAttendanes = studentAttendanes;
+    this.teacherId = teacherId;
   }
+}
+
+export class StudentAttendance {
+  public id: number;
+  public attandandceFlag: string;
+  public student: Student;
+
+  constructor(id: number,
+    attandandceFlag: string,
+    student: Student
+  ) {
+    this.id = id;
+    this.attandandceFlag = attandandceFlag;
+    this.student = student;
+
+  }
+
 }

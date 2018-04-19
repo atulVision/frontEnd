@@ -1,5 +1,7 @@
 import { BookType } from './book-type.model';
 
+// Author : Tushar Upadhyay
+
 export class Book {
   public bookId: number;
   public publisher: string;
@@ -12,9 +14,16 @@ export class Book {
   public bookName: string;
   public isbn: string;
 
-  constructor(bookId: number, publisher: string, authors: string,
-    description: string, edition: string, coverPhoto: string,
-    bookType: BookType, bookName: string, isbn: string, subject: string
+  constructor(bookId: number,
+    publisher: string,
+    authors: string,
+    description: string,
+    edition: string,
+    coverPhoto: string,
+    bookType: BookType,
+    bookName: string,
+    isbn: string,
+    subject: string
   ) {
     this.bookId = bookId;
     this.publisher = publisher;

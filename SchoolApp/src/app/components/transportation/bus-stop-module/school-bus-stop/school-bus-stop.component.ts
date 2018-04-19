@@ -13,6 +13,8 @@ import { } from '@types/googlemaps';
 import { Broadcaster } from '../../../../utils/broadcaster';
 import { Marker } from '../../../../models/route.model';
 
+// Author : Tushar Upadhay
+
 @Component({
   selector: 'app-school-bus-stop',
   templateUrl: './school-bus-stop.component.html',

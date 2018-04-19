@@ -20,9 +20,8 @@ import { SchoolTimeTableComponent } from './components/teacher-admin/time-table-
 import { SchoolGalleryComponent } from './components/administration/gallery-module/school-gallery/school-gallery.component';
 import { SchoolLibraryComponent } from './components/administration/library-module/school-library/school-library.component';
 import { SchoolNotificationComponent } from './components/administration/notification-module/school-notification/school-notification.component';
-import { SchoolResultComponent } from './components/school-result/school-result.component';
+import { SchoolResultComponent } from './components/teacher-admin/exam-module/school-result/school-result.component';
 import { LoginComponent } from './components/common/login/login.component';
-import { ResultMarksComponent } from './components/result-marks/result-marks.component';
 import { SchoolStudentComponent } from './components/administration/student-module/school-student/school-student.component';
 import { ErrorComponent } from './components/common/error/error.component';
 import { SchoolExamComponent } from './components/teacher-admin/exam-module/school-exam/school-exam.component';
@@ -48,11 +47,10 @@ import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 import { Broadcaster } from './utils/broadcaster';
 import { SchoolBusStopComponent } from './components/transportation/bus-stop-module/school-bus-stop/school-bus-stop.component';
 import { BusStopService } from './services/bus-stop.service';
-import { ResultSubjectsComponent } from './components/result-subjects/result-subjects.component';
 import { SchoolAlbumComponent } from './components/administration/gallery-module/school-album/school-album.component';
 import { SchoolBookTypeComponent } from './components/administration/library-module/school-book-type/school-book-type.component';
 import { SchoolDivisionComponent } from './components/administration/division-module/school-division/school-division.component';
-import {NgbModule, NgbTypeaheadModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule, NgbTypeaheadModule } from '@ng-bootstrap/ng-bootstrap';
 import { DivisionService } from './services/division.service';
 import { SchoolSubjectComponent } from './components/teacher-admin/exam-module/school-subject/school-subject.component';
 import { SchoolDayComponent } from './components/teacher-admin/time-table-module/school-day/school-day.component';
@@ -75,7 +73,7 @@ import { ListTimeTableComponent } from './components/teacher-admin/time-table-mo
 import { ListExamComponent } from './components/teacher-admin/exam-module/list-exam/list-exam.component';
 import { ListSubjectComponent } from './components/teacher-admin/exam-module/list-subject/list-subject.component';
 import { ListExamTimeTableComponent } from './components/teacher-admin/time-table-module/list-exam-time-table/list-exam-time-table.component';
-import { ListResultComponent } from './components/list-result/list-result.component';
+import { ListResultComponent } from './components/teacher-admin/exam-module/list-result/list-result.component';
 import { UserService } from './services/user.service';
 import { BookTypeService } from './services/book-type.service';
 import { GalleryService } from './services/gallery.service';
@@ -84,6 +82,9 @@ import { SchoolExamTimeTableComponent } from './components/teacher-admin/time-ta
 import { SubjectService } from './services/subject.service';
 import { DayService } from './services/day.service';
 import { ExamTimeTableService } from './services/exam-time-table.service';
+import { ListStudentTransportComponent } from './components/transportation/student-module/list-student-transport/list-student-transport.component';
+
+// Author : Tushar Upadhyay
 
 const appRoutes: Routes = [
   { path: '', component: DashboardComponent },
@@ -106,6 +107,7 @@ const appRoutes: Routes = [
   { path: 'list/busStop', component: ListBusStopComponent },
   { path: 'route/:action', component: SchoolRouteComponent },
   { path: 'list/route', component: ListRouteComponent },
+  { path: 'list/studentTransport', component: ListStudentTransportComponent },
   { path: 'album/:action', component: SchoolAlbumComponent },
   { path: 'list/album', component: ListAlbumComponent },
   { path: 'gallery/:action', component: SchoolGalleryComponent },
@@ -120,12 +122,12 @@ const appRoutes: Routes = [
   { path: 'list/subject', component: ListSubjectComponent },
   { path: 'exam/:action', component: SchoolExamComponent },
   { path: 'list/exam', component: ListExamComponent },
-  { path: 'result/:action', component: ResultMarksComponent },
-  { path: 'list/result', component: ListClassesComponent },
+  { path: 'result/:action', component: SchoolResultComponent },
+  { path: 'list/result', component: ListResultComponent },
   { path: 'homeWork/:action', component: SchoolHomeWorkComponent },
   { path: 'list/homeWork', component: ListHomeWorkComponent },
   { path: 'attendance/:action', component: SchoolAttendanceComponent },
-  { path: 'list/attendance', component: ListClassesComponent },
+  { path: 'list/attendance', component: ListAttendanceComponent },
   { path: 'day/:action', component: SchoolDayComponent },
   { path: 'list/day', component: ListDayComponent },
   { path: 'timeTable/:action', component: SchoolTimeTableComponent },
@@ -155,13 +157,11 @@ const appRoutes: Routes = [
     SchoolNotificationComponent,
     SchoolResultComponent,
     LoginComponent,
-    ResultMarksComponent,
     SchoolStudentComponent,
     ErrorComponent,
     SchoolExamComponent,
     ProfileComponent,
     SchoolBusStopComponent,
-    ResultSubjectsComponent,
     SchoolAlbumComponent,
     SchoolBookTypeComponent,
     SchoolDivisionComponent,
@@ -188,7 +188,8 @@ const appRoutes: Routes = [
     ListExamTimeTableComponent,
     ListResultComponent,
     ListDayComponent,
-    SchoolExamTimeTableComponent
+    SchoolExamTimeTableComponent,
+    ListStudentTransportComponent
   ],
   imports: [
     BrowserModule,

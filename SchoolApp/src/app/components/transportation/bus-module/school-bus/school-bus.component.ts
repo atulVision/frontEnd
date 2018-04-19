@@ -14,6 +14,8 @@ import { Driver } from '../../../../models/driver.model';
 import { Route } from '../../../../models/route.model';
 import { BusStop } from '../../../../models/bus-stop.model';
 
+// Author : Tushar Upadhay
+
 @Component({
   selector: 'app-school-bus',
   templateUrl: './school-bus.component.html',
@@ -72,7 +74,7 @@ export class SchoolBusComponent implements OnInit {
 
   private initializeBus() {
     this.driverObj = new Driver(null, '', '', '', '', '', '', '', '');
-    this.routeObj = new Route(null, '', new BusStop(null, '', '', ''), new BusStop(null, '', '', ''))
+    this.routeObj = new Route(null, '', new BusStop(null, '', '', ''), new BusStop(null, '', '', ''));
     this.bus = new Bus(null, '', '', this.driverObj, this.routeObj);
   }
 

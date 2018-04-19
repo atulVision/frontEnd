@@ -11,6 +11,8 @@ import { GalleryService } from '../../../../services/gallery.service';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { AlbumService } from '../../../../services/album.service';
 
+// Author : Tushar Upadhyay
+
 @Component({
   selector: 'app-school-gallery',
   templateUrl: './school-gallery.component.html',
@@ -25,9 +27,14 @@ export class SchoolGalleryComponent implements OnInit {
   locale: any;
   gallery: Gallery;
   formLocale: any;
-albumList: any;
-  constructor(private route: ActivatedRoute, private router: Router, private broadcaster: Broadcaster,
-  private _gallery: GalleryService, private _album: AlbumService, private spinnerService: Ng4LoadingSpinnerService) {
+  albumList: any;
+
+  constructor(private route: ActivatedRoute,
+    private router: Router,
+    private broadcaster: Broadcaster,
+    private _gallery: GalleryService,
+    private _album: AlbumService,
+    private spinnerService: Ng4LoadingSpinnerService) {
     this.route.params.subscribe((params) => {
       this.action = params['action'];
       this.initializeGallery();
@@ -62,24 +69,24 @@ albumList: any;
     });
   }
 
-  initializeGallery() {
+  private initializeGallery() {
     this.album = new Album(null, '', '');
-    this.gallery = new Gallery (null, this.album, '', '');
+    this.gallery = new Gallery(null, this.album, '', '');
   }
 
-  addGallery(data) {
+  public addGallery(data) {
     this.spinnerService.show();
     if (this.action === 'new') {
       this._gallery.saveGallery(this.gallery).subscribe((res) => {
         this.spinnerService.hide();
-    }, (resError) => {
-    });
+      }, (resError) => {
+      });
     }
     if (this.action === 'edit') {
       this._gallery.updateGallery(this.gallery.id, this.gallery).subscribe((res) => {
         this.spinnerService.hide();
-    }, (resError) => {
-    });
+      }, (resError) => {
+      });
     }
   }
 
@@ -87,7 +94,7 @@ albumList: any;
     this.router.navigate(['/list/gallery']);
   }
 
-  checkLogin() {
+  private checkLogin() {
     const user = UtilFunctions.getLocalStorage('user');
     if (user) {
       return;

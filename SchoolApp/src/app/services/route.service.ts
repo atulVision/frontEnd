@@ -6,6 +6,8 @@ import 'rxjs/add/operator/catch';
 import { Constants } from '../utils/constants';
 import { BusRoute } from '../models/route.model';
 
+// Author : Tushar Upadhyay
+
 @Injectable()
 export class RouteService {
 

@@ -18,6 +18,8 @@ import { RouteService } from '../../../../services/route.service';
 import { BusService } from '../../../../services/bus.service';
 import { BusStopService } from '../../../../services/bus-stop.service';
 
+// Author : Tushar Upadhyay
+
 @Component({
   selector: 'app-school-student',
   templateUrl: './school-student.component.html',
@@ -41,9 +43,15 @@ export class SchoolStudentComponent implements OnInit {
   routeList: any;
   busStopList: any;
 
-  constructor(private route: ActivatedRoute, private router: Router, private _student: StudentService,
-    private _class: ClassesService, private _division: DivisionService, private _route: RouteService,
-    private _busStop: BusStopService, private broadcaster: Broadcaster, private spinnerService: Ng4LoadingSpinnerService) {
+  constructor(private route: ActivatedRoute,
+    private router: Router,
+    private _student: StudentService,
+    private _class: ClassesService,
+    private _division: DivisionService,
+    private _route: RouteService,
+    private _busStop: BusStopService,
+    private broadcaster: Broadcaster,
+    private spinnerService: Ng4LoadingSpinnerService) {
     this.route.params.subscribe((params) => {
       this.action = params['action'];
       this.role = UtilFunctions.getLocalStorage('role');
@@ -102,7 +110,7 @@ export class SchoolStudentComponent implements OnInit {
       this.classObj, this.divisionObj, '', '', '', '', this.routeObj, this.busStopObj, '', '');
   }
 
-  processDob(action) {
+  private processDob(action) {
     if (action === 'show') {
       const temp = this.student.dob.split('-');
       const temp2 = this.student.admissionDate.split('-');
@@ -128,7 +136,6 @@ export class SchoolStudentComponent implements OnInit {
 
   public addStudent(data) {
     this.processDob('save');
-    console.log(JSON.stringify(this.student));
     this.spinnerService.show();
     if (this.action === 'new') {
       this._student.saveStudent(this.student).subscribe((res) => {
@@ -145,7 +152,11 @@ export class SchoolStudentComponent implements OnInit {
   }
 
   public backToList() {
-    this.router.navigate(['/list/student']);
+    if (this.role === '3') {
+      this.router.navigate(['/list/studentTransport']);
+    } else {
+      this.router.navigate(['/list/student']);
+    }
   }
 
   private checkLogin() {

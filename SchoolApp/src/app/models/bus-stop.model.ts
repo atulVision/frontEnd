@@ -1,3 +1,4 @@
+// Author : Tushar Upadhyay
 export class BusStop {
   public busStopId: number;
   public name: string;
@@ -5,8 +6,10 @@ export class BusStop {
   public longitude: string;
 
 
-  constructor(busStopId: number, name: string,
-    latitude: string, longitude: string
+  constructor(busStopId: number,
+    name: string,
+    latitude: string,
+    longitude: string
   ) {
     this.busStopId = busStopId;
     this.name = name;

@@ -15,6 +15,8 @@ import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { UtilFunctions } from '../../../../utils/util-functions';
 import { Labels } from '../../../../utils/labels';
 
+// Author : Tushar Upadhyay
+
 @Component({
   selector: 'app-school-exam-time-table',
   templateUrl: './school-exam-time-table.component.html',

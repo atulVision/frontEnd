@@ -6,6 +6,12 @@ import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { Labels } from '../../../../utils/labels';
 import { AppConfig } from '../../../../utils/app-config';
 import { UtilFunctions } from '../../../../utils/util-functions';
+import { ExamService } from '../../../../services/exam.service';
+import { ClassesService } from '../../../../services/classes.service';
+import { SubjectService } from '../../../../services/subject.service';
+import { DivisionService } from '../../../../services/division.service';
+
+// Author : Tushar Upadhyay
 
 @Component({
   selector: 'app-list-exam-time-table',
@@ -23,19 +29,34 @@ export class ListExamTimeTableComponent implements OnInit {
   filterColumns = [];
   ref: any;
   formLocale: any;
+  classList: any;
+  divisionList: any;
+  subjectList: any;
+  examList: any;
+  obj: Obj;
 
-  constructor(private router: Router, private broadcaster: Broadcaster,
-    private _examTT: ExamTimeTableService, private spinnerService: Ng4LoadingSpinnerService) {
-  }
+  constructor(
+    private router: Router,
+    private broadcaster: Broadcaster,
+    private _examTT: ExamTimeTableService,
+    private _class: ClassesService,
+    private _division: DivisionService,
+    private _subject: SubjectService,
+    private _exam: ExamService,
+    private spinnerService: Ng4LoadingSpinnerService
+  ) {}
 
   ngOnInit() {
     this.rows = [];
     this.checkLogin();
-    this.getUpdatedList();
+    this.spinnerService.show();
+    this.getList();
+    this.spinnerService.hide();
+    this.obj = new Obj(null, null, null, null);
+    this.getUpdatedList(this.obj);
   }
 
   initializeTable() {
-    this.filteredData = [this.rows];
     this.commonLocale = Labels.en_IN.labels.table.common;
     this.locale = Labels.en_IN.labels.table.examTimeT;
     this.columns = AppConfig.examTimeT;
@@ -44,13 +65,43 @@ export class ListExamTimeTableComponent implements OnInit {
     this.formLocale = Labels.en_IN.labels.form_labels;
   }
 
-  getUpdatedList() {
+  private getList() {
+    this._class.getClassList().subscribe(
+      res => {
+        this.classList = res;
+      },
+      resError => {}
+    );
+    this._division.getDivisionList().subscribe(
+      res => {
+        this.divisionList = res;
+      },
+      resError => {}
+    );
+    this._subject.getSubjectList().subscribe(
+      res => {
+        this.subjectList = res;
+      },
+      resError => {}
+    );
+    this._exam.getExamList().subscribe(
+      res => {
+        this.examList = res;
+      },
+      resError => {}
+    );
+  }
+
+  getUpdatedList(data) {
     this.spinnerService.show();
-    this._examTT.getExamTimeTableList().subscribe((res) => {
-      this.rows = res;
-      this.spinnerService.hide();
-    }, (resError) => {
-    });
+    this._examTT.getExamTimeTableList(this.obj).subscribe(
+      res => {
+        this.rows = res;
+        this.filteredData = this.rows;
+        this.spinnerService.hide();
+      },
+      resError => {}
+    );
     this.initializeTable();
   }
 
@@ -67,9 +118,9 @@ export class ListExamTimeTableComponent implements OnInit {
   delete(row: any, go: any) {
     this.spinnerService.show();
     if (go) {
-      this._examTT.deleteExamTimeTable(this.deleteCache.id).subscribe((res) => {
-      }, (resError) => {
-      });
+      this._examTT
+        .deleteExamTimeTable(this.deleteCache.id)
+        .subscribe(res => {}, resError => {});
       this.ngOnInit();
       this.spinnerService.hide();
     } else {
@@ -92,14 +143,33 @@ export class ListExamTimeTableComponent implements OnInit {
 
   updateFilter(event) {
     const val = event.target.value.toLowerCase();
-    const colsAmt = this.rows[0].length;
-    const keys = Object.keys(this.rows[0]);
-    this.rows = this.filteredData.filter(function (item) {
-      for (let i = 0; i < colsAmt; i++) {
+    const keys = ['examDate'];
+    const colAmt = keys.length;
+    this.rows = this.filteredData.filter(function(item) {
+      for (let i = 0; i < colAmt; i++) {
         if (item[keys[i]].toLowerCase().indexOf(val) !== -1 || !val) {
           return true;
         }
       }
     });
+  }
+}
+
+class Obj {
+  public subjectId: number;
+  public classId: number;
+  public divisionId: number;
+  public examId: number;
+
+  constructor(
+    subjectId: number,
+    classId: number,
+    divisionId: number,
+    examId: number
+  ) {
+    this.subjectId = subjectId;
+    this.classId = classId;
+    this.divisionId = divisionId;
+    this.examId = examId;
   }
 }

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Labels } from '../../../utils/labels';
 
+// Author : Tushar Upadhyay
+
 @Component({
   selector: 'app-footer',
   templateUrl: './footer.component.html',

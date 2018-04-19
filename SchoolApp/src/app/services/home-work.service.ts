@@ -6,13 +6,15 @@ import 'rxjs/add/operator/catch';
 import { Constants } from '../utils/constants';
 import { HomeWork } from '../models/home-work.model';
 
+// Author : Tushar Upadhyay
+
 @Injectable()
 export class HomeWorkService {
 
   constructor(private _http: Http) { }
 
-  getHomeWorkList() {
-    return this._http.get(Constants.URL.host_url + Constants.URL.homeWorkURL)
+  getHomeWorkList(obj: any) {
+    return this._http.post(Constants.URL.host_url + Constants.URL.homeWorkListURL, obj)
       .map((response: Response) => {
         const userResponse = response.json();
         return userResponse;

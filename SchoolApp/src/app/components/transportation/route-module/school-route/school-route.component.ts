@@ -11,6 +11,8 @@ import { RouteService } from '../../../../services/route.service';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { BusStopService } from '../../../../services/bus-stop.service';
 
+// Author : Tushar Upadhay
+
 @Component({
   selector: 'app-school-route',
   templateUrl: './school-route.component.html',
@@ -56,7 +58,6 @@ export class SchoolRouteComponent implements OnInit {
         this.addMarker(this.busRoute.fromBusStop);
         this.addPickUpMarkers();
         this.addMarker(this.busRoute.toBusStop);
-        console.log(this.finalRoute);
       }
       if (this.action === 'view') {
         this.viewFlag = true;
@@ -66,7 +67,6 @@ export class SchoolRouteComponent implements OnInit {
         this.addMarker(this.busRoute.fromBusStop);
         this.addPickUpMarkers();
         this.addMarker(this.busRoute.toBusStop);
-        console.log(this.finalRoute);
       }
       this.locale = Labels.en_IN.labels.page_title;
       this.formLocale = Labels.en_IN.labels.form_labels;
@@ -116,7 +116,6 @@ export class SchoolRouteComponent implements OnInit {
   }
 
   public addRoute(data) {
-    console.log(this.finalRoute);
     this.spinnerService.show();
     if (this.action === 'new') {
       this._route.saveRoute(this.finalRoute).subscribe((res) => {
@@ -195,4 +194,5 @@ export class SchoolRouteComponent implements OnInit {
       });
     }
   }
+
 }

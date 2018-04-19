@@ -3,8 +3,9 @@ import { Division } from './division.model';
 import { Subject } from './subject.model';
 import { Day } from './day.model';
 
-export class TimeTable {
+// Author : Tushar Upadhyay
 
+export class TimeTable {
   public id: number;
   public title: string;
   public classes: Classes;
@@ -13,8 +14,13 @@ export class TimeTable {
   public day: Day;
   public time: any;
 
-  constructor(id: number, title: string, classes: Classes,
-    division: Division, subject: Subject, day: Day, time: any
+  constructor(id: number,
+    title: string,
+    classes: Classes,
+    division: Division,
+    subject: Subject,
+    day: Day,
+    time: any
   ) {
     this.id = id;
     this.title = title;

@@ -9,6 +9,8 @@ import { Broadcaster } from '../../../../utils/broadcaster';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { ExamService } from '../../../../services/exam.service';
 
+// Author : Tushar Upadhyay
+
 @Component({
   selector: 'app-school-exam',
   templateUrl: './school-exam.component.html',

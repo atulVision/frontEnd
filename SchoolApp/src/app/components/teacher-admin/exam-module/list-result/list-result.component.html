@@ -1,0 +1,187 @@
+<!-- Author : Tushar Upadhyay -->
+<section class="content-header">
+  <h1>{{locale.table_title}}</h1>
+</section>
+  <div class="form">
+    <form class="form-horizontal" id="resultListForm" #resultListForm="ngForm" (ngSubmit)="getUpdatedList(resultListForm.value, true)">
+      <div class="form-group">
+        <label for="classes" class="col-sm-1 control-label">Class</label>
+        <div class="col-sm-1">
+          <select class="form-control" id="classes" name="classes" #classes="ngModel" [(ngModel)]="obj.classId">
+            <option value="" disabled selected>Select Calss</option>
+            <option *ngFor="let class of classList" [(ngValue)]="class.id">{{class.className}}</option>
+          </select>
+        </div>
+        <label for="division" class="col-sm-1 control-label">Division</label>
+        <div class="col-sm-1">
+          <select class="form-control" id="division" name="division" #division="ngModel" [(ngModel)]="obj.divisionId">
+            <option value="" disabled selected>Select Division</option>
+            <option *ngFor="let division of divisionList" [(ngValue)]="division.id">{{division.divisionName}}</option>
+          </select>
+        </div>
+        <label for="student" class="col-sm-1 control-label">Student</label>
+        <div class="col-sm-3">
+          <select class="form-control" id="student" name="student" #subject="ngModel" [(ngModel)]="obj.studentId">
+            <option value="" disabled selected>Select Student</option>
+            <option *ngFor="let student of studentList" [(ngValue)]="student.studentId">{{student.firstName+' '+student.lastName}}</option>
+          </select>
+        </div>
+        <label for="exam" class="col-sm-1 control-label">Exam</label>
+        <div class="col-sm-2">
+          <select class="form-control" id="exam" name="exam" #exam="ngModel" [(ngModel)]="obj.examId">
+            <option value="" disabled selected>Select Exam</option>
+            <option *ngFor="let exam of examList" [(ngValue)]="exam.id">{{exam.examName}}</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-success list-add-btn right-float">
+          <i class="fa fa-refresh"></i> GO</button>
+      </div>
+    </form>
+  </div>
+<section class="content-header">
+  <div class="list-tool-bar">
+    <div class="page-header"></div>
+    <div class="list-tool-bar">
+      <div class="btn-group">
+        <button type="button" class="btn btn-default list-menu-btn dropdown-toggle" data-toggle="dropdown">
+          <i class="fa fa-bars"></i>
+        </button>
+        <ul class="dropdown-menu">
+          <li>{{commonLocale.drop_menu_option2_title}}</li>
+          <li class="divider"></li>
+          <li>
+            <a (click)="setPageSize(10)">
+              <i class="fa fa-angle-double-right"> 10</i>
+            </a>
+          </li>
+          <li>
+            <a (click)="setPageSize(20)">
+              <i class="fa fa-angle-double-right"> 20</i>
+            </a>
+          </li>
+          <li>
+            <a (click)="setPageSize(30)">
+              <i class="fa fa-angle-double-right"> 30</i>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <!-- <i class="fa fa-search"></i>
+      <input type='text' class="search-bar" placeholder='Search' (keyup)='updateFilter($event)' /> -->
+      <button routerLink="{{ref.addRef}}" routerLinkActive="active" type="button" class="btn btn-success list-add-btn right-float">
+        <i class="fa fa-plus"></i> {{locale.add_btn}}</button>
+    </div>
+    <div>
+      <ngx-datatable class="material striped" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'"
+        [limit]="pageSize" [rows]="rows">
+        <ngx-datatable-column>
+          <ng-template let-column="col" ngx-datatable-header-template>
+            {{commonLocale.head_sr_no}}
+          </ng-template>
+          <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex">
+            {{rowIndex+1}}
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column class="resizeable sortable">
+          <ng-template let-column="col" ngx-datatable-header-template>
+            {{locale.name}}
+          </ng-template>
+          <ng-template ngx-datatable-cell-template>
+            <div>{{studentObj.firstName + ' ' + studentObj.lastName}}</div>
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column class="resizeable sortable">
+          <ng-template let-column="col" ngx-datatable-header-template>
+            {{locale.class}}
+          </ng-template>
+          <ng-template ngx-datatable-cell-template>
+            <div>{{classObj.className}}</div>
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column class="resizeable sortable">
+          <ng-template let-column="col" ngx-datatable-header-template>
+            {{locale.division}}
+          </ng-template>
+          <ng-template ngx-datatable-cell-template>
+            <div>{{divisionObj.divisionName}}</div>
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column class="resizeable sortable">
+          <ng-template let-column="col" ngx-datatable-header-template>
+            {{locale.exam}}
+          </ng-template>
+          <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+            <div>{{examObj.examName}}</div>
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column class="resizeable sortable">
+          <ng-template let-column="col" ngx-datatable-header-template>
+            {{locale.subject}}
+          </ng-template>
+          <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+            <div>{{row.subject.subjectName}}</div>
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column class="resizeable sortable">
+          <ng-template let-column="col" ngx-datatable-header-template>
+            {{locale.obtainMark}}
+          </ng-template>
+          <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+            <div>{{row.obtainMark}}</div>
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column class="resizeable sortable">
+          <ng-template let-column="col" ngx-datatable-header-template>
+            {{locale.outOfMark}}
+          </ng-template>
+          <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+            <div>{{row.outOfMark}}</div>
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column class="resizeable sortable">
+          <ng-template let-column="col" ngx-datatable-header-template>
+            {{locale.grade}}
+          </ng-template>
+          <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+            <div>{{row.grade}}</div>
+          </ng-template>
+        </ngx-datatable-column>
+        <!-- <ngx-datatable-column>
+          <ng-template let-column="column" ngx-datatable-header-template>
+            {{commonLocale.head_action_col}}
+          </ng-template>
+          <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+            <button type="button" class="btn btn-info" (click)="view(row)">
+              <i class="fa fa-eye"></i>
+            </button>
+            <button type="button" class="btn btn-warning" (click)="edit(row)">
+              <i class="fa fa-pencil-square-o"></i>
+            </button>
+            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-danger" (click)="delete(row,false)">
+              <i class="fa fa-trash"></i>
+            </button>
+          </ng-template>
+        </ngx-datatable-column> -->
+      </ngx-datatable>
+    </div>
+  </div>
+</section>
+<div class="modal modal-danger fade" id="modal-danger">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title">{{formLocale.modal_status}}</h4>
+      </div>
+      <div class="modal-body">
+        <h5>{{formLocale.modal_delete_msg}}</h5>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">{{formLocale.back_btn}}</button>
+        <button type="button" class="btn btn-outline" (click)="delete(null,true)" data-dismiss="modal">{{formLocale.delete_btn}}</button>
+      </div>
+    </div>
+  </div>
+</div>

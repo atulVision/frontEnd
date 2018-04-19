@@ -1,5 +1,5 @@
+// Author : Tushar Upadhyay
 export class User {
-
   public userId: number;
   public firstName: string;
   public lastName: string;
@@ -9,8 +9,14 @@ export class User {
   public password: string;
   public dob: any;
 
-  constructor(userId: number, firstName: string, lastName: string, contactNo: string,
-    address: string, email: string, password: string, dob: any
+  constructor(userId: number,
+    firstName: string,
+    lastName: string,
+    contactNo: string,
+    address: string,
+    email: string,
+    password: string,
+    dob: any
   ) {
     this.userId = userId;
     this.firstName = firstName;

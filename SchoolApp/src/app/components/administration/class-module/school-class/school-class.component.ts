@@ -13,6 +13,8 @@ import { Teacher } from '../../../../models/teacher.model';
 import { DivisionService } from '../../../../services/division.service';
 import { TeacherService } from '../../../../services/teacher.service';
 
+// Author : Tushar Upadhyay
+
 @Component({
   selector: 'app-school-class',
   templateUrl: './school-class.component.html',
@@ -31,8 +33,12 @@ export class SchoolClassComponent implements OnInit {
   divisionList: any;
   teacherList: any;
 
-  constructor(private route: ActivatedRoute, private router: Router, private _class: ClassesService,
-    private broadcaster: Broadcaster, private spinnerService: Ng4LoadingSpinnerService, private _division: DivisionService,
+  constructor(private route: ActivatedRoute,
+    private router: Router,
+    private _class: ClassesService,
+    private broadcaster: Broadcaster,
+    private spinnerService: Ng4LoadingSpinnerService,
+    private _division: DivisionService,
     private _teacher: TeacherService) {
     this.route.params.subscribe((params) => {
       this.action = params['action'];

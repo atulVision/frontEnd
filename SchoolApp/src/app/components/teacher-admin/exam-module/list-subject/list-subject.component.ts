@@ -7,6 +7,8 @@ import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { Labels } from '../../../../utils/labels';
 import { AppConfig } from '../../../../utils/app-config';
 
+// Author : Tushar Upadhyay
+
 @Component({
   selector: 'app-list-subject',
   templateUrl: './list-subject.component.html',
@@ -48,6 +50,7 @@ export class ListSubjectComponent implements OnInit {
     this.spinnerService.show();
     this._subject.getSubjectList().subscribe((res) => {
       this.rows = res;
+      this.filteredData = this.rows;
       this.spinnerService.hide();
     }, (resError) => {
     });
@@ -92,10 +95,10 @@ export class ListSubjectComponent implements OnInit {
 
   updateFilter(event) {
     const val = event.target.value.toLowerCase();
-    const colsAmt = this.rows[0].length;
-    const keys = Object.keys(this.rows[0]);
+    const keys = ['subjectName'];
+    const colAmt = keys.length;
     this.rows = this.filteredData.filter(function (item) {
-      for (let i = 0; i < colsAmt; i++) {
+      for (let i = 0; i < colAmt; i++) {
         if (item[keys[i]].toLowerCase().indexOf(val) !== -1 || !val) {
           return true;
         }

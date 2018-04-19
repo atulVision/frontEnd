@@ -1,0 +1,150 @@
+<!-- Author : Tushar Upadhyay -->
+<section class="content-header">
+  <h1>{{pageTitle}}</h1>
+</section>
+<section class="content-header">
+  <div class="form">
+    <div class="box box-info">
+      <div class="box-header with-border">
+        <h3 class="box-title">{{locale.result}}</h3>
+      </div>
+      <form class="form-horizontal" id="resultForm" #resultForm="ngForm" (ngSubmit)="addResult(resultForm.value)">
+        <div class="box-body">
+          <div class="form-group">
+            <label for="resultDate" class="col-sm-2 control-label">{{formLocale.result_date}}</label>
+            <div class="col-sm-4">
+              <div class="input-group">
+                <div class="input-group-addon">
+                  <a (click)="resultDate.toggle()">
+                    <i class="fa fa-calendar"></i>
+                  </a>
+                </div>
+                <input class="form-control" placeholder="yyyy-mm-dd" name="resultDate" [(ngModel)]="result.resultDate" ngbDatepicker
+                  #resultDate="ngbDatepicker" [disabled]="viewFlag">
+              </div>
+            </div>
+            <label for="exam" class="col-sm-2 control-label">{{formLocale.result_exam}}</label>
+            <div class="col-sm-4">
+              <select class="form-control" id="exam" name="exam" [disabled]="viewFlag" #exam="ngModel" [(ngModel)]="result.examId.id">
+                <option value="" disabled selected>{{formLocale.result_exam_placeholder}}</option>
+                <option *ngFor="let exam of examList" [(ngValue)]="exam.id">{{exam.examName}}</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="classes" class="col-sm-2 control-label">{{formLocale.result_class}}</label>
+            <div class="col-sm-4">
+              <select class="form-control" id="classes" name="classes" [disabled]="viewFlag" #classes="ngModel" [(ngModel)]="result.classes.id">
+                <option value="" disabled selected>{{formLocale.result_class_placeholder}}</option>
+                <option *ngFor="let class of classList" [(ngValue)]="class.id">{{class.className}}</option>
+              </select>
+            </div>
+            <label for="division" class="col-sm-2 control-label">{{formLocale.result_division}}</label>
+            <div class="col-sm-4">
+              <select class="form-control" id="division" name="division" [disabled]="viewFlag" #division="ngModel" [(ngModel)]="result.division.id">
+                <option value="" disabled selected>{{formLocale.result_division_placeholder}}</option>
+                <option *ngFor="let division of divisionList" [(ngValue)]="division.id">{{division.divisionName}}</option>
+              </select>
+            </div>
+            <button type="button" class="btn btn-success list-add-btn right-float" (click)="getStudents()">
+              <i class="fa fa-refresh"></i> GET</button>
+          </div>
+          <div class="form-group" *ngIf="studentList.length > 0">
+            <label for="student" class="col-sm-2 control-label">{{formLocale.result_student}}</label>
+            <div class="col-sm-4">
+              <select class="form-control" id="student" name="student" [disabled]="viewFlag" #student="ngModel" [(ngModel)]="result.student.studentId">
+                <option value="" disabled selected>{{formLocale.result_student_placeholder}}</option>
+                <option *ngFor="let student of studentList" [(ngValue)]="student.studentId">{{student.firstName + ' ' + student.lastName}}</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group" *ngIf="studentList.length > 0">
+            <label for="subject" class="col-sm-2 control-label">{{formLocale.result_subject}}</label>
+            <div class="col-sm-4">
+              <select class="form-control" id="subject" name="subject" [disabled]="viewFlag" #subject="ngModel" [(ngModel)]="studentMarkObj.subject">
+                <option value="" disabled selected>{{formLocale.result_subject_placeholder}}</option>
+                <option *ngFor="let subject of subjectList" [ngValue]="subject">{{subject.subjectName}}</option>
+              </select>
+            </div>
+            <label for="obtainMark" class="col-sm-2 control-label">{{formLocale.result_marks}}</label>
+            <div class="col-sm-2">
+              <input type="text" class="form-control" id="obtainMark" name="obtainMark" placeholder="{{formLocale.result_marks_placeholder}}"
+                [disabled]="viewFlag" #obtainMark="ngModel" [(ngModel)]="studentMarkObj.obtainMark">
+            </div>
+            <label for="outOfMark" class="col-sm-2 control-label">{{formLocale.result_out}}</label>
+            <div class="col-sm-2">
+              <input type="text" class="form-control" id="outOfMark" name="examoutOfMarkDesc" placeholder="{{formLocale.result_out_placeholder}}"
+                [disabled]="viewFlag" #outOfMark="ngModel" [(ngModel)]="studentMarkObj.outOfMark">
+            </div>
+            <label for="grade" class="col-sm-2 control-label">{{formLocale.result_grade}}</label>
+            <div class="col-sm-2">
+              <input type="text" class="form-control" id="grade" name="grade" placeholder="{{formLocale.result_grade_placeholder}}"
+                [disabled]="viewFlag" #grade="ngModel" [(ngModel)]="studentMarkObj.grade">
+            </div>
+            <button type="button" class="btn btn-success list-add-btn right-float" (click)="addMarks()">
+              <i class="fa fa-plus"></i> ADD</button>
+          </div>
+          <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+              <div class="table-responsive table-fixed">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>Seq No.</th>
+                      <th>Subject</th>
+                      <th>Marks Obtained</th>
+                      <th>Out Of marks</th>
+                      <th>Grade</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <ng-container>
+                      <tr *ngFor="let mark of studentMarksList; let i = index" [attr.data-index]="i">
+                        <td>{{i+1}}</td>
+                        <td>{{mark.subject.subjectName}}</td>
+                        <td>{{mark.obtainMark}}</td>
+                        <td>{{mark.outOfMark}}</td>
+                        <td>{{mark.grade}}</td>
+                        <td>
+                          <button type="button" class="btn btn-danger" (click)="deleteMarks(i)" [disabled]="viewFlag">
+                            <i class="fa fa-trash"></i>
+                          </button>
+                        </td>
+                      </tr>
+                    </ng-container>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="box-footer">
+          <button type="button" class="btn btn-default" (click)="backToList()">{{formLocale.back_btn}}</button>
+          <button *ngIf="action == 'new'" type="submit" class="btn btn-success pull-right" data-toggle="modal" data-target="#modal-success">{{formLocale.submit_btn}}</button>
+          <button *ngIf="action == 'view'" type="button" class="btn btn-info btn-info pull-right" (click)="backToList()">{{formLocale.ok_btn}}</button>
+          <button *ngIf="action == 'edit'" type="submit" class="btn btn-success pull-right" data-toggle="modal" data-target="#modal-success">{{formLocale.update_btn}}</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+<div class="modal modal-success fade" id="modal-success">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title">{{formLocale.modal_status}}</h4>
+      </div>
+      <div class="modal-body">
+        <h5 *ngIf="action == 'new'">{{locale.result+formLocale.modal_add_msg}} </h5>
+        <h5 *ngIf="action == 'edit'">{{locale.result+formLocale.modal_update_msg}} </h5>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline pull-left" data-dismiss="modal" (click)="backToList()">{{formLocale.ok_btn}}</button>
+      </div>
+    </div>
+  </div>
+</div>

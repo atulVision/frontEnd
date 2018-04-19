@@ -11,6 +11,8 @@ import { Division } from '../../../../models/division.model';
 import { Teacher } from '../../../../models/teacher.model';
 import { Labels } from '../../../../utils/labels';
 
+// Author : Tushar Upadhyay
+
 @Component({
   selector: 'app-school-subject',
   templateUrl: './school-subject.component.html',

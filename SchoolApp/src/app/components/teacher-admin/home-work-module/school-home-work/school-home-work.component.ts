@@ -15,6 +15,8 @@ import { SubjectService } from '../../../../services/subject.service';
 import { Broadcaster } from '../../../../utils/broadcaster';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 
+// Author : Tushar Upadhyay
+
 @Component({
   selector: 'app-school-home-work',
   templateUrl: './school-home-work.component.html',
@@ -126,7 +128,7 @@ export class SchoolHomeWorkComponent implements OnInit {
   }
 
   public backToList() {
-    this.router.navigate(['/list/homeW']);
+    this.router.navigate(['/list/homeWork']);
   }
 
   private checkLogin() {

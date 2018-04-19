@@ -6,6 +6,8 @@ import 'rxjs/add/operator/catch';
 import { Constants } from '../utils/constants';
 import { Student } from '../models/student.model';
 
+// Author : Tushar Upadhyay
+
 @Injectable()
 export class StudentService {
 
@@ -13,6 +15,14 @@ export class StudentService {
 
   getStudentList() {
     return this._http.get(Constants.URL.host_url + Constants.URL.studentURL)
+      .map((response: Response) => {
+        return response.json();
+      })
+      .catch(this._errorHandler);
+  }
+
+  getClassDivStudentList(obj: any) {
+    return this._http.post(Constants.URL.host_url + Constants.URL.studentListURL, obj)
       .map((response: Response) => {
         return response.json();
       })

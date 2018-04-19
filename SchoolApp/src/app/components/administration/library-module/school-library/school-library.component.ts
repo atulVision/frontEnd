@@ -11,6 +11,8 @@ import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { BookType } from '../../../../models/book-type.model';
 import { BookTypeService } from '../../../../services/book-type.service';
 
+// Author : Tushar Upadhyay
+
 @Component({
   selector: 'app-school-library',
   templateUrl: './school-library.component.html',
@@ -27,8 +29,12 @@ export class SchoolLibraryComponent implements OnInit {
   bookTypeList: any;
   formLocale: any;
 
-  constructor(private route: ActivatedRoute, private router: Router, private broadcaster: Broadcaster,
-    private _book: BookService, private _bookType: BookTypeService, private spinnerService: Ng4LoadingSpinnerService) {
+  constructor(private route: ActivatedRoute,
+    private router: Router,
+    private broadcaster: Broadcaster,
+    private _book: BookService,
+    private _bookType: BookTypeService,
+    private spinnerService: Ng4LoadingSpinnerService) {
     this.route.params.subscribe((params) => {
       this.action = params['action'];
       this.initializeBook();
@@ -63,12 +69,12 @@ export class SchoolLibraryComponent implements OnInit {
     });
   }
 
-  initializeBook() {
+  private initializeBook() {
     this.bookType = new BookType(null, '');
     this.book = new Book(null, '', '', '', '', '', this.bookType, '', '', '');
   }
 
-  addBook(data) {
+  public addBook(data) {
     this.spinnerService.show();
     if (this.action === 'new') {
       this._book.saveBook(this.book).subscribe((res) => {
@@ -88,7 +94,7 @@ export class SchoolLibraryComponent implements OnInit {
     this.router.navigate(['/list/book']);
   }
 
-  checkLogin() {
+  private checkLogin() {
     const user = UtilFunctions.getLocalStorage('user');
     if (user) {
       return;

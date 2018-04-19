@@ -1,3 +1,4 @@
+<!-- Author : Tushar Upadhyay -->
 <section class="content-header">
     <h1>{{locale.table_title}}</h1>
   </section>
@@ -43,7 +44,7 @@
                 {{locale.driver}}
             </ng-template>
             <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-                <div>{{row.driver.firstName}}</div>
+                <div>{{row.driver.firstName + ' ' + row.driver.lastName}}</div>
             </ng-template>
         </ngx-datatable-column>
         <ngx-datatable-column class="resizeable sortable">

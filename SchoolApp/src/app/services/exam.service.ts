@@ -6,6 +6,8 @@ import 'rxjs/add/operator/catch';
 import { Constants } from '../utils/constants';
 import { Exam } from '../models/exam.model';
 
+// Author : Tushar Upadhyay
+
 @Injectable()
 export class ExamService {
 

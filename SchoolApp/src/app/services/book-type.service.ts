@@ -6,6 +6,7 @@ import 'rxjs/add/operator/catch';
 import { Constants } from '../utils/constants';
 import { BookType } from '../models/book-type.model';
 
+// Author : Tushar Upadhyay
 
 @Injectable()
 export class BookTypeService {

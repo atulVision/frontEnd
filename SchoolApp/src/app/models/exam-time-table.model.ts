@@ -3,8 +3,9 @@ import { Classes } from './classes.model';
 import { Division } from './division.model';
 import { Subject } from './subject.model';
 
-export class ExamTimeTable {
+// Author : Tushar Upadhyay
 
+export class ExamTimeTable {
   public id: number;
   public examId: Exam;
   public classes: Classes;
@@ -13,8 +14,13 @@ export class ExamTimeTable {
   public examTime: string;
   public examDate: any;
 
-  constructor(id: number, examId: Exam, classes: Classes,
-    division: Division, subject: Subject, examTime: string, examDate: any
+  constructor(id: number,
+    examId: Exam,
+    classes: Classes,
+    division: Division,
+    subject: Subject,
+    examTime: string,
+    examDate: any
   ) {
     this.id = id;
     this.examId = examId;

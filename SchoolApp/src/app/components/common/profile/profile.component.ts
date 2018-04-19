@@ -8,6 +8,8 @@ import { UserService } from '../../../services/user.service';
 import { Broadcaster } from '../../../utils/broadcaster';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 
+// Author : Tushar Upadhay
+
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',

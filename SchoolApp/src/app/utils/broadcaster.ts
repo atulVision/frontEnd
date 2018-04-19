@@ -1,7 +1,9 @@
-import {Subject} from 'rxjs/Subject';
-import {Observable} from 'rxjs/Observable';
+import { Subject } from 'rxjs/Subject';
+import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/map';
+
+// Author : Tushar Upadhyay
 
 interface BroadcastEvent {
   key: any;
@@ -18,7 +20,7 @@ export class Broadcaster {
   }
 
   broadcast(key: any, data?: any) {
-    this._eventBus.next({key, data});
+    this._eventBus.next({ key, data });
   }
 
   on<T>(key: any): Observable<T> {

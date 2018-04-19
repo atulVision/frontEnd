@@ -6,6 +6,11 @@ import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { Labels } from '../../../../utils/labels';
 import { AppConfig } from '../../../../utils/app-config';
 import { UtilFunctions } from '../../../../utils/util-functions';
+import { ClassesService } from '../../../../services/classes.service';
+import { StudentService } from '../../../../services/student.service';
+import { DivisionService } from '../../../../services/division.service';
+
+// Author : Tushar Upadhyay
 
 @Component({
   selector: 'app-list-attendance',
@@ -23,35 +28,80 @@ export class ListAttendanceComponent implements OnInit {
   filterColumns = [];
   ref: any;
   formLocale: any;
-
+  classList: any;
+  divisionList: any;
+  studentList: any;
+  obj: Obj;
+  
   constructor(private router: Router, private broadcaster: Broadcaster,
-    private _attendance: AttendanceService, private spinnerService: Ng4LoadingSpinnerService) {
+    private _attendance: AttendanceService, private _class: ClassesService,
+    private _division: DivisionService, private _student: StudentService,
+    private spinnerService: Ng4LoadingSpinnerService) {
   }
 
   ngOnInit() {
     this.rows = [];
     this.checkLogin();
-    this.getUpdatedList();
+    this.spinnerService.show();
+    this.getList();
+    this.spinnerService.hide();
+    this.obj = new Obj(null, null, null, new Date(), new Date());
+    this.getUpdatedList(this.obj, false);
+  }
+
+  private getList() {
+    this._class.getClassList().subscribe((res) => {
+      this.classList = res;
+    }, (resError) => {
+    });
+    this._division.getDivisionList().subscribe((res) => {
+      this.divisionList = res;
+    }, (resError) => {
+    });
+    this._student.getStudentList().subscribe((res) => {
+      this.studentList = res;
+    }, (resError) => {
+    });
   }
 
   initializeTable() {
-    this.filteredData = [this.rows];
     this.commonLocale = Labels.en_IN.labels.table.common;
-    this.locale = Labels.en_IN.labels.table.homeW;
-    this.columns = AppConfig.homeW;
-    this.ref = AppConfig.tableNavigationConfig.homeW;
+    this.locale = Labels.en_IN.labels.table.attendance;
+    this.columns = AppConfig.attendance;
+    this.ref = AppConfig.tableNavigationConfig.attendance;
     this.filterColumns = this.columns;
     this.formLocale = Labels.en_IN.labels.form_labels;
   }
 
-  getUpdatedList() {
+  getUpdatedList(data, action) {
     this.spinnerService.show();
-    this._attendance.getAttendanceList().subscribe((res) => {
+    if (action) {
+      const temp = this.obj.startDate.year + '-' + this.obj.startDate.month + '-' + this.obj.startDate.day;
+      const temp2 = this.obj.endDate.year + '-' + this.obj.endDate.month + '-' + this.obj.endDate.day;
+      this.obj.startDate = temp;
+      this.obj.endDate = temp2;
+    }
+    this._attendance.getAttendanceList(this.obj).subscribe((res) => {
       this.rows = res;
+      this.filteredData = this.rows;
       this.spinnerService.hide();
     }, (resError) => {
     });
     this.initializeTable();
+    if (action) {
+      const temp = this.obj.startDate.split('-');
+      const temp2 = this.obj.endDate.split('-');
+      this.obj.startDate = {
+        day: Number(temp[2]),
+        month: Number(temp[1]),
+        year: Number(temp[0])
+      };
+      this.obj.endDate = {
+        day: Number(temp2[2]),
+        month: Number(temp2[1]),
+        year: Number(temp2[0])
+      };
+    }
   }
 
   view(row: any) {
@@ -67,7 +117,7 @@ export class ListAttendanceComponent implements OnInit {
   delete(row: any, go: any) {
     this.spinnerService.show();
     if (go) {
-      this._attendance.deleteAttendance(this.deleteCache.homeWorkId).subscribe((res) => {
+      this._attendance.deleteAttendance(this.deleteCache.attendanceId).subscribe((res) => {
       }, (resError) => {
       });
       this.ngOnInit();
@@ -92,14 +142,30 @@ export class ListAttendanceComponent implements OnInit {
 
   updateFilter(event) {
     const val = event.target.value.toLowerCase();
-    const colsAmt = this.rows[0].length;
-    const keys = Object.keys(this.rows[0]);
+    const keys = ['attendanceDate'];
+    const colAmt = keys.length;
     this.rows = this.filteredData.filter(function (item) {
-      for (let i = 0; i < colsAmt; i++) {
+      for (let i = 0; i < colAmt; i++) {
         if (item[keys[i]].toLowerCase().indexOf(val) !== -1 || !val) {
           return true;
         }
       }
     });
+  }
+}
+
+class Obj {
+  public studentId: number;
+  public classId: number;
+  public divisionId: number;
+  public startDate: any;
+  public endDate: any;
+
+  constructor(studentId: number, classId: number, divisionId: number, startDate: any, endDate: any) {
+    this.studentId = studentId;
+    this.classId = classId;
+    this.divisionId = divisionId;
+    this.startDate = startDate;
+    this.endDate = endDate;
   }
 }

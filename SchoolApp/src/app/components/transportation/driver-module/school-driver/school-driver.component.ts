@@ -9,6 +9,8 @@ import { DriverService } from '../../../../services/driver.service';
 import { Broadcaster } from '../../../../utils/broadcaster';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 
+// Author : Tushar Upadhay
+
 @Component({
   selector: 'app-school-driver',
   templateUrl: './school-driver.component.html',

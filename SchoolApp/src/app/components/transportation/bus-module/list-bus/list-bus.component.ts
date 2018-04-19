@@ -9,6 +9,8 @@ import { DriverService } from '../../../../services/driver.service';
 import { RouteService } from '../../../../services/route.service';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 
+// Author : Tushar Upadhay
+
 @Component({
   selector: 'app-list-bus',
   templateUrl: './list-bus.component.html',
@@ -37,7 +39,6 @@ export class ListBusComponent implements OnInit {
   }
 
   initializeTable() {
-    this.filteredData = [this.rows];
     this.commonLocale = Labels.en_IN.labels.table.common;
     this.locale = Labels.en_IN.labels.table.bus;
     this.columns = AppConfig.bus;
@@ -50,6 +51,7 @@ export class ListBusComponent implements OnInit {
     this.spinnerService.show();
     this._bus.getBusList().subscribe((res) => {
       this.rows = res;
+      this.filteredData = this.rows;
       this.spinnerService.hide();
     }, (resError) => {
     });
@@ -94,10 +96,10 @@ export class ListBusComponent implements OnInit {
 
   updateFilter(event) {
     const val = event.target.value.toLowerCase();
-    const colsAmt = this.rows[0].length;
-    const keys = Object.keys(this.rows[0]);
+    const keys = ['busNo'];
+    const colAmt = keys.length;
     this.rows = this.filteredData.filter(function (item) {
-      for (let i = 0; i < colsAmt; i++) {
+      for (let i = 0; i < colAmt; i++) {
         if (item[keys[i]].toLowerCase().indexOf(val) !== -1 || !val) {
           return true;
         }

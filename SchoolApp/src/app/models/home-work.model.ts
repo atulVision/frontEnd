@@ -2,8 +2,9 @@ import { Classes } from './classes.model';
 import { Division } from './division.model';
 import { Subject } from './subject.model';
 
-export class HomeWork {
+// Author : Tushar Upadhyay
 
+export class HomeWork {
   public homeWorkId: number;
   public homeWorkDate: any;
   public homeWorkDesc: string;
@@ -13,8 +14,13 @@ export class HomeWork {
   public subject: Subject;
   public status: boolean;
 
-  constructor(homeWorkId: number, homeWorkDate: any, homeWorkDesc: string,
-    attachmentPic: string, classId: Classes, division: Division, subject: Subject,
+  constructor(homeWorkId: number,
+    homeWorkDate: any,
+    homeWorkDesc: string,
+    attachmentPic: string,
+    classId: Classes,
+    division: Division,
+    subject: Subject,
     status: boolean) {
     this.homeWorkId = homeWorkId;
     this.homeWorkDate = homeWorkDate;

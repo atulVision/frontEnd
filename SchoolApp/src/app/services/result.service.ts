@@ -6,13 +6,15 @@ import 'rxjs/add/operator/catch';
 import { Constants } from '../utils/constants';
 import { Result } from '../models/result.model';
 
+// Author : Tushar Upadhyay
+
 @Injectable()
 export class ResultService {
 
   constructor(private _http: Http) { }
 
-  getResultList() {
-    return this._http.get(Constants.URL.host_url + Constants.URL.resultURL)
+  getResultList(obj: any) {
+    return this._http.post(Constants.URL.host_url + Constants.URL.resultListURL, obj)
       .map((response: Response) => {
         return response.json();
       })

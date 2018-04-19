@@ -6,6 +6,11 @@ import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { Labels } from '../../../../utils/labels';
 import { AppConfig } from '../../../../utils/app-config';
 import { UtilFunctions } from '../../../../utils/util-functions';
+import { DivisionService } from '../../../../services/division.service';
+import { ClassesService } from '../../../../services/classes.service';
+import { SubjectService } from '../../../../services/subject.service';
+
+// Author : Tushar Upadhyay
 
 @Component({
   selector: 'app-list-home-work',
@@ -23,19 +28,43 @@ export class ListHomeWorkComponent implements OnInit {
   filterColumns = [];
   ref: any;
   formLocale: any;
+  classList: any;
+  divisionList: any;
+  subjectList: any;
+  obj: Obj;
 
   constructor(private router: Router, private broadcaster: Broadcaster,
-    private _homeW: HomeWorkService, private spinnerService: Ng4LoadingSpinnerService) {
+    private _homeW: HomeWorkService, private _class: ClassesService,
+    private _division: DivisionService, private _subject: SubjectService,
+    private spinnerService: Ng4LoadingSpinnerService) {
   }
 
   ngOnInit() {
     this.rows = [];
     this.checkLogin();
-    this.getUpdatedList();
+    this.spinnerService.show();
+    this.getList();
+    this.spinnerService.hide();
+    this.obj = new Obj(null, null, null);
+    this.getUpdatedList(this.obj);
+  }
+
+  private getList() {
+    this._class.getClassList().subscribe((res) => {
+      this.classList = res;
+    }, (resError) => {
+    });
+    this._division.getDivisionList().subscribe((res) => {
+      this.divisionList = res;
+    }, (resError) => {
+    });
+    this._subject.getSubjectList().subscribe((res) => {
+      this.subjectList = res;
+    }, (resError) => {
+    });
   }
 
   initializeTable() {
-    this.filteredData = [this.rows];
     this.commonLocale = Labels.en_IN.labels.table.common;
     this.locale = Labels.en_IN.labels.table.homeW;
     this.columns = AppConfig.homeW;
@@ -44,10 +73,11 @@ export class ListHomeWorkComponent implements OnInit {
     this.formLocale = Labels.en_IN.labels.form_labels;
   }
 
-  getUpdatedList() {
+  getUpdatedList(data) {
     this.spinnerService.show();
-    this._homeW.getHomeWorkList().subscribe((res) => {
+    this._homeW.getHomeWorkList(this.obj).subscribe((res) => {
       this.rows = res;
+      this.filteredData = this.rows;
       this.spinnerService.hide();
     }, (resError) => {
     });
@@ -92,14 +122,26 @@ export class ListHomeWorkComponent implements OnInit {
 
   updateFilter(event) {
     const val = event.target.value.toLowerCase();
-    const colsAmt = this.rows[0].length;
-    const keys = Object.keys(this.rows[0]);
+    const keys = ['homeWorkDate'];
+    const colAmt = keys.length;
     this.rows = this.filteredData.filter(function (item) {
-      for (let i = 0; i < colsAmt; i++) {
+      for (let i = 0; i < colAmt; i++) {
         if (item[keys[i]].toLowerCase().indexOf(val) !== -1 || !val) {
           return true;
         }
       }
     });
+  }
+}
+
+class Obj {
+  public subjectId: number;
+  public classId: number;
+  public divisionId: number;
+
+  constructor(subjectId: number, classId: number, divisionId: number) {
+    this.subjectId = subjectId;
+    this.classId = classId;
+    this.divisionId = divisionId;
   }
 }

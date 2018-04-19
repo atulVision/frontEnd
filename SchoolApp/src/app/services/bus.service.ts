@@ -6,6 +6,8 @@ import 'rxjs/add/operator/catch';
 import { Constants } from '../utils/constants';
 import { Bus } from '../models/bus.model';
 
+// Author : Tushar Upadhyay
+
 @Injectable()
 export class BusService {
 

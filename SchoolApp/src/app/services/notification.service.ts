@@ -4,14 +4,17 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import { Constants } from '../utils/constants';
+import { Notification } from '../models/notification.model';
+
+// Author : Tushar Upadhyay
 
 @Injectable()
 export class NotificationService {
 
   constructor(private _http: Http) { }
 
-  getNotificationList() {
-    return this._http.get(Constants.URL.host_url + Constants.URL.notificationURL)
+  getNotificationList(obj: any) {
+    return this._http.post(Constants.URL.host_url + Constants.URL.notificationListURL, obj)
       .map((response: Response) => {
         return response.json();
       })

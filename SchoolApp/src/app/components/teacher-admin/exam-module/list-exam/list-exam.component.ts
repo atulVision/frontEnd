@@ -7,6 +7,8 @@ import { Labels } from '../../../../utils/labels';
 import { AppConfig } from '../../../../utils/app-config';
 import { UtilFunctions } from '../../../../utils/util-functions';
 
+// Author : Tushar Upadhyay
+
 @Component({
   selector: 'app-list-exam',
   templateUrl: './list-exam.component.html',
@@ -35,7 +37,6 @@ export class ListExamComponent implements OnInit {
   }
 
   initializeTable() {
-    this.filteredData = [this.rows];
     this.commonLocale = Labels.en_IN.labels.table.common;
     this.locale = Labels.en_IN.labels.table.exam;
     this.columns = AppConfig.exam;
@@ -48,6 +49,7 @@ export class ListExamComponent implements OnInit {
     this.spinnerService.show();
       this._exam.getExamList().subscribe((res) => {
         this.rows = res;
+        this.filteredData = this.rows;
         this.spinnerService.hide();
       }, (resError) => {
       });
@@ -92,10 +94,10 @@ export class ListExamComponent implements OnInit {
 
   updateFilter(event) {
     const val = event.target.value.toLowerCase();
-    const colsAmt = this.rows[0].length;
-    const keys = Object.keys(this.rows[0]);
+    const keys = ['examName'];
+    const colAmt = keys.length;
     this.rows = this.filteredData.filter(function (item) {
-      for (let i = 0; i < colsAmt; i++) {
+      for (let i = 0; i < colAmt; i++) {
         if (item[keys[i]].toLowerCase().indexOf(val) !== -1 || !val) {
           return true;
         }

@@ -1,7 +1,9 @@
 import { Classes } from './classes.model';
 import { Division } from './division.model';
-import {  Route } from './route.model';
+import { Route } from './route.model';
 import { BusStop } from './bus-stop.model';
+
+// Author : Tushar Upadhyay
 
 export class Student {
   public studentId: number;
@@ -29,11 +31,30 @@ export class Student {
   public gender: string;
   public admissionDate: any;
 
-  constructor(studentId: number, firstName: string, fatherName: string, motherName: string,
-    guardianName: string, lastName: string, fatherContactNo: string, motherContactNo: string,
-    guardianContactNo: string, emergencyNo: string, prNo: string, dob: any, admissionDate: any,
-    bloodGroup: string, classDevision: Classes, division: Division, email: string, rollNo: string,
-    password: string, address: string, route: Route, busStop: BusStop, profilePic: string, gender: string
+  constructor(studentId: number,
+    firstName: string,
+    fatherName: string,
+    motherName: string,
+    guardianName: string,
+    lastName: string,
+    fatherContactNo: string,
+    motherContactNo: string,
+    guardianContactNo: string,
+    emergencyNo: string,
+    prNo: string,
+    dob: any,
+    admissionDate: any,
+    bloodGroup: string,
+    classDevision: Classes,
+    division: Division,
+    email: string,
+    rollNo: string,
+    password: string,
+    address: string,
+    route: Route,
+    busStop: BusStop,
+    profilePic: string,
+    gender: string
   ) {
     this.studentId = studentId;
     this.firstName = firstName;

@@ -9,6 +9,8 @@ import { Broadcaster } from '../../../../utils/broadcaster';
 import { AlbumService } from '../../../../services/album.service';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 
+// Author : Tushar Upadhyay
+
 @Component({
   selector: 'app-school-album',
   templateUrl: './school-album.component.html',
@@ -23,8 +25,11 @@ export class SchoolAlbumComponent implements OnInit {
   locale: any;
   formLocale: any;
 
-  constructor(private route: ActivatedRoute, private router: Router, private broadcaster: Broadcaster,
-  private _album: AlbumService, private spinnerService: Ng4LoadingSpinnerService) {
+  constructor(private route: ActivatedRoute,
+    private router: Router,
+    private broadcaster: Broadcaster,
+    private _album: AlbumService,
+    private spinnerService: Ng4LoadingSpinnerService) {
     this.route.params.subscribe((params) => {
       this.action = params['action'];
       this.initializeAlbum();
@@ -49,23 +54,23 @@ export class SchoolAlbumComponent implements OnInit {
     this.checkLogin();
   }
 
-  initializeAlbum() {
+  private initializeAlbum() {
     this.album = new Album(null, '', '');
   }
 
-  addAlbum(data) {
+  public addAlbum(data) {
     this.spinnerService.show();
     if (this.action === 'new') {
       this._album.saveAlbum(this.album).subscribe((res) => {
         this.spinnerService.hide();
-    }, (resError) => {
-    });
+      }, (resError) => {
+      });
     }
     if (this.action === 'edit') {
       this._album.updateAlbum(this.album.albumId, this.album).subscribe((res) => {
         this.spinnerService.hide();
-    }, (resError) => {
-    });
+      }, (resError) => {
+      });
     }
   }
 
@@ -73,7 +78,7 @@ export class SchoolAlbumComponent implements OnInit {
     this.router.navigate(['/list/album']);
   }
 
-  checkLogin() {
+  private checkLogin() {
     const user = UtilFunctions.getLocalStorage('user');
     if (user) {
       return;

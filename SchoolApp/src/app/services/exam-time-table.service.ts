@@ -6,13 +6,15 @@ import 'rxjs/add/operator/catch';
 import { Constants } from '../utils/constants';
 import { ExamTimeTable } from '../models/exam-time-table.model';
 
+// Author : Tushar Upadhyay
+
 @Injectable()
 export class ExamTimeTableService {
 
   constructor(private _http: Http) { }
 
-  getExamTimeTableList() {
-    return this._http.get(Constants.URL.host_url + Constants.URL.examTimeTableURL)
+  getExamTimeTableList(obj: any) {
+    return this._http.post(Constants.URL.host_url + Constants.URL.examTimeTableListURL, obj)
       .map((response: Response) => {
         return response.json();
       })

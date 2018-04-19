@@ -1,3 +1,4 @@
+// Author : Tushar Upadhyay
 export class AppConfig {
 
   public static sideMenuConfig: any = {
@@ -30,7 +31,7 @@ export class AppConfig {
         ref: 'list/teacher'
       }]
     }, {
-      role: '0',
+      role: '1,2',
       parent: 'name_student',
       css: 'fa fa-child',
       child: [{
@@ -39,6 +40,14 @@ export class AppConfig {
       }, {
         name: 'list_student',
         ref: 'list/student'
+      }]
+    }, {
+      role: '3',
+      parent: 'name_student',
+      css: 'fa fa-child',
+      child: [{
+        name: 'list_student',
+        ref: 'list/studentTransport'
       }]
     }, {
       role: '2',
@@ -329,10 +338,20 @@ export class AppConfig {
     { prop: 'division' }
   ];
 
+  public static studentT: any = [
+    { prop: 'rollNo' },
+    { prop: 'firstName' },
+    { prop: 'lastName' },
+    { prop: 'route' },
+    { prop: 'busStop' }
+  ];
+
   public static attendance: any = [
-    { prop: 'class' },
-    { prop: 'division' },
-    { prop: 'date' }
+    { prop: 'studentId' },
+    { prop: 'classId' },
+    { prop: 'divisionId' },
+    { prop: 'attendanceDate' },
+    { prop: 'attandandceFlag' }
   ];
 
   public static homeW: any = [
@@ -380,8 +399,11 @@ export class AppConfig {
     { prop: 'name' },
     { prop: 'class' },
     { prop: 'division' },
-    { prop: 'count' },
-    { prop: 'result' }
+    { prop: 'exam' },
+    { prop: 'subject' },
+    { prop: 'obtainMark' },
+    { prop: 'outOfMark' },
+    { prop: 'grade' }
   ];
 
   public static driver: any = [
@@ -429,6 +451,7 @@ export class AppConfig {
 
   public static notification: any = [
     { prop: 'title' },
+    { prop: 'tag' },
     { prop: 'class' },
     { prop: 'division' },
     { prop: 'date' }

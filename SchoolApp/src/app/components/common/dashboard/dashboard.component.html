@@ -1,3 +1,4 @@
+<!-- Author : Tushar Upadhyay -->
 <section class="content-header">
   <h1>{{locale.head_title}}</h1>
   <h4 *ngIf="role == 1">(ADMIN)</h4>
@@ -9,7 +10,7 @@
     <div class="col-lg-2 col-xs-6" *ngIf="role == 1">
       <div class="small-box bg-aqua">
         <div class="inner">
-          <h3>1</h3>
+          <h3>{{divisionLen}}</h3>
           <p>{{locale.division_box}}</p>
         </div>
         <div class="icon">
@@ -24,7 +25,7 @@
     <div class="col-lg-2 col-xs-6" *ngIf="role == 1">
       <div class="small-box bg-green">
         <div class="inner">
-          <h3>1</h3>
+          <h3>{{classLen}}</h3>
           <p>{{locale.class_box}}</p>
         </div>
         <div class="icon">
@@ -39,7 +40,7 @@
     <div class="col-lg-2 col-xs-6" *ngIf="role == 1">
       <div class="small-box bg-red">
         <div class="inner">
-          <h3>1</h3>
+          <h3>{{teacherLen}}</h3>
           <p>{{locale.teacher_box}}</p>
         </div>
         <div class="icon">
@@ -54,7 +55,7 @@
     <div class="col-lg-2 col-xs-6" *ngIf="role == 1 || role == 3">
       <div class="small-box bg-yellow">
         <div class="inner">
-          <h3>4</h3>
+          <h3>{{studentLen}}</h3>
           <p>{{locale.student_box}}</p>
         </div>
         <div class="icon">
@@ -69,7 +70,7 @@
     <div class="col-lg-2 col-xs-6" *ngIf="role == 1">
       <div class="small-box bg-aqua">
         <div class="inner">
-          <h3>4</h3>
+          <h3>{{libraryLen}}</h3>
           <p>{{locale.book_box}}</p>
         </div>
         <div class="icon">
@@ -84,7 +85,7 @@
     <div class="col-lg-2 col-xs-6" *ngIf="role == 1">
       <div class="small-box bg-green">
         <div class="inner">
-          <h3>4</h3>
+          <h3>{{galleryLen}}</h3>
           <p>{{locale.album_box}}</p>
         </div>
         <div class="icon">
@@ -174,7 +175,7 @@
     <div class="col-lg-2 col-xs-6" *ngIf="role == 3">
       <div class="small-box bg-aqua">
         <div class="inner">
-          <h3>5</h3>
+          <h3>{{driverLen}}</h3>
           <p>{{locale.driver_box}}</p>
         </div>
         <div class="icon">
@@ -189,7 +190,7 @@
     <div class="col-lg-2 col-xs-6" *ngIf="role == 3">
       <div class="small-box bg-green">
         <div class="inner">
-          <h3>5</h3>
+          <h3>{{busLen}}</h3>
           <p>{{locale.bus_box}}</p>
         </div>
         <div class="icon">
@@ -204,7 +205,7 @@
     <div class="col-lg-2 col-xs-6" *ngIf="role == 3">
       <div class="small-box bg-red">
         <div class="inner">
-          <h3>5</h3>
+          <h3>{{routeLen}}</h3>
           <p>{{locale.route_box}}</p>
         </div>
         <div class="icon">
@@ -219,7 +220,7 @@
     <div class="col-lg-2 col-xs-6" *ngIf="role == 3">
       <div class="small-box bg-yellow">
         <div class="inner">
-          <h3>4</h3>
+          <h3>{{busStopLen}}</h3>
           <p>{{locale.bus_stop_box}}</p>
         </div>
         <div class="icon">

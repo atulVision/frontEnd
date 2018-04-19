@@ -1,13 +1,16 @@
 import { BusStop } from './bus-stop.model';
 
-export class Route {
+// Author : Tushar Upadhyay
 
+export class Route {
   public routeId: number;
   public routeName: string;
   public fromBusStop: BusStop;
   public toBusStop: BusStop;
 
-  constructor(routeId: number, routeName: string, fromBusStop: BusStop,
+  constructor(routeId: number,
+    routeName: string,
+    fromBusStop: BusStop,
     toBusStop: BusStop) {
     this.routeId = routeId;
     this.routeName = routeName;
@@ -20,7 +23,8 @@ export class BusStopDetails {
   public busStop: BusStop;
   public sequenceNo: number;
 
-  constructor(busStop: BusStop, sequenceNo: number) {
+  constructor(busStop: BusStop,
+    sequenceNo: number) {
     this.busStop = busStop;
     this.sequenceNo = sequenceNo;
   }

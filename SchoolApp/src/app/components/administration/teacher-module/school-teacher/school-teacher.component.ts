@@ -9,6 +9,8 @@ import { TeacherService } from '../../../../services/teacher.service';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { Broadcaster } from '../../../../utils/broadcaster';
 
+// Author : Tushar Upadhyay
+
 @Component({
   selector: 'app-school-teacher',
   templateUrl: './school-teacher.component.html',
@@ -23,8 +25,11 @@ export class SchoolTeacherComponent implements OnInit {
   locale: any;
   formLocale: any;
 
-  constructor(private route: ActivatedRoute, private router: Router, private _teacher: TeacherService,
-    private broadcaster: Broadcaster, private spinnerService: Ng4LoadingSpinnerService) {
+  constructor(private route: ActivatedRoute,
+    private router: Router,
+    private _teacher: TeacherService,
+    private broadcaster: Broadcaster,
+    private spinnerService: Ng4LoadingSpinnerService) {
     this.route.params.subscribe((params) => {
       this.action = params['action'];
       this.initializeTeacher();
@@ -72,7 +77,7 @@ export class SchoolTeacherComponent implements OnInit {
     }
   }
 
-  processDob(action) {
+  private processDob(action) {
     if (action === 'show') {
       const temp = this.teacher.dob.split('-');
       this.teacher.dob = {

@@ -1,6 +1,43 @@
+<!-- Author : Tushar Upadhyay -->
 <section class="content-header">
   <h1>{{locale.table_title}}</h1>
 </section>
+<div class="form">
+  <form class="form-horizontal" id="examTTListForm" #examTTListForm="ngForm" (ngSubmit)="getUpdatedList(examTTListForm.value)">
+    <div class="form-group">
+      <label for="classes" class="col-sm-1 control-label">Class</label>
+      <div class="col-sm-1">
+        <select class="form-control" id="classes" name="classes" #classes="ngModel" [(ngModel)]="obj.classId">
+          <option value="" disabled selected>Select Calss</option>
+          <option *ngFor="let class of classList" [(ngValue)]="class.id">{{class.className}}</option>
+        </select>
+      </div>
+      <label for="division" class="col-sm-1 control-label">Division</label>
+      <div class="col-sm-1">
+        <select class="form-control" id="division" name="division" #division="ngModel" [(ngModel)]="obj.divisionId">
+          <option value="" disabled selected>Select Division</option>
+          <option *ngFor="let division of divisionList" [(ngValue)]="division.id">{{division.divisionName}}</option>
+        </select>
+      </div>
+      <label for="subject" class="col-sm-1 control-label">Subject</label>
+      <div class="col-sm-2">
+        <select class="form-control" id="subject" name="subject" #subject="ngModel" [(ngModel)]="obj.subjectId">
+          <option value="" disabled selected>Select Subject</option>
+          <option *ngFor="let subject of subjectList" [(ngValue)]="subject.subjectId">{{subject.subjectName}}</option>
+        </select>
+      </div>
+      <label for="exam" class="col-sm-1 control-label">Exam</label>
+      <div class="col-sm-2">
+        <select class="form-control" id="exam" name="exam" #exam="ngModel" [(ngModel)]="obj.examId">
+          <option value="" disabled selected>Select Exam</option>
+          <option *ngFor="let exam of examList" [(ngValue)]="exam.id">{{exam.examName}}</option>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-success list-add-btn right-float">
+        <i class="fa fa-refresh"></i> GO</button>
+    </div>
+  </form>
+</div>
 <section class="content-header">
   <div class="list-tool-bar">
     <div class="page-header"></div>

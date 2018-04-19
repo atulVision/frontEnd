@@ -9,6 +9,8 @@ import { DivisionService } from '../../../../services/division.service';
 import { Broadcaster } from '../../../../utils/broadcaster';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 
+// Author : Tushar Upadhyay
+
 @Component({
   selector: 'app-school-division',
   templateUrl: './school-division.component.html',
@@ -23,8 +25,11 @@ export class SchoolDivisionComponent implements OnInit {
   locale: any;
   formLocale: any;
 
-  constructor(private route: ActivatedRoute, private router: Router, private _division: DivisionService,
-  private broadcaster: Broadcaster, private spinnerService: Ng4LoadingSpinnerService) {
+  constructor(private route: ActivatedRoute,
+    private router: Router,
+    private _division: DivisionService,
+    private broadcaster: Broadcaster,
+    private spinnerService: Ng4LoadingSpinnerService) {
     this.route.params.subscribe((params) => {
       this.action = params['action'];
       this.initializeDivision();
@@ -46,7 +51,7 @@ export class SchoolDivisionComponent implements OnInit {
   }
 
   ngOnInit() {
-   this.checkLogin();
+    this.checkLogin();
   }
 
   private initializeDivision() {
@@ -58,14 +63,14 @@ export class SchoolDivisionComponent implements OnInit {
     if (this.action === 'new') {
       this._division.saveDivision(this.division).subscribe((res) => {
         this.spinnerService.hide();
-    }, (resError) => {
-    });
+      }, (resError) => {
+      });
     }
     if (this.action === 'edit') {
       this._division.updateDivision(this.division.id, this.division).subscribe((res) => {
         this.spinnerService.hide();
-    }, (resError) => {
-    });
+      }, (resError) => {
+      });
     }
   }
 
@@ -75,7 +80,7 @@ export class SchoolDivisionComponent implements OnInit {
 
   private checkLogin() {
     const user = UtilFunctions.getLocalStorage('user');
-    if ( user ) {
+    if (user) {
       return;
     }
     this.router.navigate(['/login']);

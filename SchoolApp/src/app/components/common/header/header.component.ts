@@ -3,6 +3,8 @@ import { UtilFunctions } from '../../../utils/util-functions';
 import { Labels } from '../../../utils/labels';
 import { Broadcaster } from '../../../utils/broadcaster';
 
+// Author : Tushar Upadhay
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',

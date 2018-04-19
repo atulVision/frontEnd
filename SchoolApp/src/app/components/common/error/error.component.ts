@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+// Author : Tushar Upadhyay
+
 @Component({
   selector: 'app-error',
   templateUrl: './error.component.html',

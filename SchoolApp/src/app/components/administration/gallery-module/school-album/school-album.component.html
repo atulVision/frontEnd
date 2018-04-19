@@ -1,3 +1,4 @@
+<!-- Author : Tushar Upadhyay -->
 <section class="content-header">
   <h1>{{pageTitle}}</h1>
 </section>
@@ -12,15 +13,15 @@
           <div class="form-group">
             <label for="albumName" class="col-sm-2 control-label">{{formLocale.album_name}}</label>
             <div class="col-sm-7">
-              <input type="text" class="form-control" id="albumName" name="albumName" placeholder="{{formLocale.album_name_placeholder}}" [disabled]="viewFlag" #albumName="ngModel"
-                [(ngModel)]="album.albumName">
+              <input type="text" class="form-control" id="albumName" name="albumName" placeholder="{{formLocale.album_name_placeholder}}"
+                [disabled]="viewFlag" #albumName="ngModel" [(ngModel)]="album.albumName">
             </div>
           </div>
           <div class="form-group">
             <label for="imgUrl" class="col-sm-2 control-label">{{formLocale.album_img}}</label>
             <div class="col-sm-7">
-              <input type="file" class="form-control" id="imgUrl" name="imgUrl" [disabled]="viewFlag" #imgUrl="ngModel"
-                [(ngModel)]="album.imgUrl" accept="image/jpeg,image/png">
+              <input type="file" class="form-control" id="imgUrl" name="imgUrl" [disabled]="viewFlag" #imgUrl="ngModel" [(ngModel)]="album.imgUrl"
+                accept="image/jpeg,image/png">
             </div>
             <div class="media-right">
               <img src="assets/images/Tushar_Upadhyay.jpg" class="media-object" style="width:100px">

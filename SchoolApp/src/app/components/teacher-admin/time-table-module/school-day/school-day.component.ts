@@ -7,6 +7,8 @@ import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { Labels } from '../../../../utils/labels';
 import { UtilFunctions } from '../../../../utils/util-functions';
 
+// Author : Tushar Upadhyay
+
 @Component({
   selector: 'app-school-day',
   templateUrl: './school-day.component.html',

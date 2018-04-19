@@ -1,27 +1,40 @@
+import { Classes } from './classes.model';
+import { Division } from './division.model';
+import { Student } from './student.model';
+
+// Author : Tushar Upadhyay
+
 export class Notification {
-  public notificationId: number;
-  public type: string;
+  public id: number;
+  public tag: string;
   public title: string;
-  public body: string;
-  public classDiv: ClassDiv[];
+  public message: string;
+  public classes: Classes;
+  public division: Division;
+  public notificationDate: any;
+  public notificationTime: any;
+  public studentList: Array<Student>;
+  public allFlag: boolean;
 
-
-  constructor(notificationId: number, type: string,
-    title: string, body: string, classDiv: ClassDiv[]) {
-    this.notificationId = notificationId;
-    this.type = type;
+  constructor(id: number,
+    tag: string,
+    title: string,
+    message: string,
+    classes: Classes,
+    division: Division,
+    notificationDate: any,
+    notificationTime: any,
+    studentList: Array<Student>,
+    allFlag: boolean) {
+    this.id = id;
+    this.tag = tag;
     this.title = title;
-    this.body = body;
-    this.classDiv = classDiv;
-  }
-}
-
-export class ClassDiv {
-  public classId: number;
-  public divisionId: number;
-
-  constructor(classId: number, divisionId: number) {
-    this.classId = classId;
-    this.divisionId = divisionId;
+    this.message = message;
+    this.classes = classes;
+    this.division = division;
+    this.notificationDate = notificationDate;
+    this.notificationTime = notificationTime;
+    this.studentList = studentList;
+    this.allFlag = allFlag;
   }
 }

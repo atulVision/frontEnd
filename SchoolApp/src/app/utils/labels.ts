@@ -1,3 +1,4 @@
+// Author : Tushar Upadhyay
 export class Labels {
 
   public static en_IN: any = {
@@ -132,16 +133,23 @@ export class Labels {
           lastName: 'LAST NAME',
           class: 'CLASS',
           division: 'DIVISION',
-          username: 'USERNAME'
+        },
+        studentT: {
+          table_title: 'List of Student\'s',
+          rollNo: 'ROLL NO.',
+          firstName: 'FIRST NAME',
+          lastName: 'LAST NAME',
+          route: 'ROUTE',
+          busStop: 'BUS STOP',
         },
         attendance: {
           table_title: 'Attendance Sheet',
           add_btn: 'Mark Attendance',
-          classes: 'CLASS',
-          division: 'DIVISION',
-          date: 'DATE',
-          subject: 'SUBJECT',
-          status: 'STATUS'
+          studentId: 'STUDENT NAME',
+          classId: 'CLASS',
+          divisionId: 'DIVISION',
+          attendanceDate: 'DATE',
+          attandandceFlag: 'ATTENDANCE'
         },
         homeW: {
           table_title: 'List of Home Work',
@@ -193,11 +201,14 @@ export class Labels {
         result: {
           table_title: 'Result Board',
           add_btn: 'Add Result',
-          name: 'NAME',
+          name: 'STUDENT',
           class: 'CLASS',
           division: 'DIVISION',
-          count: 'NUMBER OF STUDENTS',
-          result: 'CLASS RESULT'
+          exam: 'EXAM',
+          subject: 'SUBJECT',
+          obtainMark: 'MARKS',
+          outOfMark: 'OUT OF',
+          grade: 'GRADE'
         },
         driver: {
           table_title: 'List of Drivers',
@@ -254,6 +265,7 @@ export class Labels {
           table_title: 'List of Notifications',
           add_btn: 'Send Notification',
           title: 'TITLE',
+          tag: 'TAG',
           class: 'CLASS',
           division: 'DIVISION',
           date: 'DATE'
@@ -282,7 +294,10 @@ export class Labels {
         day: 'Day',
         timeTable: 'Time Table',
         examTimeTable: 'Exam Time Table',
-        homeWork: 'Home Work'
+        homeWork: 'Home Work',
+        attendance: 'Attendance',
+        result: 'Result',
+        notification: 'Notification'
       },
       form_labels: {
         user_f_name: 'First Name',
@@ -298,24 +313,20 @@ export class Labels {
         user_address_placeholder: 'Enter Address',
         user_email_placeholder: 'Enter Email Id',
         user_password_placeholder: 'Enter Password',
-
         mobile_prefix: '+91',
         modal_status: 'Status',
         modal_add_msg: ' is added successfully.',
         modal_update_msg: ' is updated successfully.',
         modal_delete_msg: 'Are you sure you want to delete this entry!',
-
         login_email: 'Email Id',
         login_pass: 'Password',
         login_email_placeholder: 'Enter Email Id',
         login_pass_placeholder: 'Enter Password',
-
         ok_btn: 'OK',
         submit_btn: 'Submit',
         back_btn: 'Back',
         update_btn: 'Update',
         delete_btn: 'Delete',
-
         bus_no: 'Bus No.',
         bus_owner: 'Owner Name',
         bus_driver: 'Driver Name',
@@ -326,7 +337,6 @@ export class Labels {
         bus_driver_placeholder: 'Select Driver',
         bus_route_placeholder: 'Select Bus Route',
         bus_contact_no_placeholder: 'Enter Contact No.',
-
         stop_name: 'Bus Stop Name',
         stop_lat: 'Bust Stop Latitude',
         stop_lng: 'Bust Stop Longitude',
@@ -335,7 +345,6 @@ export class Labels {
         stop_name_placeholder: 'Enter Bus Stop Name',
         stop_lat_placeholder: 'Click on Map or Search',
         stop_lng_placeholder: 'Click on Map or Search',
-
         driver_f_name: 'First Name',
         driver_l_name: 'Last Name',
         driver_adhar_no: 'Adhar No.',
@@ -358,7 +367,6 @@ export class Labels {
         driver_pass_placeholder: 'Enter Password',
         driver_bus_placeholder: 'Select Bus',
         driver_position_placeholder: 'Enter Position',
-
         class_name: 'Standard',
         division_name: 'Division Name',
         division_desc: 'Division Description',
@@ -369,7 +377,6 @@ export class Labels {
         division_desc_placeholder: 'Enter Division Description',
         class_desc_placeholder: 'Enter Class Description',
         class_teacher_placeholder: 'Select Class Teacher',
-
         teacher_f_name: 'First Name',
         teacher_l_name: 'Last Name',
         teacher_dob: 'Date of Birth',
@@ -386,7 +393,6 @@ export class Labels {
         teacher_designation_placeholder: 'Enter Designation',
         teacher_address_placeholder: 'Enter Address',
         teacher_pass_placeholder: 'Enter Password',
-
         student_f_name: 'First Name',
         studengt_l_name: 'Last Name',
         student_father_name: 'Father Name',
@@ -432,7 +438,6 @@ export class Labels {
         student_stop_placeholder: 'Select Bus Stop',
         student_pass_placeholder: 'Enter Password',
         student_gender_placeholder: 'Select Gender',
-
         route_name: ' Route Name',
         route_start: 'Starting Bus Stop',
         route_end: 'Last Bus Stop',
@@ -442,10 +447,8 @@ export class Labels {
         route_end_placeholder: 'Select Last Bus Stop',
         pick_up_placeholder: 'Select Pick Up Stops',
         pick_up_add_btn: 'Add Pick Up',
-
         book_type: 'Book Type',
         book_type_placeholder: 'Enter Book Type',
-
         book_name: 'Book Name',
         book_type_name: 'Book Type',
         book_subject: 'Subject',
@@ -463,32 +466,26 @@ export class Labels {
         book_desc_placeholder: 'Enter Description',
         book_edition_placeholder: 'Enter Edition',
         book_isbn_placeholder: 'Enter Isbn',
-
         album_name: 'Album Name',
         album_img: 'Album Cover Pic',
         album_name_placeholder: 'Enter Album Name',
-
         gallery_title: 'Title',
         gallery_album: 'Album',
         gallery_img: 'Gallery Image',
         gallery_title_placeholder: 'Enter Title',
         gallery_album_placeholder: 'Select Album',
-
         subject_name: 'Subject Name',
         subject_desc: 'Description',
         subject_class: 'Class Name',
         subject_name_placeholder: 'Enter Subject Name',
         subject_desc_placeholder: 'Enter Description',
         subject_class_placeholder: 'Select Class',
-
         exam_name: 'Exam Name',
         exam_desc: 'Description',
         exam_name_placeholder: 'Enter Exam Name',
         exam_desc_placeholder: 'Enter Description',
-
         day_name: 'Day Name',
         day_name_placeholder: 'Enter Day Name',
-
         time_table_title: 'Title',
         time_table_class: 'Class',
         time_table_division: 'Division',
@@ -501,7 +498,6 @@ export class Labels {
         time_table_subject_placeholder: 'Select Subject',
         time_day_placeholder: 'Select Day',
         time_table_time_placeholder: 'Enter Time',
-
         exam_time_table_exam: 'Exam',
         exam_time_table_class: 'Class',
         exam_time_table_division: 'Division',
@@ -510,7 +506,6 @@ export class Labels {
         exam_time_table_time: 'Time',
         exam_time_table_exam_placeholder: 'Select Exam',
         exam_time_table_time_placeholder: 'Enter Time',
-
         home_work_date: 'Assigned Date',
         home_work_desc: 'Description',
         home_work_class: 'Class',
@@ -523,6 +518,46 @@ export class Labels {
         home_work_division_placeholder: 'Select Division',
         home_work_subject_placeholder: 'Select Subject',
         home_work_status_placeholder: 'Select Status',
+        attendance_date: 'Date',
+        attendance_time: 'Time',
+        attendance_class: 'Class',
+        attendance_division: 'Division',
+        attendance_teacher: 'Teacher',
+        attendance_subject: 'Subject',
+        attendance_student: 'Students Attendance Sheet',
+        attendance_class_placeholder: 'Select Class',
+        attendance_division_placeholder: 'Select Division',
+        attendance_teacher_placeholder: 'Select Teacher',
+        attendance_subject_placeholder: 'Select Subject',
+        result_date: 'Date',
+        result_exam: 'Exam',
+        result_class: 'Class',
+        result_division: 'Division',
+        result_student: 'Student',
+        result_subject: 'Subject',
+        result_marks: 'Marks',
+        result_out: 'Out Of Marks',
+        result_grade: 'Grade',
+        result_exam_placeholder: 'Select Exam',
+        result_class_placeholder: 'Select Class',
+        result_division_placeholder: 'Select Division',
+        result_student_placeholder: 'Select Student',
+        result_marks_placeholder: 'Enter Marks',
+        result_out_placeholder: 'Enter Out Of Marks',
+        result_grade_placeholder: 'Enter Grade',
+        notification_date: 'Date',
+        notification_time: 'Time',
+        notification_title: 'Title',
+        notification_tag: 'Tag',
+        notification_message: 'Message',
+        notification_class: 'Class',
+        notification_division: 'Division',
+        notification_flag: 'Send to All',
+        notification_title_placeholder: 'Enter Title',
+        notification_tag_placeholder: 'Select Tag',
+        notification_message_placeholder: 'Write Message',
+        notification_class_placeholder: 'Select Class',
+        notification_division_placeholder: 'Select Division',
       }
     }
   };

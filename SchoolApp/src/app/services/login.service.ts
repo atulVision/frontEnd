@@ -6,6 +6,8 @@ import 'rxjs/add/operator/catch';
 import { Constants } from '../utils/constants';
 import { User } from '../models/user.model';
 
+// Author : Tushar Upadhyay
+
 @Injectable()
 export class LoginService {
 

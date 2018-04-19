@@ -7,6 +7,8 @@ import { Broadcaster } from '../../../../utils/broadcaster';
 import { UtilFunctions } from '../../../../utils/util-functions';
 import { Labels } from '../../../../utils/labels';
 
+// Author : Tushar Upadhyay
+
 @Component({
   selector: 'app-school-book-type',
   templateUrl: './school-book-type.component.html',
@@ -21,8 +23,11 @@ export class SchoolBookTypeComponent implements OnInit {
   locale: any;
   formLocale: any;
 
-  constructor(private route: ActivatedRoute, private router: Router, private _bookType: BookTypeService,
-    private broadcaster: Broadcaster, private spinnerService: Ng4LoadingSpinnerService) {
+  constructor(private route: ActivatedRoute,
+    private router: Router,
+    private _bookType: BookTypeService,
+    private broadcaster: Broadcaster,
+    private spinnerService: Ng4LoadingSpinnerService) {
     this.route.params.subscribe((params) => {
       this.action = params['action'];
       this.initializeBookType();
