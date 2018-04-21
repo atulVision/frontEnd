@@ -1,0 +1,169 @@
+<html>
+<head>
+
+</head>
+<body>
+<div id="fh5co-page" style="background-image: url(../../assets/new.svg);right: -321px;left: 257px;margin-right: -29px;margin-left: -524px;">
+  <div class="container" >
+<form class = "container" id="regForm" #regForm="ngForm" (ngSubmit)="onSubmit(regForm.value)">
+
+      <div class="panel panel-primary" style="margin-top: 128px;">
+        <div class="panel-heading" style="padding-left: 492px;">Registration</div>
+        <div class="row">
+          <div class="col-lg-6">
+
+            <div class="panel-body">
+              Sponsor Id :&nbsp;&nbsp; <input type="text" required name="sponsor_Id" [(ngModel)]="regObj.sponsor_Id.userID" />
+              <span id="m1" style="color: red"></span>
+            </div>
+            <div class="panel-body">
+              First Name :&nbsp;&nbsp;<input type="text" required id="firstName"   name="firstName" [(ngModel)]="regObj.firstName" />
+              <span id="m2" style="color: red"></span>
+            </div>
+            <div class="panel-body">
+              Last Name: &nbsp;&nbsp;
+              <input type="text" required name="lastName"  id="lastName" [(ngModel)]="regObj.lastName" />
+              <span id="m3" style="color: red"></span>
+            </div>
+            <div class="panel-body">
+              Mobile:&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;
+              <input type="text" required  name="mobile" id="mobile" [(ngModel)]="regObj.mobile" />
+              <span id="m4" style="color: red"></span>
+            </div>
+            <div class="panel-body">
+              Email:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;  &nbsp;&nbsp;
+              <input type="email" name="eMail_Id" id="eMail_Id" [(ngModel)]="regObj.eMail_Id">
+              <span id="m5" style="color: red"></span>
+            </div>
+
+
+
+
+
+          </div>
+          <div class="col-lg-6">
+
+            <div class="panel-body">
+              User Id :&nbsp;&nbsp;&nbsp;&nbsp;
+              <input type="text" required name="userID" id="userID" style="margin-left: 90px;" [(ngModel)]="regObj.userID" />
+              <span id="m6" style="color: red"></span>
+            </div>
+
+            <div class="panel-body">
+              Password:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <input type="password" required name="password" id="password" style="margin-left: -18px;" [(ngModel)]="regObj.password" />
+              <span id="m7" style="color: red"></span>
+            </div>
+
+
+            <div class="panel-body">
+              Confirmed Password:&nbsp;&nbsp;&nbsp;&nbsp;
+              <input type="password" required name="Confirmed_Password"
+                      id="Confirmed_Password" ngModel />
+              <span  id="message" style="color: red"></span>
+
+            </div>
+
+
+            <div class="panel-body">
+              Select State:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <select name="selectState" required style="margin-left: -15px;" [(ngModel)]="regObj.selectState"><option value="select" >Select</option>
+                <option >Andaman and Nicobar Islands</option>
+                <option >Andhra Pradesh</option>
+                <option >Arunachal Pradesh</option>
+                <option >Assam</option><option >Bihar</option>
+                <option >Chandigarh</option><option >Chhattisgarh</option>
+                <option >Dadra and Nagar Haveli</option><option>Daman and Diu</option>
+                <option>Delhi</option><option>Gujarat</option><option>Haryana</option>
+                <option>Himachal Pradesh</option><option>Jammu and Kashmir</option>
+                <option>Jharkhand</option><option>Karnataka</option><option>Kerala</option>
+                <option>Lakshadweep</option><option>Madhya Pradesh</option>
+                <option>Maharashtra</option><option>Manipur</option><option>Meghalaya</option>
+                <option>Mizoram</option><option>Nagaland</option><option>Odisha</option>
+                <option>Puducherry</option><option>Punjab</option><option>Rajasthan</option>
+                <option>Sikkim</option><option>Tamil Nadu</option><option>Tripura</option>
+                <option>Uttar Pradesh</option><option>Uttarakhand</option>
+                <option>West Bengal</option><option>Goa</option>
+              </select>
+              <span id="m8" style="color: red"></span>
+            </div>
+
+            <div class="panel-body">
+              City :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+              <input type="text"  name="city" required style="margin-left: -17px;" [(ngModel)]="regObj.city" />
+              <span id="m9" style="color: red"> </span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div class="panel panel-primary" >
+        <div class="panel-heading" style="padding-left: 492px;">Bank Details</div>
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-lg-6">
+
+              <div class="panel-body">
+                Bank Holder Name:
+                <input type="text" name="bankHolderName"  id="bankHolderName" [(ngModel)]="regObj.bankDetails.bankHolderName"/>
+                <span id="m10" style="color: red"></span>
+              </div>
+
+              <div class="panel-body">
+                Branch Name : &nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;
+                <input type="text" name="branchName"  id="branchName" [(ngModel)]="regObj.bankDetails.branchName" />
+                <span id="m11" style="color: red"></span>
+              </div>
+
+
+              <div class="panel-body">
+                Bank City:&nbsp;&nbsp; &nbsp;&nbsp;  &nbsp;&nbsp; &nbsp;&nbsp;  &nbsp;&nbsp;
+                <input type="text" name="bankCity"  id="bankCity" [(ngModel)]="regObj.bankDetails.bankCity" />
+                <span id="m12" style="color: red"></span>
+              </div>
+
+            </div>
+
+            <div class="col-lg-6">
+
+              <div class="panel-body">
+                Bank Name:&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+                <input type="text" name="bankName" id="bankName"[(ngModel)]="regObj.bankDetails.bankName"/>
+                <span id="m13" style="color: red"></span>
+              </div>
+
+              <div class="panel-body">
+                IFSC Code :&nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp; &nbsp;&nbsp;
+
+                <input type="text" name="ifscCode" required id="ifscCode" [(ngModel)]="regObj.bankDetails.ifscCode" />
+                <span id="m14" style="color: red"></span>
+              </div>
+
+
+              <div class="panel-body">
+                Account Number:&nbsp;&nbsp;
+                <input type="text"  name="accountNumber"   id="accountNumber" [(ngModel)]="regObj.bankDetails.accountNumber"/>
+                <span id="m15" style="color: red"></span>
+              </div>
+            </div>
+          </div>
+          <div class="panel-body">
+            PAN Number:&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="text" name="panNumber" required id="panNumber" [(ngModel)]="regObj.bankDetails.panNumber"/>
+            <span id="m16" style="color: red"></span>
+          </div>
+        </div>
+      </div>
+
+       <input type="submit" value="Submit" class="btn-block btn-danger" style="width: 400px;margin-left: 373px;">
+
+    <a [routerLink]="['/']" style="margin-left: 384px;"> Go Back</a><br>
+
+  </form>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,11 @@
+body {
+  background-image: url(../../assets/1.jpg);
+  background-size: cover;
+  background-repeat:no-repeat;
+
+}
+.img-main-carousel{
+  max-height: 900px;
+  max-width: 2000px;
+  margin: 0px;
+}

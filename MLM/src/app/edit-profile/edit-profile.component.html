@@ -1,0 +1,144 @@
+<html>
+<head>
+
+</head>
+
+<body>
+<div id="fh5co-page" style="background-image: url(../../assets/new.svg);right: -321px;left: 257px;margin-right: -29px;margin-left: -524px;">
+  <div class="container" >
+<form class = "container" id="editProfileForm" #editProfileForm="ngForm" (ngSubmit)="updateProfile(editProfileForm.value)">
+
+
+      <div class="panel panel-primary" style="margin-top: 152px;">
+        <div class="panel-heading" style="padding-left: 497px;">Register</div>
+        <div class="row">
+          <div class="col-lg-6">
+
+            <div class="panel-body">
+              Sponsor Id :&nbsp;&nbsp; <input type="text" name="sponsor_Id"
+                                              disabled="true"  />
+            </div>
+
+            <div class="panel-body">
+              User Id :&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+              <input type="text" name="userID"  disabled="true" [(ngModel)]="profileObj.userID"/>
+            </div>
+            <div class="panel-body">
+              First Name :&nbsp;&nbsp;
+              <input type="text" name="firstName"  disabled="true" [(ngModel)]="profileObj.firstName"/>
+
+            </div>
+
+
+            <div class="panel-body">
+              Email:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;  &nbsp;&nbsp;
+              <input type="email" name="eMail_Id" [(ngModel)]="profileObj.eMail_Id"/>
+            </div>
+            <div class="panel-body">
+              Select State:&nbsp;
+              <input type="text" name="selectState" disabled="true" [(ngModel)]="profileObj.selectState"/>
+
+            </div>
+            <div class="panel-body">
+              Password:&nbsp;&nbsp;&nbsp;&nbsp;
+              <input type="text" name="password"  disabled="true" [(ngModel)]="profileObj.password"/>
+
+            </div>
+
+          </div>
+          <div class="col-lg-6">
+
+            <div class="panel-body">
+              Last Name: &nbsp;&nbsp;
+              <input type="text" name="lastName"  readonly disabled="true" [(ngModel)]="profileObj.lastName"/>
+            </div>
+            <div class="panel-body">
+              Mobile:&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;
+              <input type="text" name="mobile" id="mobile"   [(ngModel)]="profileObj.mobile"/>
+              <span id="m4" style="color: red"></span>
+
+            </div>
+            <div class="panel-body">
+              City :&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+              <input type="text" name="city"   [(ngModel)]="profileObj.city"/>
+            </div>
+
+
+
+          </div>
+
+        </div>
+      </div>
+
+
+
+
+
+    <div class="panel panel-primary" >
+      <div class="panel-heading" style="padding-left: 497px;">Bank Details</div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-lg-6">
+
+
+            <div class="panel-body">
+              Bank Holder Name:
+              <input type="text" name="bankHolderName" id="bankHolderName" [(ngModel)]="profileObj.bankDetails.bankHolderName"/>
+              <span id="m10" style="color: red"></span>
+
+            </div>
+            <div class="panel-body">
+              Branch Name : &nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;
+              <input type="text" name="branchName" id="branchName" [(ngModel)]="profileObj.bankDetails.branchName">
+              <span id="m11" style="color: red"></span>
+
+            </div>
+
+
+            <div class="panel-body">
+              Bank City:&nbsp;&nbsp; &nbsp;&nbsp;  &nbsp;&nbsp; &nbsp;&nbsp;  &nbsp;&nbsp;
+              <input type="text" name="bankCity" id="bankCity" [(ngModel)]="profileObj.bankDetails.bankCity"/>
+              <span id="m12" style="color: red"></span>
+
+            </div>
+          </div>
+          <div class="col-lg-6">
+
+            <div class="panel-body">
+              Bank Name:&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+              <input type="text" name="bankName" id="bankName" [(ngModel)]="profileObj.bankDetails.bankName"/>
+              <span id="m13" style="color: red"></span>
+
+            </div>
+            <div class="panel-body">
+              IFSC Code :&nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp; &nbsp;&nbsp;
+
+              <input type="text" name="ifscCode" [(ngModel)]="profileObj.bankDetails.ifscCode"/>
+              <span id="m14" style="color: red"></span>
+            </div>
+
+
+            <div class="panel-body">
+              Account Number:&nbsp;&nbsp;
+              <input type="text" name="accountNumber" id="accountNumber"  [(ngModel)]="profileObj.bankDetails.accountNumber"/>
+              <span id="m15" style="color: red"></span>
+            </div>
+          </div>
+
+        </div>
+        <div class="panel-body">
+          PAN Number:&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <input type="text" name="panNumber" [(ngModel)]="profileObj.bankDetails.panNumber"/>
+          <span id="m16" style="color: red"></span>
+        </div>
+      </div>
+    </div>
+     <input type="submit" value="Submit" class="btn-block btn-danger"style="width: 400px;margin-left: 379px;">
+    <br>
+
+
+</form>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<html>
+<head>
+
+</head>
+
+<body>
+<div id="fh5co-page" style="background-image: url(../../assets/new.svg);right: -442px;left: -692px;margin-right: -839px;margin-left: 575px;">
+<div class="row">
+  <div class="col-lg-4">
+  </div>
+  <div class="col-lg-4">
+
+    <form class = "container" id="loginForm" #loginForm="ngForm" (ngSubmit)="loginuser(loginForm.value)">
+      <div class="panel panel-primary" style="margin-left: 33px;margin-right: -24px;">
+
+        <div class="panel-heading" style="padding-left: 156px;">LOGIN PAGE</div>
+        <div class="panel-body">
+          <img src="../../assets/login.png" style="height: 80px; width: 80px;margin-left: 141px;"><br>
+
+          <div class="panel-body">UserName:   <input path="username" name="username" type="text" class="table-bordered" placeholder="Enter User_ID" [(ngModel)]="loginObj.username"/></div>
+          <div class="panel-body">Password: <input path="password" name="password" type="password" class="table-bordered" placeholder="Enter Password"  [(ngModel)]="loginObj.password"/></div>
+          <!-- <a [routerLink]="['/parent-allocation']" class="nav-link" href="#" style="margin-left: 64px;"> </a><br> -->
+          <button type="submit" value="Login"style="color: #23527c;margin-left: -75px;width: 400px" class="btn-block btn-danger">Login</button>
+
+
+         <ul>
+           <li><a [routerLink]="['/forggot']" class="nav-link" href="#" style="margin-left: 64px;">Forgot Password?</a></li>
+           <li><a [routerLink]="['/register']" class="nav-link" href="#" style="margin-left: 64px;">Create New Account</a></li>
+
+         </ul>
+
+        </div>
+
+      </div>
+    </form>
+  </div>
+  <div class="col-lg-4"></div>
+</div>
+<section id="main">
+  <router-outlet></router-outlet>
+</section>
+
+</div>
+</body>
+</html>
